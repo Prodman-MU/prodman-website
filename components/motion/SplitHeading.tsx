@@ -26,13 +26,21 @@ export function SplitHeading({
   const shouldReduceMotion = useReducedMotion();
   const words = text.split(" ");
 
+  if (shouldReduceMotion) {
+    return (
+      <Tag id={id} className={className}>
+        {text}
+      </Tag>
+    );
+  }
+
   return (
     <Tag id={id} className={className} aria-label={text}>
       <motion.span
         aria-hidden="true"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.6 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ staggerChildren: 0.05 }}
         style={{ display: "inline" }}
       >
@@ -40,21 +48,17 @@ export function SplitHeading({
           <motion.span
             key={`${word}-${index}`}
             style={{ display: "inline-block" }}
-            variants={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    hidden: { opacity: 0, y: "0.3em" },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.6, ease: EXPO_OUT },
-                    },
-                  }
-            }
+            variants={{
+              hidden: { opacity: 0, y: "0.3em" },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: EXPO_OUT },
+              },
+            }}
           >
             {word}
-            {index < words.length - 1 ? " " : ""}
+            {index < words.length - 1 ? "\u00A0" : ""}
           </motion.span>
         ))}
       </motion.span>

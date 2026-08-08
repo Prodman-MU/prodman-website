@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { Preloader } from "@/components/preloader/Preloader";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 import "./globals.css";
 
 const displaySerif = Fraunces({
@@ -51,9 +52,11 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`${displaySerif.variable} ${bodySans.variable}`}>
-        <Preloader />
-        <CustomCursor />
-        {children}
+        <MotionProvider>
+          <Preloader />
+          <CustomCursor />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

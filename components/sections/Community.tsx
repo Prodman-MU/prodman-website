@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { newsletterTopics, whatsappUrl } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
 import styles from "./Community.module.css";
+
+const cardLiftSpring = { type: "spring", stiffness: 350, damping: 25, mass: 0.8 } as const;
 
 export function Community() {
   const [status, setStatus] = useState<"idle" | "submitted">("idle");
@@ -12,20 +16,30 @@ export function Community() {
   return (
     <section id="community" className="section">
       <div className="container">
-        <p className="section__label">Community</p>
+        <Reveal amount={0.2}>
+          <p className="section__label">Community</p>
+        </Reveal>
         <SplitHeading
           as="h2"
           className="section__heading"
           text="Don’t Just Watch Products Evolve. Be Part of What’s Next."
         />
-        <p className="section__lede">
-          Get event drops, product insights, AI trends, opportunities, resources, and the occasional hot
-          take—delivered directly to you.
-        </p>
+        <Reveal delay={0.1} amount={0.2}>
+          <p className="section__lede">
+            Get event drops, product insights, AI trends, opportunities, resources, and the occasional hot
+            take—delivered directly to you.
+          </p>
+        </Reveal>
 
-        <div className={styles.grid}>
-          <Reveal delay={0}>
-            <article className={`card ${styles.card} ${styles.whatsapp}`}>
+        <StaggerContainer staggerDelay={0.1} viewportAmount={0.2} className={styles.grid}>
+          <StaggerItem variant="fadeUp">
+            <motion.article
+              className={`card ${styles.card} ${styles.whatsapp}`}
+              whileHover={{ y: -5, scale: 1.015 }}
+              whileTap={{ scale: 0.99 }}
+              transition={cardLiftSpring}
+              data-cursor-text="Join"
+            >
               <h3 className={styles.cardTitle}>Join the Product Circle</h3>
               <p className={styles.tagline}>Where product conversations continue after the event ends.</p>
               <p className={styles.description}>
@@ -39,16 +53,28 @@ export function Community() {
                 <li>Exchange ideas, feedback, and useful resources</li>
               </ul>
               <div className={styles.ctaRow}>
-                <a className="cta cta--acid" href={whatsappUrl}>
+                <motion.a
+                  className="cta cta--acid"
+                  href={whatsappUrl}
+                  whileHover={{ y: -3, scale: 1.03 }}
+                  whileTap={{ scale: 0.96 }}
+                  data-cursor-text="Join"
+                >
                   Join the WhatsApp Community &rarr;
-                </a>
+                </motion.a>
                 <p className={styles.microcopy}>Less noise. More product.</p>
               </div>
-            </article>
-          </Reveal>
+            </motion.article>
+          </StaggerItem>
 
-          <Reveal delay={0.08}>
-            <article className={`card ${styles.card} ${styles.newsletter}`}>
+          <StaggerItem variant="fadeUp">
+            <motion.article
+              className={`card ${styles.card} ${styles.newsletter}`}
+              whileHover={{ y: -5, scale: 1.015 }}
+              whileTap={{ scale: 0.99 }}
+              transition={cardLiftSpring}
+              data-cursor-text="Subscribe"
+            >
               <h3 className={styles.cardTitle}>Product Drops, Minus the Fluff</h3>
               <p className={styles.tagline}>Sharp product thinking, delivered to your inbox.</p>
               <p className={styles.description}>
@@ -84,18 +110,25 @@ export function Community() {
                     type="email"
                     required
                     placeholder="you@example.com"
+                    data-cursor="text"
                   />
-                  <button className="cta" type="submit">
+                  <motion.button
+                    className="cta"
+                    type="submit"
+                    whileHover={{ y: -2, scale: 1.03 }}
+                    whileTap={{ scale: 0.96 }}
+                    data-cursor-text="Send"
+                  >
                     Send Me the Good Stuff &rarr;
-                  </button>
+                  </motion.button>
                 </form>
               )}
               <p className={styles.microcopy}>No spam. No boring emails. Unsubscribe anytime.</p>
-            </article>
-          </Reveal>
-        </div>
+            </motion.article>
+          </StaggerItem>
+        </StaggerContainer>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.15} amount={0.2}>
           <p className={styles.closing}>
             Your next idea, opportunity, teammate, or breakthrough might be one update away.
           </p>

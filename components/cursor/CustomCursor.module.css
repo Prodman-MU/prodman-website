@@ -30,7 +30,7 @@
   border: 1px solid rgba(244, 245, 240, 0.4);
   border-radius: 50%;
   pointer-events: none;
-  will-change: transform, width, height, background-color, border-color;
+  will-change: transform, background-color, border-color;
   display: flex;
   align-items: center;
   justify-content: center;

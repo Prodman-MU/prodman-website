@@ -1,24 +1,40 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { members } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
 import styles from "./Members.module.css";
+
+const cardLiftSpring = { type: "spring", stiffness: 350, damping: 25, mass: 0.8 } as const;
 
 export function Members() {
   return (
     <section id="members" className="section">
       <div className="container">
-        <p className="section__label">Members</p>
+        <Reveal amount={0.2}>
+          <p className="section__label">Members</p>
+        </Reveal>
         <SplitHeading as="h2" className="section__heading" text="The people behind ProdMan." />
-        <p className="section__lede">
-          A slightly over-curious mix of future product managers, designers, strategists,
-          technologists, and builders — the four who&rsquo;ve written their story so far.
-        </p>
+        <Reveal delay={0.1} amount={0.2}>
+          <p className="section__lede">
+            A slightly over-curious mix of future product managers, designers, strategists,
+            technologists, and builders — the four who&rsquo;ve written their story so far.
+          </p>
+        </Reveal>
 
-        <div className={styles.grid}>
-          {members.map((member, index) => (
-            <Reveal key={member.name} delay={index * 0.06}>
-              <article className={`card ${styles.card}`}>
+        <StaggerContainer staggerDelay={0.06} viewportAmount={0.15} className={styles.grid}>
+          {members.map((member) => (
+            <StaggerItem key={member.name} variant="fadeUp">
+              <motion.article
+                className={`card ${styles.card}`}
+                whileHover={{ y: -5, scale: 1.02 }}
+                whileTap={{ scale: 0.985 }}
+                transition={cardLiftSpring}
+                data-cursor-text="Team"
+              >
                 <div className={styles.photoWrap}>
                   {member.photo ? (
                     <Image src={member.photo} alt={member.name} fill className={styles.photo} sizes="280px" />
@@ -37,25 +53,37 @@ export function Members() {
                 {member.links.length > 0 ? (
                   <div className={styles.links}>
                     {member.links.map((link) => (
-                      <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                      <motion.a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.92 }}
+                        data-cursor-text="Connect"
+                      >
                         {link.label}
-                      </a>
+                      </motion.a>
                     ))}
                   </div>
                 ) : null}
-              </article>
-            </Reveal>
+              </motion.article>
+            </StaggerItem>
           ))}
 
-          <Reveal delay={members.length * 0.06}>
-            <div className={`card ${styles.moreCard}`}>
+          <StaggerItem variant="fadeUp">
+            <motion.div
+              className={`card ${styles.moreCard}`}
+              whileHover={{ scale: 1.015 }}
+              data-cursor-text="Soon"
+            >
               <p>
                 Our President, Vice President, and the rest of the core team&rsquo;s profiles are on
                 the way.
               </p>
-            </div>
-          </Reveal>
-        </div>
+            </motion.div>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
     </section>
   );

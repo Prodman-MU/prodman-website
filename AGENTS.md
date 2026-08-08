@@ -6,32 +6,41 @@ Build the public website for the Masters' Union Product Management Club, beginni
 
 ## Stack
 
-- Frontend: Framework-neutral HTML, CSS, and JavaScript prototype
-- Backend:
-- Database:
-- Auth:
-- Deployment:
-- AI/LLM:
-- Other: Canvas 2D particle animation; no runtime dependencies
+- Frontend: Next.js (App Router) + TypeScript + Framer Motion (for scroll/transition animation; not yet used by any shipped section)
+- Backend: none yet — Phase 2 is a custom admin panel backed by Supabase (see docs/PRD.md Section 9)
+- Database: none yet — Phase 2 Supabase, sketch in docs/PRD.md Section 9
+- Auth: none yet — Phase 2, restricted to club exec / @mastersunion.org emails
+- Deployment: Vercel (connected to this GitHub repo), not yet live — see docs/PRD.md Section 1 and PLANS.md
+- AI/LLM: none
+- Other: the original framework-neutral Canvas 2D living-logo prototype (`index.html`, `demo.css`, `resources/prodman-living-logo/`) is kept as historical reference — the canonical implementation is now `components/hero/Hero.tsx` + `components/hero/useLivingLogo.ts`, a faithful React port with the same pause/reduced-motion/off-screen-suspension behavior contract.
+
+**Decision resolved 2026-08-08** (was previously an open question in this file): framework is Next.js, not left framework-neutral. See docs/PRD.md Section 9 for the full reasoning and phasing. Please read docs/PRD.md before making further stack, content, or design decisions in this repo — it is the shared source of truth between concurrent sessions working on this project.
 
 ## Important Folders
 
 ```text
-image/
-resources/
+app/            — Next.js App Router pages, layout, global styles
+components/     — section + hero + nav/footer React components
+lib/content.ts  — typed content sourced from resources/*.txt (see file header)
+public/         — served static assets (brand images, team photos)
+resources/      — source-of-truth content drafts and brand assets (not served directly)
+image/          — legacy asset folder from the pre-Next.js prototype
+docs/           — PRD, architecture, decisions, handoff notes
 scripts/
-docs/
 ```
 
 ## How To Run
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
 ## How To Validate
 
 ```bash
+npm run build
+npx eslint .
 ./scripts/check.sh
 ```
 

@@ -28,6 +28,8 @@ While this PRD was being scoped, a **second, concurrent agent session (Codex —
 2. **The framework decision this PRD makes (Section 9) should be treated as the answer to Codex's open question**, and `docs/HANDOFF.md` / `AGENTS.md`'s blank "Stack" fields should be updated to point at this PRD once it's approved — otherwise the next Codex session re-litigates a decision that's already been made twice (once in conversation with Om, and now here).
 3. **Recommend telling both agents/sessions to treat this file as the shared source of truth** for scope and sequencing going forward, so the two workstreams don't diverge.
 
+**Update, 2026-08-08 — v1 built.** Item 2 above is done: Next.js (App Router) is now the actual implemented stack, on branch `feat/nextjs-v1` (committed, not yet merged or deployed). The hero was ported faithfully into `components/hero/`; all 9 sections exist. `AGENTS.md` and `docs/HANDOFF.md` have been updated to point back at this PRD. Two new content conflicts surfaced during the build and were deliberately left unresolved rather than auto-picked: `resources/First-Event.txt` (a different "Event 1" than the one already built) and `resources/Preview.txt` (alternate hero copy) — see the open questions at the end of this document.
+
 ---
 
 ## 2. Vision & North Star
@@ -419,8 +421,8 @@ No content file exists. This is the section doing the most work for the "externa
 
 | Phase | Scope |
 |---|---|
-| **Phase 1** | Next.js port of the existing hero + all 9 sections built from `resources/` content, file-based data, no backend beyond a newsletter ESP integration |
-| **Phase 2** | Supabase-backed custom admin panel for members/events/projects/resources CRUD, migrating Phase 1's static data into it |
+| **Phase 1** | Next.js port of the existing hero + all 9 sections built from `resources/` content, file-based data, no backend beyond a newsletter ESP integration — **built 2026-08-08, branch `feat/nextjs-v1`, not yet deployed** |
+| **Phase 2** | Supabase-backed custom admin panel for members/events/projects/resources CRUD, migrating Phase 1's static data into it — not started |
 
 ### Data model sketch (Phase 2, Supabase)
 
@@ -476,6 +478,9 @@ No content file exists. This is the section doing the most work for the "externa
 21. Whether to borrow awwwards.com's numeric-score convention (e.g. "7.21/10") for Section 8.8 (Projects) — flagged as an idea, not scoped in, since it implies a real rating/voting mechanic and data model, not just a visual style (8.8).
 22. Whether to add a percentage-based preloader (penguin-capital.co.jp pattern) — recommended, but not yet confirmed with Om (10).
 23. ~~Highest priority — theme conflict between penguin-capital and the built hero/resource files~~ — **resolved 2026-08-08**: hybrid approach, penguin-capital governs typography/motif/pacing, ProdMan's neon accent colors and existing content stay as-is (5b). Remaining open task from this: actually select the display serif typeface (7).
+24. **New, needs Om's call:** `resources/First-Event.txt` ("Design Unscripted," guided by Rohaan Goswami) describes a different "Event 1" than the one already built into Section 8.2 from `resources/Event-Details.txt` ("Product Design Workshop & Hackathon"). Both can't be Event 1 — decide which is canonical, or whether these are two different events entirely (rename/renumber if so) before the Events section is treated as final.
+25. **New, needs Om's call:** `resources/Preview.txt` has alternate hero copy ("We Don't Build Features. We Build Reasons to Care." / CTAs "Start Building →" and "Explore ProdMan") not used in the current build — the shipped hero still reads "Build what should exist." Decide whether to swap, and if so, whether it changes the header eyebrow/signal-strip copy that's tuned to the current headline.
+26. v1 is built and committed to branch `feat/nextjs-v1` but **not yet deployed** — Vercel connection to `Prodman-MU/prodman-website` is pending explicit go-ahead (Section 1, per Om's stated preference: commit → review → connect Vercel, nothing hits `main` without sign-off).
 
 ## 14. Appendix — file inventory referenced in this PRD
 

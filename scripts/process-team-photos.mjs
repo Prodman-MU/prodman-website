@@ -26,10 +26,9 @@ const DEFAULTS = { paddingFactor: 1.32, marginAboveFrac: 0.055 };
 // pose-specific framing fixes that a generic bbox rule can't get right.
 const OVERRIDES = {
   akshat: { paddingFactor: 1.22 }, // trims a retained couch-fabric fragment near his right hand
-  // Her seated pose needs slightly more air than the standing portraits, but
-  // keeping the frame tighter than the first pass excludes a detached table
-  // fragment at the far-right edge.
-  supriya: { paddingFactor: 1.22, marginAboveFrac: 0.07 },
+  // The replacement formal portrait is versioned so Next/Image and deployed
+  // CDN caches cannot continue serving the previous Supriya cutout.
+  supriya: { paddingFactor: 1.22, marginAboveFrac: 0.07, outputSlug: "supriya-v2" },
   // A pothos plant behind his head survived person segmentation. A rectangular
   // erase also removed the top of his hair, so key only green-dominant pixels
   // in the mapped source region and preserve every non-green subject pixel.
@@ -203,7 +202,7 @@ async function processOne(slug) {
   const clampedTop = Math.min(Math.max(cropTop, 0), paddedMeta.height - cropHeight);
 
   await mkdir(outDir, { recursive: true });
-  const outPath = path.join(outDir, `${slug}.webp`);
+  const outPath = path.join(outDir, `${cfg.outputSlug || slug}.webp`);
   await sharp(paddedBuf)
     .extract({
       left: Math.round(clampedLeft),

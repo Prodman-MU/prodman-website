@@ -26,53 +26,6 @@ export const members: readonly Member[] = [
     photo: "/team/sai-harsha.png",
   },
   {
-    name: "Om Umrania",
-    role: null,
-    bio: "I build AI products, decode data, and occasionally make 13 AI agents work together without starting a rebellion. From RAG systems to automation workflows, I enjoy taking ambitious ideas from 0→1 and turning them into products that create real impact. My superpower? Switching between product strategy and technical execution without losing the plot—or the user.",
-    superpower: "Going from “This sounds impossible” to “I’ve already built a prototype.” \u{1F4A1}",
-    links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/omumrania" },
-      { label: "GitHub", href: "https://github.com/om-umrania" },
-      { label: "Portfolio", href: "https://omumrania.com/" },
-    ],
-    photo: "/team/om-umrania.png",
-  },
-  {
-    name: "Muskan Sharma",
-    role: null,
-    bio: "I am an AI product enthusiast who loves turning messy problems into simple, user-focused solutions. With around 3.5 years of experience across AI consulting, product discovery, and strategy, I enjoy connecting business needs with technology. My superpower is bringing structure to chaos and taking ideas from “What if?” to “It’s live!” \u{1F680}",
-    superpower:
-      "Bringing structure to chaos. Give me an ambiguous problem, five conflicting stakeholder opinions, and a tight deadline—and I’ll turn them into a clear plan that everyone can rally around.",
-    links: [
-      { label: "Email", href: "mailto:muskan.sharma2027@mastersunion.org" },
-      { label: "LinkedIn", href: "https://linkedin.com/in/muskan-sharma-273128193" },
-    ],
-    location: "Gurugram, India",
-    photo: "/team/muskan-sharma.jpg",
-  },
-  {
-    name: "Akshat Dhaundiyal",
-    role: null,
-    // NOTE: source (resources/Team-Summary.txt) has a dropped word after "business" —
-    // "turn complex business." reads as cut off. Filled minimally pending Akshat's
-    // confirmation; see docs/PRD.md open question 19 before treating as final.
-    bio: "I’m a data scientist evolving into a product builder—because predicting outcomes is fun, but shaping them is even better. I use AI, analytics, and automation to turn complex business problems into clarity. From simplifying enterprise workflows to building AI-powered tools, I enjoy taking ideas beyond dashboards and putting them into action.",
-    superpower: "Spotting patterns hidden in chaos and converting them into decisions people can actually act on. \u{1F4AD}",
-    links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/akshat-dhaundiyal-1664a9122" },
-      { label: "Email", href: "mailto:akshat.dhaundiyal2027@mastersunion.org" },
-    ],
-    photo: "/team/akshat.jpeg",
-  },
-  {
-    name: "Supriya",
-    role: null,
-    bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
-    superpower: "Turning ambiguity into action. ⚡",
-    links: [],
-    photo: "/team/supriya.jpg",
-  },
-  {
     name: "Akhil Menon",
     role: null,
     bio: "I’m a product builder at Jio Platforms who likes asking two questions: “Why would a user care?” and “What do the numbers say?” With 3+ years in B2C product development, I’ve redesigned high-traffic journeys, launched platforms for 350K+ users, and built an AI-powered survey product that enabled 13M+ responses. I work where technology, UX, and growth collide—turning customer friction into experiences that convert, scale, and stick.",
@@ -90,6 +43,53 @@ export const members: readonly Member[] = [
     superpower: "Seeing whitespace before it becomes obvious—and owning everything from the first sketch to the final P&L.",
     links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/anushapb/" }],
     photo: "/team/anusha.png",
+  },
+  {
+    name: "Akshat Dhaundiyal",
+    role: null,
+    // NOTE: source (resources/Team-Summary.txt) has a dropped word after "business" —
+    // "turn complex business." reads as cut off. Filled minimally pending Akshat's
+    // confirmation; see docs/PRD.md open question 19 before treating as final.
+    bio: "I’m a data scientist evolving into a product builder—because predicting outcomes is fun, but shaping them is even better. I use AI, analytics, and automation to turn complex business problems into clarity. From simplifying enterprise workflows to building AI-powered tools, I enjoy taking ideas beyond dashboards and putting them into action.",
+    superpower: "Spotting patterns hidden in chaos and converting them into decisions people can actually act on. \u{1F4AD}",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/akshat-dhaundiyal-1664a9122" },
+      { label: "Email", href: "mailto:akshat.dhaundiyal2027@mastersunion.org" },
+    ],
+    photo: "/team/akshat.jpeg",
+  },
+  {
+    name: "Muskan Sharma",
+    role: null,
+    bio: "I am an AI product enthusiast who loves turning messy problems into simple, user-focused solutions. With around 3.5 years of experience across AI consulting, product discovery, and strategy, I enjoy connecting business needs with technology. My superpower is bringing structure to chaos and taking ideas from “What if?” to “It’s live!” \u{1F680}",
+    superpower:
+      "Bringing structure to chaos. Give me an ambiguous problem, five conflicting stakeholder opinions, and a tight deadline—and I’ll turn them into a clear plan that everyone can rally around.",
+    links: [
+      { label: "Email", href: "mailto:muskan.sharma2027@mastersunion.org" },
+      { label: "LinkedIn", href: "https://linkedin.com/in/muskan-sharma-273128193" },
+    ],
+    location: "Gurugram, India",
+    photo: "/team/muskan-sharma.jpg",
+  },
+  {
+    name: "Supriya",
+    role: null,
+    bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
+    superpower: "Turning ambiguity into action. ⚡",
+    links: [],
+    photo: "/team/supriya.jpg",
+  },
+  {
+    name: "Om Umrania",
+    role: null,
+    bio: "I build AI products, decode data, and occasionally make 13 AI agents work together without starting a rebellion. From RAG systems to automation workflows, I enjoy taking ambitious ideas from 0→1 and turning them into products that create real impact. My superpower? Switching between product strategy and technical execution without losing the plot—or the user.",
+    superpower: "Going from “This sounds impossible” to “I’ve already built a prototype.” \u{1F4A1}",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/omumrania" },
+      { label: "GitHub", href: "https://github.com/om-umrania" },
+      { label: "Portfolio", href: "https://omumrania.com/" },
+    ],
+    photo: "/team/om-umrania.png",
   },
 ] as const;
 

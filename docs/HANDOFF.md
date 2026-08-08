@@ -62,19 +62,17 @@ npm run dev
 
 - Two content conflicts found late and deliberately not auto-resolved: `resources/First-Event.txt` describes a different "Event 1" than the one already built (from `resources/Event-Details.txt`), and `resources/Preview.txt` has alternate hero copy not used in the current build. Needs a decision from the project owner before either supersedes what's live.
 - Event registration and newsletter signup are non-functional stubs (`lib/content.ts`'s `registrationUrl`/`whatsappUrl` are `"#"`, and the newsletter form just shows a "coming soon" message on submit) — no backend chosen yet.
-- Full core-member roster (President/VP + rest of core team) still missing bios/photos.
-- `public/team/akshat.jpeg` and `public/team/anusha.png` exist on disk (untracked, not committed) but aren't wired into `lib/content.ts` — both members still show `photo: null`. Someone was mid-way through adding these when the Awwwards elevation work started; finish wiring them up or drop the files.
+- ~~Full core-member roster (President/VP + rest of core team) still missing bios/photos.~~ **Resolved 2026-08-08**: roster is now 7 members (added Sai Harsha Sadhu/President, Akhil Menon, Anusha P. B. — their bios were already in `resources/Team-Summary.txt`, just never extracted) and every member has a photo. No VP found in any source file.
 - Milestone 4's independent final review (see "Awwwards Elevation Build" above) never ran — only the implementer's self-check did. Worth a real second look before this ships, especially the interactive Product Breakdown's keyboard navigation and the reduced-motion paths, since those are exactly where the orchestrator's own reviewers missed real bugs earlier in this same build.
 - Not yet deployed — branch `feat/nextjs-v1` is committed locally and pushed to `origin/feat/nextjs-v1`, Vercel connection pending project owner's go-ahead.
 
 ## Next Steps
 
-1. Manual browser QA of the Awwwards elevation build: preloader (including `?preloader=force` replay), custom cursor on desktop, Product Breakdown dial at desktop + mobile + 320px, `prefers-reduced-motion: reduce` behavior site-wide.
+1. Manual browser QA of the Awwwards elevation build: preloader (including `?preloader=force` replay), custom cursor on desktop, Product Breakdown dial at desktop + mobile + 320px, `prefers-reduced-motion: reduce` behavior site-wide, and the now-complete Members section (7 cards).
 2. Project owner resolves the First-Event.txt / Preview.txt content conflicts.
-3. Decide on `public/team/akshat.jpeg` / `anusha.png` — wire into `lib/content.ts` or remove.
-4. Connect Vercel to this GitHub repo for preview deploys off `feat/nextjs-v1`.
-5. Fill remaining content gaps (roster, Resources, Projects) per `docs/PRD.md` Section 13.
-6. Wire a real event-registration flow and newsletter backend.
+3. Connect Vercel to this GitHub repo for preview deploys off `feat/nextjs-v1`.
+4. Fill remaining content gaps (Resources, Projects) per `docs/PRD.md` Section 13.
+5. Wire a real event-registration flow and newsletter backend.
 
 ## Notes For Future Codex Sessions
 

@@ -20,7 +20,8 @@
 - [x] Committed to `feat/nextjs-v1`
 - [ ] Resolve `resources/First-Event.txt` / `resources/Preview.txt` content conflicts (see docs/HANDOFF.md Known Issues)
 - [ ] Connect Vercel to Prodman-MU/prodman-website and deploy a preview
-- [ ] Fill remaining content: full core-member roster, Resources, Projects
+- [x] Fill remaining content: full core-member roster (7 members incl. President, all with photos — 2026-08-08)
+- [ ] Fill remaining content: Resources, Projects
 - [ ] Wire event registration + newsletter backends
 
 ## Awwwards elevation build — completed 2026-08-08 (branch `feat/nextjs-v1`, pushed, not yet deployed)

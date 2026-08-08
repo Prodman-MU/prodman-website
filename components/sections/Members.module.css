@@ -47,6 +47,15 @@
   font-weight: 500;
 }
 
+.role {
+  margin: -0.5rem 0 0;
+  color: var(--acid);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .bio {
   margin: 0;
   color: var(--muted);

@@ -21,7 +21,7 @@ export function Members() {
         <Reveal delay={0.1} amount={0.2}>
           <p className="section__lede">
             A slightly over-curious mix of future product managers, designers, strategists,
-            technologists, and builders — the four who&rsquo;ve written their story so far.
+            technologists, and builders — the seven who&rsquo;ve written their story so far.
           </p>
         </Reveal>
 
@@ -48,6 +48,7 @@ export function Members() {
                   )}
                 </div>
                 <h3 className={styles.name}>{member.name}</h3>
+                {member.role ? <p className={styles.role}>{member.role}</p> : null}
                 <p className={styles.bio}>{member.bio}</p>
                 <p className={styles.superpower}>{member.superpower}</p>
                 {member.links.length > 0 ? (
@@ -77,10 +78,7 @@ export function Members() {
               whileHover={{ scale: 1.015 }}
               data-cursor-text="Soon"
             >
-              <p>
-                Our President, Vice President, and the rest of the core team&rsquo;s profiles are on
-                the way.
-              </p>
+              <p>The rest of the core team&rsquo;s profiles are on the way.</p>
             </motion.div>
           </StaggerItem>
         </StaggerContainer>

@@ -40,8 +40,9 @@
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.08em;
-  color: var(--ink);
+  color: var(--paper);
   font-weight: 700;
   text-transform: uppercase;
   pointer-events: none;
+  white-space: nowrap;
 }

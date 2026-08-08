@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
+import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -24,7 +25,7 @@ export function StaggerContainer({
   className,
   as: Component = "div",
 }: StaggerContainerProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   const containerVariants: Variants = {
     hidden: {},
@@ -37,7 +38,7 @@ export function StaggerContainer({
   };
 
   const MotionTag = (
-    typeof Component === "string" && Component in motion
+    typeof Component === "string"
       ? (motion as unknown as Record<string, typeof motion.div>)[Component]
       : motion.div
   );
@@ -72,7 +73,7 @@ export function StaggerItem({
   className,
   as: Component = "div",
 }: StaggerItemProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   const getVariants = (): Variants => {
     if (shouldReduceMotion) {
@@ -115,7 +116,7 @@ export function StaggerItem({
   };
 
   const MotionTag = (
-    typeof Component === "string" && Component in motion
+    typeof Component === "string"
       ? (motion as unknown as Record<string, typeof motion.div>)[Component]
       : motion.div
   );

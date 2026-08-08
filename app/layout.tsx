@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import Script from "next/script";
 import { Preloader } from "@/components/preloader/Preloader";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
 import { MotionProvider } from "@/components/providers/MotionProvider";
@@ -32,9 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <Script
+          id="prodman-preloader-visibility"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -61,4 +64,3 @@ export default function RootLayout({
     </html>
   );
 }
-

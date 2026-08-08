@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   productBreakdown,
   productBreakdownCategories,
@@ -10,12 +10,13 @@ import {
 } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import styles from "./ProductBreakdown.module.css";
 
 export function ProductBreakdown() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<"all" | PMCategory>("all");
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   // Refs for roving tabindex keyboard navigation
   const nodeRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -324,15 +325,13 @@ export function ProductBreakdown() {
                 <motion.line
                   x1="200"
                   y1="200"
-                  x2={200 + 152 * Math.cos((activeAngle * Math.PI) / 180)}
-                  y2={200 + 152 * Math.sin((activeAngle * Math.PI) / 180)}
+                  x2="352"
+                  y2="200"
                   stroke="var(--acid)"
                   strokeWidth="2"
                   strokeOpacity="0.8"
-                  animate={{
-                    x2: 200 + 152 * Math.cos((activeAngle * Math.PI) / 180),
-                    y2: 200 + 152 * Math.sin((activeAngle * Math.PI) / 180),
-                  }}
+                  style={{ transformOrigin: "200px 200px" }}
+                  animate={{ rotate: activeAngle }}
                   transition={
                     shouldReduceMotion
                       ? { duration: 0 }

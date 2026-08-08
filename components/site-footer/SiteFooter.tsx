@@ -93,7 +93,7 @@ export function SiteFooter() {
         <span>&copy; {new Date().getFullYear()} ProdMan Club, Masters&rsquo; Union.</span>
         <span className={styles.muLine}>
           <Image src="/brand/masters-union-logo-white.png" alt="" width={23} height={12} className={styles.muLogo} />
-          A Masters&rsquo; Union Club &middot; Gurugram
+          A Masters&rsquo; Union Club
         </span>
       </Reveal>
     </footer>

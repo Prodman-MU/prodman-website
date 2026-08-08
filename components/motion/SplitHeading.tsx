@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ElementType } from "react";
+import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -23,25 +24,17 @@ export function SplitHeading({
   className?: string;
   id?: string;
 }) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
   const words = text.split(" ");
-
-  if (shouldReduceMotion) {
-    return (
-      <Tag id={id} className={className}>
-        {text}
-      </Tag>
-    );
-  }
 
   return (
     <Tag id={id} className={className} aria-label={text}>
       <motion.span
         aria-hidden="true"
-        initial="hidden"
+        initial={shouldReduceMotion ? false : "hidden"}
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ staggerChildren: 0.05 }}
+        transition={{ staggerChildren: shouldReduceMotion ? 0 : 0.05 }}
         style={{ display: "inline" }}
       >
         {words.map((word, index) => (
@@ -53,7 +46,10 @@ export function SplitHeading({
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.6, ease: EXPO_OUT },
+                transition: {
+                  duration: shouldReduceMotion ? 0 : 0.6,
+                  ease: EXPO_OUT,
+                },
               },
             }}
           >

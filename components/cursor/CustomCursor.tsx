@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import styles from "./CustomCursor.module.css";
 
 export function CustomCursor() {
@@ -9,7 +10,7 @@ export function CustomCursor() {
   const [cursorState, setCursorState] = useState<"default" | "hover" | "text" | "active" | "hidden">("default");
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
 
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   // Mouse position motion values
   const mouseX = useMotionValue(-100);

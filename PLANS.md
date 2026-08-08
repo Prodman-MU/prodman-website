@@ -32,8 +32,19 @@
 - [x] Removed fabricated metrics/tools/curriculum content from Product Breakdown (see docs/HANDOFF.md)
 - [x] Fixed a mobile-keyboard-nav accessibility bug and a duplicate-DOM-id bug the orchestrator's own reviewers missed
 - [x] `npm run typecheck`, `npx eslint .`, `npm run build` all pass clean; committed and pushed in 3 staged commits
-- [ ] Milestone 4 independent final review (never completed — see docs/HANDOFF.md)
-- [ ] Manual browser QA (preloader, cursor, dial, reduced-motion, 320px)
+- [x] Follow-on independent code/runtime review: lint, typecheck, build, project check, hydration and console integrity
+- [x] Chromium navigation QA at 320px, 390px, and desktop; active section, focus trap, Escape, scroll lock, and reduced-motion verified
+- [ ] Complete manual browser matrix: custom cursor, every dial keyboard path, Safari/Firefox, full forced-preloader replay
+
+## Navigation and interaction continuation — completed 2026-08-08
+
+- [x] Preserve and extend the existing Gemini sticky-nav work
+- [x] Add active-section state and current-location semantics
+- [x] Add a full-viewport numbered mobile menu inspired by the reference site's interaction principles
+- [x] Add focus containment, Escape restoration, scroll lock, breakpoint cleanup, and 44px touch controls
+- [x] Repair reduced-motion hydration across shared motion components
+- [x] Remove invalid SVG endpoint animation warnings from Product Breakdown
+- [x] Record the continuation in `docs/HANDOFF.md` and `docs/DECISIONS.md`
 
 ## Relevant Files
 

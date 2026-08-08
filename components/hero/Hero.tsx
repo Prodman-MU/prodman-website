@@ -47,7 +47,7 @@ export function Hero() {
             height={14}
             className={styles.muLogo}
           />
-          <span>MASTERS&rsquo; UNION &middot; GURUGRAM</span>
+          <span>MASTERS&rsquo; UNION</span>
         </p>
         <motion.button
           className={styles.motionControl}

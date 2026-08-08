@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
+import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -22,12 +23,7 @@ export function Reveal({
   className?: string;
   as?: ElementType;
 }) {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (shouldReduceMotion) {
-    const Tag = Component;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   const getInitial = () => {
     if (variant === "fadeIn") return { opacity: 0 };
@@ -42,7 +38,7 @@ export function Reveal({
   };
 
   const MotionTag = (
-    typeof Component === "string" && Component in motion
+    typeof Component === "string"
       ? (motion as unknown as Record<string, typeof motion.div>)[Component]
       : motion.div
   );
@@ -50,11 +46,15 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={getInitial()}
+      initial={shouldReduceMotion ? false : getInitial()}
       whileInView={getAnimate()}
       viewport={{ once: true, amount }}
-      transition={{ duration: 0.65, delay, ease: EXPO_OUT }}
-      style={{ willChange: "transform, opacity" }}
+      transition={{
+        duration: shouldReduceMotion ? 0 : 0.65,
+        delay: shouldReduceMotion ? 0 : delay,
+        ease: EXPO_OUT,
+      }}
+      style={shouldReduceMotion ? undefined : { willChange: "transform, opacity" }}
     >
       {children}
     </MotionTag>

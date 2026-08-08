@@ -11,7 +11,7 @@ A follow-on **navigation and runtime-quality pass** continues the earlier Gemini
 ## What Has Been Implemented
 
 - Hero (Section 0): the living-logo prototype ported into `components/hero/Hero.tsx` + `useLivingLogo.ts` — same particle field, sheen/scan, pointer response, pause control, reduced-motion fallback, off-screen suspension, now with an added "next event" chip linking to the Events section.
-- Members, Events, Mission, Who It's For, Community CTA, Product Breakdown — built from `resources/*.txt` content (see `lib/content.ts` for the typed source and `docs/PRD.md` Section 8 for full verbatim extraction/provenance notes).
+- Members — a visual-first, seven-person portrait deck using normalized transparent WebP cutouts, direct portrait/dot/arrow selection, swipe, Left/Right/Home/End keyboard control, reduced-motion handling, and full bios disclosed on demand. Fine-pointer hover adds card attraction, 3D tilt, portrait counter-motion, and a restrained glare sweep; touch and reduced-motion paths stay static. Events, Mission, Who It's For, Community CTA, and Product Breakdown remain built from `resources/*.txt` content (see `lib/content.ts` and `docs/PRD.md` Section 8 for provenance).
 - Resources, Projects — honest "Coming Soon" states; no content exists yet for either (`docs/PRD.md` Section 13).
 - Persistent sticky site nav + footer (`components/site-nav/`, `components/site-footer/`) with a repeated WhatsApp CTA.
 - Typography: Fraunces (display serif, headlines) + Inter (body) via `next/font/google`, self-hosted at build time — per the penguin-capital-influenced hybrid theme in `docs/PRD.md` Section 5b/7.
@@ -75,10 +75,21 @@ npm run dev
 ./scripts/check.sh
 ```
 
+## Team Photo Pipeline
+
+The seven original portraits remain under `public/team/`. Website-ready transparent cutouts live under `public/team/cutouts/` and are referenced through `lib/content.ts`. Regenerate both segmentation and consistent 4:5 framing with:
+
+```bash
+npm run photos:process
+```
+
+`scripts/remove-team-backgrounds.mjs` performs AI person segmentation into a temporary lossless cache. `scripts/process-team-photos.mjs` then finds the primary subject, applies the documented per-photo cleanup/framing overrides, and exports 900×1125 alpha WebPs. Akhil’s override removes a retained plant without flattening his hair; Supriya’s tighter framing excludes a detached table fragment.
+
 (runs eslint, tsc --noEmit, and `next build`)
 
 ## Known Issues
 
+- `@imgly/background-removal-node` is a development-only dependency used by `npm run photos:process`. `npm audit --omit=dev` reports zero vulnerabilities, while the full development audit reports four upstream findings (one moderate, three high) through its pinned `lodash`, `sharp`, and `zod` transitive dependencies; two currently have no upstream fix. Do not move this toolchain into a server/runtime path.
 - Two content conflicts found late and deliberately not auto-resolved: `resources/First-Event.txt` describes a different "Event 1" than the one already built (from `resources/Event-Details.txt`), and `resources/Preview.txt` has alternate hero copy not used in the current build. Needs a decision from the project owner before either supersedes what's live.
 - Event registration and newsletter signup are non-functional stubs (`lib/content.ts`'s `registrationUrl`/`whatsappUrl` are `"#"`, and the newsletter form just shows a "coming soon" message on submit) — no backend chosen yet.
 - ~~Full core-member roster (President/VP + rest of core team) still missing bios/photos.~~ **Resolved 2026-08-08**: roster is now 7 members (added Sai Harsha Sadhu/President, Akhil Menon, Anusha P. B. — their bios were already in `resources/Team-Summary.txt`, just never extracted) and every member has a photo. No VP found in any source file.

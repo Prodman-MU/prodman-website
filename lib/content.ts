@@ -10,6 +10,7 @@ export interface Member {
   readonly links: readonly { label: string; href: string }[];
   readonly location?: string;
   readonly photo: string | null;
+  readonly cutout?: string;
 }
 
 export const members: readonly Member[] = [
@@ -24,6 +25,7 @@ export const members: readonly Member[] = [
       { label: "Email", href: "mailto:saiharsha2407@outlook.com" },
     ],
     photo: "/team/sai-harsha.png",
+    cutout: "/team/cutouts/sai-harsha.webp",
   },
   {
     name: "Akhil Menon",
@@ -35,6 +37,7 @@ export const members: readonly Member[] = [
       { label: "Email", href: "mailto:akhilmn18work@gmail.com" },
     ],
     photo: "/team/akhil-menon.jpeg",
+    cutout: "/team/cutouts/akhil-menon.webp",
   },
   {
     name: "Anusha P. B.",
@@ -43,6 +46,7 @@ export const members: readonly Member[] = [
     superpower: "Seeing whitespace before it becomes obvious—and owning everything from the first sketch to the final P&L.",
     links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/anushapb/" }],
     photo: "/team/anusha.png",
+    cutout: "/team/cutouts/anusha.webp",
   },
   {
     name: "Akshat Dhaundiyal",
@@ -57,6 +61,7 @@ export const members: readonly Member[] = [
       { label: "Email", href: "mailto:akshat.dhaundiyal2027@mastersunion.org" },
     ],
     photo: "/team/akshat.jpeg",
+    cutout: "/team/cutouts/akshat.webp",
   },
   {
     name: "Muskan Sharma",
@@ -70,6 +75,7 @@ export const members: readonly Member[] = [
     ],
     location: "Gurugram, India",
     photo: "/team/muskan-sharma.jpg",
+    cutout: "/team/cutouts/muskan-sharma.webp",
   },
   {
     name: "Supriya",
@@ -78,6 +84,7 @@ export const members: readonly Member[] = [
     superpower: "Turning ambiguity into action. ⚡",
     links: [],
     photo: "/team/supriya.jpg",
+    cutout: "/team/cutouts/supriya.webp",
   },
   {
     name: "Om Umrania",
@@ -90,6 +97,7 @@ export const members: readonly Member[] = [
       { label: "Portfolio", href: "https://omumrania.com/" },
     ],
     photo: "/team/om-umrania.png",
+    cutout: "/team/cutouts/om-umrania.webp",
   },
 ] as const;
 

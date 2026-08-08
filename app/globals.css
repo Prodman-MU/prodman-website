@@ -12,6 +12,11 @@
   --font-mono: "SFMono-Regular", Consolas, monospace;
 
   --container: min(1180px, 92vw);
+
+  /* penguin-capital.co.jp's one named easing curve (docs/PENGUIN-CAPITAL-DESIGN-AUDIT.md
+     Section 6) — used site-wide there for scroll/UI transitions; adopted here for the
+     same purpose rather than the generic browser "ease". */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -133,11 +138,12 @@ img {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform 0.4s var(--ease-expo-out), background 0.4s var(--ease-expo-out),
+    color 0.4s var(--ease-expo-out);
 }
 
 .cta:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .cta--ghost {
@@ -191,3 +197,24 @@ img {
     scroll-behavior: auto;
   }
 }
+
+/* Zero-FOUC anti-flash rule for repeat visits */
+html.preloader-seen #brand-preloader {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Selective Custom Cursor CSS Reset */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active input,
+  body.custom-cursor-active textarea,
+  body.custom-cursor-active .cta,
+  body.custom-cursor-active .tag,
+  body.custom-cursor-active [data-cursor] {
+    cursor: none !important;
+  }
+}
+

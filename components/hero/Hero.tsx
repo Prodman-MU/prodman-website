@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { SplitHeading } from "@/components/motion/SplitHeading";
 import styles from "./Hero.module.css";
 import { useLivingLogo } from "./useLivingLogo";
 
@@ -73,7 +74,7 @@ export function Hero() {
 
       <div className={styles.heroCopy}>
         <p className={styles.heroCopyEyebrow}>PRODUCT MANAGEMENT CLUB &middot; 2026</p>
-        <h1 id="hero-title">Build what should exist.</h1>
+        <SplitHeading as="h1" id="hero-title" text="Build what should exist." />
         <p className={styles.heroCopyBody}>
           We question boldly, prototype rapidly, and turn messy problems into products that matter.
         </p>

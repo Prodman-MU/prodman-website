@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { Preloader } from "@/components/preloader/Preloader";
+import { CustomCursor } from "@/components/cursor/CustomCursor";
 import "./globals.css";
 
 const displaySerif = Fraunces({
@@ -30,7 +32,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${displaySerif.variable} ${bodySans.variable}`}>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  if (sessionStorage.getItem('prodman_preloader_seen') === 'true' && !window.location.search.includes('preloader=force')) {
+                    document.documentElement.classList.add('preloader-seen');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+        <noscript>
+          <style>{`#brand-preloader { display: none !important; } body { overflow: auto !important; }`}</style>
+        </noscript>
+      </head>
+      <body className={`${displaySerif.variable} ${bodySans.variable}`}>
+        <Preloader />
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
+

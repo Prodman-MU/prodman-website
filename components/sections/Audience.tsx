@@ -1,4 +1,6 @@
 import { audienceClosing, offerings, personas } from "@/lib/content";
+import { Reveal } from "@/components/motion/Reveal";
+import { SplitHeading } from "@/components/motion/SplitHeading";
 import styles from "./Audience.module.css";
 
 export function Audience() {
@@ -6,7 +8,7 @@ export function Audience() {
     <section id="audience" className="section">
       <div className="container">
         <p className="section__label">Who It&rsquo;s For</p>
-        <h2 className="section__heading">Who Is This For?</h2>
+        <SplitHeading as="h2" className="section__heading" text="Who Is This For?" />
         <p className={styles.intro}>
           For the ones who don&rsquo;t just use technology—they question it, reimagine it, and build what
           comes next. We bring together ambitious minds working at the intersection of Product,
@@ -15,14 +17,16 @@ export function Audience() {
         </p>
 
         <div className={styles.list}>
-          {personas.map((persona) => (
-            <div key={persona.name} className={styles.persona}>
-              <h3 className={styles.personaName}>{persona.name}</h3>
-              <div>
-                <p className={styles.personaYou}>{persona.you}</p>
-                <p className={styles.personaFor}>{persona.forWhom}</p>
+          {personas.map((persona, index) => (
+            <Reveal key={persona.name} delay={index * 0.05}>
+              <div className={styles.persona}>
+                <h3 className={styles.personaName}>{persona.name}</h3>
+                <div>
+                  <p className={styles.personaYou}>{persona.you}</p>
+                  <p className={styles.personaFor}>{persona.forWhom}</p>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

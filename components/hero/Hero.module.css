@@ -342,7 +342,7 @@
   text-decoration: none;
   background: rgba(5, 5, 5, 0.4);
   backdrop-filter: blur(6px);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.3s var(--ease-expo-out);
 }
 
 .eventChip:hover {

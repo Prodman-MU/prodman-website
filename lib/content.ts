@@ -167,58 +167,117 @@ export const offerings = [
   { label: "Projects", href: "#projects" },
 ];
 
-export const productBreakdown = [
+export type PMCategory = "strategy" | "design" | "tech" | "growth" | "ai_leadership";
+
+export interface ProductBreakdownItem {
+  readonly id: string;
+  readonly category: PMCategory;
+  readonly categoryLabel: string;
+  readonly title: string;
+  readonly hook: string;
+  readonly description: string;
+  readonly tags: readonly string[];
+  readonly accentColor: string;
+}
+
+export interface ProductBreakdownCategory {
+  readonly id: "all" | PMCategory;
+  readonly label: string;
+}
+
+export const productBreakdownCategories: readonly ProductBreakdownCategory[] = [
+  { id: "all", label: "All Pillars" },
+  { id: "strategy", label: "Product Strategy" },
+  { id: "design", label: "Product Design & UX" },
+  { id: "tech", label: "Technical PM" },
+  { id: "growth", label: "Growth & Data" },
+  { id: "ai_leadership", label: "AI & Leadership" },
+] as const;
+
+export const productBreakdown: readonly ProductBreakdownItem[] = [
   {
+    id: "spot-the-problem",
+    category: "strategy",
+    categoryLabel: "Product Strategy",
     title: "Spot the Problem",
     hook: "Because “I have a cool app idea” is not user research.",
     description: "Talk to users, uncover real frustrations, validate assumptions, and identify problems worth solving.",
     tags: ["User Research", "Personas", "Jobs to Be Done", "Problem Validation"],
+    accentColor: "var(--acid)",
   },
   {
+    id: "shape-the-strategy",
+    category: "strategy",
+    categoryLabel: "Product Strategy",
     title: "Shape the Strategy",
     hook: "Decide where the product is going—and why anyone should follow.",
     description: "Define the vision, understand the market, create value, and find a reason for the product to win.",
     tags: ["Product Vision", "Market Research", "Positioning", "Business Models"],
+    accentColor: "var(--acid)",
   },
   {
+    id: "design-the-experience",
+    category: "design",
+    categoryLabel: "Product Design & UX",
     title: "Design the Experience",
     hook: "If users need instructions for the “simple” flow, we need to talk.",
     description:
       "Map journeys, create wireframes, build prototypes, and design experiences that make sense outside the team meeting.",
     tags: ["UX", "User Journeys", "Wireframes", "Prototyping"],
+    accentColor: "var(--cyan)",
   },
   {
+    id: "choose-what-gets-built",
+    category: "tech",
+    categoryLabel: "Technical PM",
     title: "Choose What Gets Built",
     hook: "One roadmap. Fifty feature requests. Zero extra developers. Good luck.",
     description:
       "Prioritise ruthlessly, define the MVP, manage trade-offs, and confidently say “not yet” to approximately everyone.",
     tags: ["Roadmaps", "MVPs", "RICE", "Backlogs"],
+    accentColor: "var(--acid)",
   },
   {
+    id: "build-with-the-team",
+    category: "tech",
+    categoryLabel: "Technical PM",
     title: "Build With the Team",
     hook: "The PM doesn’t build everything—but somehow knows what everyone is building.",
     description: "Work with designers, engineers, marketers, analysts, and stakeholders to transform ideas into working products.",
     tags: ["PRDs", "User Stories", "Agile", "Product Launches"],
+    accentColor: "var(--acid)",
   },
   {
+    id: "let-the-data-judge",
+    category: "growth",
+    categoryLabel: "Growth & Data",
     title: "Let the Data Judge",
     hook: "Everyone has opinions. The funnel has receipts.",
     description:
       "Track what users do—not just what they say. Measure adoption, conversion, engagement, retention, and everything between “signed up” and “never returned.”",
     tags: ["Metrics", "Funnels", "A/B Testing", "Retention"],
+    accentColor: "var(--cyan)",
   },
   {
+    id: "make-it-grow",
+    category: "growth",
+    categoryLabel: "Growth & Data",
     title: "Make It Grow",
     hook: "Launching the product was the beginning, not the victory lap.",
     description: "Run experiments, improve activation, create growth loops, and give users compelling reasons to stay and return.",
     tags: ["Growth", "Experiments", "Product-Led Growth", "Optimisation"],
+    accentColor: "var(--cyan)",
   },
   {
+    id: "add-ai-responsibly",
+    category: "ai_leadership",
+    categoryLabel: "AI & Leadership",
     title: "Add AI — Responsibly",
     hook: "No, adding “AI-powered” to the landing page does not count.",
     description:
       "Design intelligent experiences, evaluate models, manage accuracy, reduce bias, and ensure AI solves a real problem instead of becoming a decorative feature.",
     tags: ["GenAI", "AI Agents", "Evaluations", "Responsible AI"],
+    accentColor: "var(--acid)",
   },
 ] as const;
 

@@ -1,0 +1,95 @@
+.footer {
+  padding: 4rem 3.3vw 2.5rem;
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-between;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  max-width: 420px;
+}
+
+.brand h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 500;
+}
+
+.brand p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.column h3 {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.column ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.column a {
+  color: var(--paper);
+  font-size: 0.82rem;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.column a:hover {
+  opacity: 1;
+  color: var(--acid);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.muLine {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.muLogo {
+  opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+  .columns {
+    gap: 2rem;
+  }
+}

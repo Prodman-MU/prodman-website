@@ -1,0 +1,61 @@
+Design a visually engaging “Event Information” section for the Product Management Club website.
+
+The section should present four events as a connected product-building journey:
+Discover → Design → Validate → Showcase.
+
+Begin with the heading “From Problem to Product” and the subheading:
+“Four high-energy experiences designed to take you through the complete product-building journey—discover, design, validate, and launch.”
+
+Display the events using a modern vertical timeline or four interactive cards. Each card must include:
+- Event number
+- Event title
+- Date
+- Internal or External badge
+- One strong tagline
+- A concise 2–3 line description
+- Key learning outcomes
+- A clear CTA button
+
+Events:
+
+1. Product Design Workshop & Hackathon
+Date: 14 August 2026
+Type: Internal Event
+Tagline: “Bring a problem. Leave with a prototype.”
+Description: Participants identify a meaningful problem, understand their users, generate ideas, and build a rapid prototype in one intensive product-design experience.
+Outcomes: Problem discovery, design thinking, ideation, rapid prototyping
+CTA: “Register Now”
+Add an urgency badge: “Less than a week to go”
+
+2. The Product Challenge
+Date: 9 October 2026
+Type: External Flagship Event
+Tagline: “Solve beyond the classroom.”
+Description: Participants tackle a real-world product challenge, uncover user insights, define a product strategy, and pitch a feasible and impactful solution.
+Outcomes: User research, product strategy, prioritisation, solution pitching
+CTA: “Coming Soon”
+
+3. Build, Test & Iterate
+Date: 4 December 2026
+Type: Internal Event
+Tagline: “Great products are not born finished—they evolve.”
+Description: Teams test assumptions, gather feedback, measure outcomes, and improve their early solutions through rapid iterations.
+Outcomes: Validation, user testing, metrics, product iteration
+CTA: “Save the Date”
+
+4. Product Showcase: The Grand Finale
+Date: 5 February 2027
+Type: External Grand Finale
+Tagline: “From your first problem statement to a product worth presenting.”
+Description: Teams present their refined products to industry leaders, mentors, and fellow builders, demonstrating the complete journey from problem discovery to final execution.
+Outcomes: Product showcase, expert feedback, networking, recognition
+CTA: “Save the Date”
+
+Visual direction:
+- Bold, youthful, product-and-technology-focused design
+- Dark background with electric blue, purple, and neon green accents
+- Connect all four events using a progress line
+- Differentiate internal and external events with coloured badges
+- Add subtle hover animations and product-related icons
+- Highlight the nearest event with a countdown or urgency card
+- Keep the layout clean, premium, responsive, and easy to scan

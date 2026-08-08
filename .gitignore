@@ -12,3 +12,7 @@ next-env.d.ts
 # Env
 .env*.local
 .env
+
+# Local agent orchestration scratch files
+/.agents/
+/ORIGINAL_REQUEST.md

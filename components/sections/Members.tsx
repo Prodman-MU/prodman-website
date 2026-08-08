@@ -71,16 +71,6 @@ export function Members() {
               </motion.article>
             </StaggerItem>
           ))}
-
-          <StaggerItem variant="fadeUp">
-            <motion.div
-              className={`card ${styles.moreCard}`}
-              whileHover={{ scale: 1.015 }}
-              data-cursor-text="Soon"
-            >
-              <p>The rest of the core team&rsquo;s profiles are on the way.</p>
-            </motion.div>
-          </StaggerItem>
         </StaggerContainer>
       </div>
     </section>

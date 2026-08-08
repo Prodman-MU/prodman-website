@@ -1,0 +1,71 @@
+What Is ProdMan?
+Part detective. Part strategist. Part builder. Full-time “Why?” person.
+Product Management—or ProdMan, as we like to call it—is the wonderfully chaotic art of figuring out:
+
+What should we build? Why should we build it? Who needs it? And please… will anyone actually use it?
+
+It sits at the intersection of users, business, technology, design, data, and AI—turning confusing problems, competing opinions, and an alarming number of sticky notes into products people genuinely want.
+
+Everything Under the ProdMan Umbrella
+Spot the Problem
+Because “I have a cool app idea” is not user research.
+
+Talk to users, uncover real frustrations, validate assumptions, and identify problems worth solving.
+
+User Research · Personas · Jobs to Be Done · Problem Validation
+
+Shape the Strategy
+Decide where the product is going—and why anyone should follow.
+
+Define the vision, understand the market, create value, and find a reason for the product to win.
+
+Product Vision · Market Research · Positioning · Business Models
+
+Design the Experience
+If users need instructions for the “simple” flow, we need to talk.
+
+Map journeys, create wireframes, build prototypes, and design experiences that make sense outside the team meeting.
+
+UX · User Journeys · Wireframes · Prototyping
+
+Choose What Gets Built
+One roadmap. Fifty feature requests. Zero extra developers. Good luck.
+
+Prioritise ruthlessly, define the MVP, manage trade-offs, and confidently say “not yet” to approximately everyone.
+
+Roadmaps · MVPs · RICE · Backlogs
+
+Build With the Team
+The PM doesn’t build everything—but somehow knows what everyone is building.
+
+Work with designers, engineers, marketers, analysts, and stakeholders to transform ideas into working products.
+
+PRDs · User Stories · Agile · Product Launches
+
+Let the Data Judge
+Everyone has opinions. The funnel has receipts.
+
+Track what users do—not just what they say. Measure adoption, conversion, engagement, retention, and everything between “signed up” and “never returned.”
+
+Metrics · Funnels · A/B Testing · Retention
+
+Make It Grow
+Launching the product was the beginning, not the victory lap.
+
+Run experiments, improve activation, create growth loops, and give users compelling reasons to stay and return.
+
+Growth · Experiments · Product-Led Growth · Optimisation
+
+Add AI—Responsibly
+No, adding “AI-powered” to the landing page does not count.
+
+Design intelligent experiences, evaluate models, manage accuracy, reduce bias, and ensure AI solves a real problem instead of becoming a decorative feature.
+
+GenAI · AI Agents · Evaluations · Responsible AI
+
+The Short Version
+Find the problem. Understand the human. Navigate the chaos. Build the right thing. Measure whether it worked. Then improve it—again.
+That’s ProdMan.
+
+CTA: Break Down the Product World →
+

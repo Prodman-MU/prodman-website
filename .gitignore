@@ -1,0 +1,14 @@
+.DS_Store
+.playwright-cli/
+.playwright-mcp/
+
+# Next.js
+/node_modules
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Env
+.env*.local
+.env

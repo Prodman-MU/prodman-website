@@ -1,0 +1,69 @@
+Create a bold, high-conversion community section for the Product Management Club website.
+
+The section should invite visitors to join the club’s WhatsApp community and subscribe to its newsletter. Make it feel exciting and exclusive—not like a generic website subscription form.
+
+Main headline:
+“Don’t Just Watch Products Evolve. Be Part of What’s Next.”
+
+Supporting copy:
+“Get event drops, product insights, AI trends, opportunities, resources, and the occasional hot take—delivered directly to you.”
+
+Create two visually distinct cards:
+
+CARD 1 — WHATSAPP COMMUNITY
+
+Title:
+“Join the Product Circle”
+
+Tagline:
+“Where product conversations continue after the event ends.”
+
+Description:
+“Get instant event updates, workshop announcements, opportunities, resources, and connect with people who are equally obsessed with building better products.”
+
+Key highlights:
+- Be the first to know about upcoming events
+- Meet fellow builders and product enthusiasts
+- Discover competitions, projects, and opportunities
+- Exchange ideas, feedback, and useful resources
+
+CTA button:
+“Join the WhatsApp Community →”
+
+Add a WhatsApp icon and a small line near the CTA:
+“Less noise. More product.”
+
+CARD 2 — NEWSLETTER
+
+Title:
+“Product Drops, Minus the Fluff”
+
+Tagline:
+“Sharp product thinking, delivered to your inbox.”
+
+Description:
+“A curated dose of product breakdowns, AI developments, useful frameworks, industry insights, opportunities, and everything worth knowing in the product world.”
+
+Include:
+- A clean email-address input field
+- A bold subscription button reading “Send Me the Good Stuff →”
+- A small privacy note: “No spam. No boring emails. Unsubscribe anytime.”
+
+Optional newsletter topics displayed as small tags:
+Product Teardowns | AI Trends | PM Frameworks | Opportunities | Club Updates
+
+Closing statement across the bottom:
+“Your next idea, opportunity, teammate, or breakthrough might be one update away.”
+
+Visual direction:
+- Use a modern split-screen or two-card layout
+- Place WhatsApp on the left and Newsletter on the right
+- Use a dark, premium technology-inspired background
+- Add vibrant green accents to the WhatsApp card
+- Use electric blue or purple accents for the newsletter card
+- Include subtle gradients, soft glows, and hover animations
+- Add playful product-related microcopy
+- Keep the design youthful, bold, minimal, and responsive
+- Make both CTA buttons highly visible
+- On mobile, stack the two cards vertically
+- Avoid excessive text and maintain strong visual hierarchy

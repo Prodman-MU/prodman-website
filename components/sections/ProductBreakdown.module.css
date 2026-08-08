@@ -1,0 +1,76 @@
+.intro {
+  max-width: 680px;
+  margin: 0 0 3rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.number {
+  color: var(--acid);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hook {
+  margin: 0;
+  color: var(--paper);
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.description {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.shortVersion {
+  max-width: 780px;
+  margin: 3.5rem 0 0;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.shortVersionLabel {
+  margin: 0 0 0.75rem;
+}
+
+.shortVersion p {
+  margin: 0 0 1.25rem;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 2rem);
+  font-weight: 500;
+  line-height: 1.35;
+}

@@ -23,6 +23,17 @@
 - [ ] Fill remaining content: full core-member roster, Resources, Projects
 - [ ] Wire event registration + newsletter backends
 
+## Awwwards elevation build — completed 2026-08-08 (branch `feat/nextjs-v1`, pushed, not yet deployed)
+
+- [x] Brand preloader (0-100%, session-gated) + custom cursor (touch-safe)
+- [x] Interactive Product Breakdown: category tabs + SVG radial dial / mobile step bar
+- [x] Page-wide scroll-entrance animations + hover micro-interactions (Framer Motion)
+- [x] Removed fabricated metrics/tools/curriculum content from Product Breakdown (see docs/HANDOFF.md)
+- [x] Fixed a mobile-keyboard-nav accessibility bug and a duplicate-DOM-id bug the orchestrator's own reviewers missed
+- [x] `npm run typecheck`, `npx eslint .`, `npm run build` all pass clean; committed and pushed in 3 staged commits
+- [ ] Milestone 4 independent final review (never completed — see docs/HANDOFF.md)
+- [ ] Manual browser QA (preloader, cursor, dial, reduced-motion, 320px)
+
 ## Relevant Files
 
 - `app/page.tsx`, `lib/content.ts`, `components/`

@@ -83,7 +83,7 @@ The seven original portraits remain under `public/team/`. Website-ready transpar
 npm run photos:process
 ```
 
-`scripts/remove-team-backgrounds.mjs` performs AI person segmentation into a temporary lossless cache. `scripts/process-team-photos.mjs` then finds the primary subject, applies the documented per-photo cleanup/framing overrides, and exports 900×1125 alpha WebPs. Akhil’s override removes a retained plant without flattening his hair; Supriya’s tighter framing excludes a detached table fragment.
+`scripts/remove-team-backgrounds.mjs` performs AI person segmentation into a temporary lossless cache. `scripts/process-team-photos.mjs` then finds the primary subject, applies the documented per-photo cleanup/framing overrides, and exports 900×1125 alpha WebPs. Akhil’s override removes a retained plant without flattening his hair. Supriya’s replacement formal portrait exports as `supriya-v2.webp` so Next/Image and deployed CDN caches do not reuse the previous cutout.
 
 (runs eslint, tsc --noEmit, and `next build`)
 

@@ -84,7 +84,7 @@ export const members: readonly Member[] = [
     superpower: "Turning ambiguity into action. ⚡",
     links: [],
     photo: "/team/supriya.jpg",
-    cutout: "/team/cutouts/supriya.webp",
+    cutout: "/team/cutouts/supriya-v2.webp",
   },
   {
     name: "Om Umrania",

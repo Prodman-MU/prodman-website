@@ -12,7 +12,8 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 - `components/hero/` owns the canonical Canvas 2D living-logo runtime.
 - `components/motion/` owns reusable reveal/stagger primitives and the hydration-safe reduced-motion store.
 - `components/site-nav/` owns scroll progress, current-section observation, and the responsive modal menu.
-- `components/sections/` owns section-local layouts and the interactive Product Breakdown client state.
+- `components/sections/` owns section-local layouts, the visual-first Members portrait-deck state, and the interactive Product Breakdown client state.
+- `scripts/remove-team-backgrounds.mjs` and `scripts/process-team-photos.mjs` form the reproducible two-stage team-photo pipeline: AI segmentation to a temporary cache, then deterministic cleanup/framing to transparent WebP assets.
 - `resources/prodman-living-logo/` and the root `index.html`/`demo.css` remain historical prototype references, not served application entry points.
 
 ## Runtime behavior
@@ -26,3 +27,5 @@ The particle field is rebuilt when its section resizes, caps device pixel ratio 
 - Modal navigation must restore body styles and event listeners on every close/unmount path.
 - Canvas and scroll observers must clean up animation frames, media listeners, and observers; the hero remains suspendable off-screen and in background tabs.
 - Every decorative animation requires a static/reduced-motion path, and hidden breakpoint variants must not duplicate DOM IDs.
+- The Members deck keeps all portraits in one semantic carousel region, exposes only the active portrait in the keyboard tab order, and moves focus with Left/Right/Home/End selection changes. Long bios remain available through native disclosure controls rather than occupying the default layout.
+- Members card magnetism is implemented with pointer-updated CSS custom properties, not React render state. It resets on pointer exit/selection change and is bypassed for touch pointers and reduced-motion users.

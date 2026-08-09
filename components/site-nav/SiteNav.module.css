@@ -82,13 +82,69 @@
 }
 
 .wordmark {
+  display: inline-flex;
   flex: none;
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  gap: 0.6rem;
+  align-items: center;
   text-decoration: none;
   color: var(--paper);
+}
+
+.wordmarkSignal {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 18px rgba(201, 255, 61, 0.88);
+}
+
+.wordmarkSignal::after {
+  position: absolute;
+  content: "";
+  inset: -5px;
+  border: 1px solid rgba(201, 255, 61, 0.48);
+  border-radius: inherit;
+  animation: signalPing 2.8s ease-out infinite;
+}
+
+.wordmarkText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wordmarkPrimary {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.82rem;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.wordmarkSecondary {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.62rem;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@keyframes signalPing {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
 }
 
 .affiliation {
@@ -424,6 +480,10 @@
 }
 
 @media (max-width: 560px) {
+  .wordmarkSecondary {
+    display: none;
+  }
+
   .affiliation {
     display: none;
   }
@@ -481,5 +541,10 @@
   .menuIcon span,
   .menuList a {
     transition: none !important;
+  }
+
+  .wordmarkSignal::after {
+    animation: none !important;
+    opacity: 0.45;
   }
 }

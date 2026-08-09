@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
@@ -27,28 +26,9 @@ export function Hero() {
       <div className={`${styles.orb} ${styles.orbCyan}`} aria-hidden="true" />
       <div className={`${styles.orb} ${styles.orbAcid}`} aria-hidden="true" />
 
-      <Reveal variant="fadeIn" delay={0.1} as="header" className={styles.siteHeader}>
-        <motion.a
-          className={styles.wordmark}
-          href="#hero"
-          aria-label="ProdMan Club home"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          data-cursor-text="Home"
-        >
-          <span className={styles.wordmarkSignal} aria-hidden="true" />
-          PROD/MAN
-        </motion.a>
-        <p className={styles.siteHeaderMeta}>
-          <Image
-            src="/brand/masters-union-logo-white.png"
-            alt=""
-            width={27}
-            height={14}
-            className={styles.muLogo}
-          />
-          <span>MASTERS&rsquo; UNION</span>
-        </p>
+      <canvas ref={canvasRef} className={styles.brandParticles} aria-hidden="true" />
+
+      <Reveal variant="fadeIn" delay={0.15} className={styles.motionControlFloating}>
         <motion.button
           className={styles.motionControl}
           type="button"
@@ -65,8 +45,6 @@ export function Hero() {
           <span className={styles.motionControlLabel}>{paused ? "Play motion" : "Pause motion"}</span>
         </motion.button>
       </Reveal>
-
-      <canvas ref={canvasRef} className={styles.brandParticles} aria-hidden="true" />
 
       <Reveal variant="fadeIn" delay={0.85} className={`${styles.coordinate} ${styles.coordinateLeft}`}>
         <span>28.4595&deg; N</span>

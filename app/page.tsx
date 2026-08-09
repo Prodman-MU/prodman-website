@@ -13,8 +13,8 @@ import { Projects } from "@/components/sections/Projects";
 export default function Home() {
   return (
     <>
-      <Hero />
       <SiteNav />
+      <Hero />
       <main>
         <Members />
         <Events />

@@ -17,6 +17,7 @@ export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState(siteNav[0]?.href ?? "#members");
+  const navRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
@@ -29,6 +30,24 @@ export function SiteNav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Hero sits directly beneath this nav (single navbar for the whole page) and
+  // is pulled up underneath it by exactly this height — see .brandOrbit in
+  // Hero.module.css — so it has to track real, responsive nav height, not a
+  // hardcoded constant.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const setNavHeight = () => {
+      document.documentElement.style.setProperty("--nav-height", `${nav.offsetHeight}px`);
+    };
+
+    setNavHeight();
+    const observer = new ResizeObserver(setNavHeight);
+    observer.observe(nav);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -123,6 +142,7 @@ export function SiteNav() {
   return (
     <>
       <motion.nav
+        ref={navRef}
         className={styles.nav}
         data-scrolled={scrolled || undefined}
         data-menu-open={menuOpen || undefined}
@@ -136,11 +156,16 @@ export function SiteNav() {
           <motion.a
             className={styles.wordmark}
             href="#hero"
+            aria-label="MU ProdMan Career Club — home"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             data-cursor-text="Home"
           >
-            PROD/MAN
+            <span className={styles.wordmarkSignal} aria-hidden="true" />
+            <span className={styles.wordmarkText}>
+              <span className={styles.wordmarkPrimary}>MU PRODMAN</span>
+              <span className={styles.wordmarkSecondary}>CAREER CLUB</span>
+            </span>
           </motion.a>
           <a
             className={styles.affiliation}

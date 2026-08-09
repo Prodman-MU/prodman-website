@@ -163,14 +163,14 @@
 
 .affiliationDivider {
   width: 1px;
-  height: 18px;
+  height: 1.5rem;
   background: var(--line);
 }
 
 .affiliationMark {
   display: block;
   width: auto;
-  height: 15px;
+  height: 1.64rem;
 }
 
 .links {

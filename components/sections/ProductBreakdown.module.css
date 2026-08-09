@@ -552,3 +552,111 @@
     transform: none !important;
   }
 }
+
+:global(html[data-theme="light"]) .categoryTab,
+:global(html[data-theme="light"]) .mobileStepNode,
+:global(html[data-theme="light"]) .stepperBtn {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .categoryActivePill {
+  inset: -2px;
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--acid);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .activeCategoryTab .categoryTabText {
+  color: var(--paper);
+}
+
+:global(html[data-theme="light"]) .centralHub {
+  border: 2px solid var(--paper);
+  border-radius: 3px;
+  background: var(--surface);
+  box-shadow: 7px 7px 0 var(--shadow);
+  backdrop-filter: none;
+}
+
+:global(html[data-theme="light"]) .hubStepNumber {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--acid);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 0.2rem;
+}
+
+:global(html[data-theme="light"]) .orbitalNode {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .orbitalNodeActive {
+  border-color: var(--paper);
+  color: var(--paper);
+  background: var(--acid);
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .orbitalNodeCategoryMatch {
+  border-color: var(--paper);
+  background: color-mix(in srgb, var(--cyan) 45%, var(--surface));
+}
+
+:global(html[data-theme="light"]) .mobileStepNodeActive {
+  color: var(--paper);
+  background: var(--acid);
+}
+
+:global(html[data-theme="light"]) .mobileStepNodeActive .mobileStepNodeNum {
+  color: var(--paper);
+}
+
+:global(html[data-theme="light"]) .stepperBtn:hover {
+  background: var(--cyan);
+}
+
+:global(html[data-theme="light"]) .tabPanel:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid var(--paper);
+}
+
+:global(html[data-theme="light"]) .card {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 9px 9px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .badge {
+  border: 2px solid var(--paper);
+  border-radius: 1px;
+  background: var(--cyan);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .stageNumber {
+  padding: 0.25rem 0.4rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: var(--acid);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .title,
+:global(html[data-theme="light"]) .shortVersion p {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .tags,
+:global(html[data-theme="light"]) .shortVersion {
+  border-top: 2px solid var(--paper);
+}

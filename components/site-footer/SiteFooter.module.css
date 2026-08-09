@@ -93,3 +93,37 @@
     gap: 2rem;
   }
 }
+
+:global(html[data-theme="light"]) .footer {
+  border-top: 2px solid var(--paper);
+  background:
+    linear-gradient(90deg, transparent 0 72%, rgba(86, 220, 233, 0.32) 72% 100%),
+    var(--ink);
+}
+
+:global(html[data-theme="light"]) .top {
+  border-bottom: 2px solid var(--paper);
+}
+
+:global(html[data-theme="light"]) .brand h2 {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .column h3 {
+  display: inline-block;
+  padding: 0.28rem 0.4rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: var(--acid);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .column a {
+  font-weight: 600;
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .muLogo {
+  filter: invert(1);
+}

@@ -193,3 +193,57 @@
     animation: none;
   }
 }
+
+:global(html[data-theme="light"]) .preloaderWrapper {
+  background:
+    linear-gradient(90deg, transparent 0 76%, rgba(86, 220, 233, 0.38) 76% 100%),
+    linear-gradient(0deg, transparent 0 82%, rgba(201, 255, 61, 0.58) 82% 100%),
+    var(--ink);
+}
+
+:global(html[data-theme="light"]) .ambientGrid {
+  opacity: 0.55;
+}
+
+:global(html[data-theme="light"]) .orb {
+  border: 2px solid var(--paper);
+  opacity: 0.16;
+  filter: none;
+  mix-blend-mode: multiply;
+}
+
+:global(html[data-theme="light"]) .logoSheen {
+  background: linear-gradient(
+    108deg,
+    transparent 20%,
+    rgba(86, 220, 233, 0.65) 40%,
+    rgba(10, 10, 10, 0.88) 50%,
+    rgba(201, 255, 61, 0.9) 60%,
+    transparent 80%
+  );
+}
+
+:global(html[data-theme="light"]) .statusMeta {
+  padding: 0.35rem 0.5rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .percentageDisplay {
+  text-shadow: 4px 4px 0 var(--cyan);
+}
+
+:global(html[data-theme="light"]) .progressTrack {
+  height: 10px;
+  border: 2px solid var(--paper);
+  border-radius: 0;
+  background: var(--surface);
+}
+
+:global(html[data-theme="light"]) .progressBar {
+  background: var(--acid);
+  box-shadow: none;
+}

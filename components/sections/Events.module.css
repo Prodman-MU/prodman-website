@@ -103,3 +103,44 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
+:global(html[data-theme="light"]) .grid {
+  gap: 2px;
+  border: 2px solid var(--paper);
+  background: var(--paper);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .grid::before {
+  height: 7px;
+  background: linear-gradient(90deg, var(--acid) 0 52%, var(--coral) 52% 72%, var(--paper) 72% 100%);
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .card {
+  background: var(--surface);
+}
+
+:global(html[data-theme="light"]) .badge {
+  border: 2px solid var(--paper);
+  border-radius: 1px;
+  color: var(--paper);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .badgeInternal {
+  background: var(--cyan);
+}
+
+:global(html[data-theme="light"]) .badgeExternal {
+  background: var(--acid);
+}
+
+:global(html[data-theme="light"]) .title {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .urgency {
+  color: var(--paper);
+  font-weight: 700;
+}

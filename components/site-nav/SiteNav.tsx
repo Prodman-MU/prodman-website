@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { siteNav, whatsappUrl } from "@/lib/content";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import styles from "./SiteNav.module.css";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
@@ -180,6 +181,7 @@ export function SiteNav() {
             );
           })}
         </ul>
+        <ThemeToggle />
         <motion.a
           className={`cta cta--acid ${styles.join}`}
           href={whatsappUrl}

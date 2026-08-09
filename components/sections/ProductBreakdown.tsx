@@ -318,7 +318,7 @@ export function ProductBreakdown() {
                   cx="200"
                   cy="200"
                   r="80"
-                  stroke="rgba(244, 245, 240, 0.08)"
+                  stroke="var(--grid-line)"
                   strokeWidth="1"
                 />
                 {/* Active Beam Pointer Line */}
@@ -478,7 +478,7 @@ export function ProductBreakdown() {
                       <motion.span
                         key={tag}
                         className={`tag ${styles.tag}`}
-                        whileHover={{ y: -2, borderColor: "rgba(244, 245, 240, 0.4)" }}
+                        whileHover={{ y: -2, borderColor: "var(--line-strong)" }}
                         whileTap={{ scale: 0.96 }}
                       >
                         {tag}

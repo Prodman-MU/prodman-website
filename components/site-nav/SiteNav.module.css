@@ -397,6 +397,140 @@
   }
 }
 
+:global(html[data-theme="light"]) .nav {
+  border-bottom: 2px solid var(--paper);
+  background: rgba(242, 240, 232, 0.97);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:global(html[data-theme="light"]) .nav::before {
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--acid) 0 36%,
+    var(--paper) 36% 42%,
+    var(--cyan) 42% 76%,
+    var(--paper) 76% 82%,
+    var(--coral) 82% 100%
+  );
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .nav::after {
+  background: radial-gradient(
+    360px circle at var(--pointer-x) var(--pointer-y),
+    rgba(201, 255, 61, 0.4),
+    transparent 68%
+  );
+}
+
+:global(html[data-theme="light"]) .nav[data-scrolled] {
+  border-bottom-color: var(--paper);
+  background: rgba(242, 240, 232, 0.99);
+  box-shadow: 0 5px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .progress {
+  bottom: -2px;
+  height: 4px;
+  background: var(--paper);
+  box-shadow: none;
+}
+
+:global(html[data-theme="light"]) .wordmark {
+  font-weight: 900;
+}
+
+:global(html[data-theme="light"]) .affiliationMark {
+  filter: invert(1);
+}
+
+:global(html[data-theme="light"]) .links a {
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .links a::after {
+  height: 3px;
+  background: var(--paper);
+}
+
+:global(html[data-theme="light"]) .join {
+  overflow: visible;
+}
+
+:global(html[data-theme="light"]) .join::before {
+  display: none;
+}
+
+:global(html[data-theme="light"]) .menuButton {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .menuButton:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+:global(html[data-theme="light"]) .menuPanel {
+  background:
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(0deg, transparent 0 84%, rgba(201, 255, 61, 0.58) 84% 100%),
+    radial-gradient(circle at 88% 16%, rgba(86, 220, 233, 0.45), transparent 34%),
+    var(--ink);
+  background-size: 12.5% 100%, auto, auto, auto;
+}
+
+:global(html[data-theme="light"]) .menuPanel::before {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+:global(html[data-theme="light"]) .menuOrbit,
+:global(html[data-theme="light"]) .menuOrbit::before,
+:global(html[data-theme="light"]) .menuOrbit::after {
+  border-width: 2px;
+  border-color: rgba(10, 10, 10, 0.28);
+}
+
+:global(html[data-theme="light"]) .menuOrbit::after {
+  border-color: var(--paper);
+}
+
+:global(html[data-theme="light"]) .menuEyebrow {
+  width: max-content;
+  padding: 0.35rem 0.5rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: var(--acid);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .menuList li,
+:global(html[data-theme="light"]) .menuList li:nth-last-child(-n + 2),
+:global(html[data-theme="light"]) .menuList li:nth-child(odd),
+:global(html[data-theme="light"]) .menuFooter {
+  border-color: var(--paper);
+  border-width: 2px;
+}
+
+:global(html[data-theme="light"]) .menuList a {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .menuList a:hover,
+:global(html[data-theme="light"]) .menuList a:focus-visible,
+:global(html[data-theme="light"]) .menuList a[data-active] {
+  color: var(--paper);
+  background: var(--acid);
+}
+
 @media (max-width: 900px) {
   .links {
     display: none;

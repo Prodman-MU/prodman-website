@@ -33,8 +33,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
+        <Script
+          id="prodman-color-theme"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var theme = 'dark';
+                try {
+                  var stored = localStorage.getItem('prodman_color_theme');
+                  if (stored === 'light' || stored === 'dark') {
+                    theme = stored;
+                  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    theme = 'light';
+                  }
+                } catch (e) {
+                  if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+              })();
+            `,
+          }}
+        />
         <Script
           id="prodman-preloader-visibility"
           strategy="beforeInteractive"

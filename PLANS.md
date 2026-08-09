@@ -46,6 +46,15 @@
 - [x] Remove invalid SVG endpoint animation warnings from Product Breakdown
 - [x] Record the continuation in `docs/HANDOFF.md` and `docs/DECISIONS.md`
 
+## Editorial neo-brutalist light mode — completed 2026-08-08
+
+- [x] Add system-aware first-visit theming and persisted explicit selection without first-paint flash
+- [x] Add visible light/dark controls to the hero and sticky navigation
+- [x] Theme the hero/preloader Canvas 2D particle palettes and compositing modes
+- [x] Apply warm-paper neo-brutalist treatments across every section, navigation/menu, cursor, and footer
+- [x] Preserve dark mode, reduced motion, mobile behavior, and semantic markup
+- [x] Verify desktop/mobile rendering, persistence, overflow, mobile menu focus/scroll lock, and browser console integrity
+
 ## Relevant Files
 
 - `app/page.tsx`, `lib/content.ts`, `components/`

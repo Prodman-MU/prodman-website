@@ -1,6 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  getDocumentTheme,
+  THEME_CHANGE_EVENT,
+  type ColorTheme,
+} from "@/lib/theme";
 
 type Particle = {
   x: number;
@@ -15,7 +20,10 @@ type Particle = {
   alpha: number;
 };
 
-const PALETTE = ["244,245,240", "112,239,255", "201,255,61"];
+const PALETTES: Record<ColorTheme, string[]> = {
+  dark: ["244,245,240", "112,239,255", "201,255,61"],
+  light: ["10,10,10", "58,184,199", "122,161,14"],
+};
 
 /**
  * Ports resources/prodman-living-logo/prodman-living-logo.js (a dependency-free
@@ -39,6 +47,7 @@ export function useLivingLogo(logoSrc: string) {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pointer = { x: 0, y: 0, active: false };
+    let theme = getDocumentTheme();
     const state = {
       width: 0,
       height: 0,
@@ -130,8 +139,9 @@ export function useLivingLogo(logoSrc: string) {
 
     function drawStaticFrame() {
       context!.clearRect(0, 0, state.width, state.height);
+      context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
       for (const particle of state.particles) {
-        context!.fillStyle = `rgba(${PALETTE[particle.tone]},${particle.alpha * 0.62})`;
+        context!.fillStyle = `rgba(${PALETTES[theme][particle.tone]},${particle.alpha * 0.72})`;
         context!.beginPath();
         context!.arc(particle.tx, particle.ty, particle.size, 0, Math.PI * 2);
         context!.fill();
@@ -161,7 +171,7 @@ export function useLivingLogo(logoSrc: string) {
 
       if (shouldAnimate()) {
         context!.clearRect(0, 0, state.width, state.height);
-        context!.globalCompositeOperation = "lighter";
+        context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
 
         const centerX = state.width / 2;
         const centerY = state.height * (state.width < 720 ? 0.4 : 0.42);
@@ -201,7 +211,7 @@ export function useLivingLogo(logoSrc: string) {
           const alpha = particle.alpha * shimmer * (0.76 + velocity * 0.24);
           const radius = particle.size * (1 + velocity * 0.7);
 
-          context!.fillStyle = `rgba(${PALETTE[particle.tone]},${alpha})`;
+          context!.fillStyle = `rgba(${PALETTES[theme][particle.tone]},${alpha})`;
           context!.beginPath();
           context!.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
           context!.fill();
@@ -235,6 +245,11 @@ export function useLivingLogo(logoSrc: string) {
       syncAnimationLoop();
     }
 
+    function handleThemeChange(event: Event) {
+      theme = (event as CustomEvent<ColorTheme>).detail ?? getDocumentTheme();
+      if (!shouldAnimate()) drawStaticFrame();
+    }
+
     stage.addEventListener("pointermove", updatePointer, { passive: true });
     stage.addEventListener("pointerleave", handlePointerLeave);
 
@@ -251,6 +266,7 @@ export function useLivingLogo(logoSrc: string) {
     resizeObserver.observe(stage);
 
     reducedMotion.addEventListener("change", handleReducedMotionChange);
+    window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
     document.addEventListener("visibilitychange", syncAnimationLoop);
 
     function initialize() {
@@ -273,6 +289,7 @@ export function useLivingLogo(logoSrc: string) {
       stageObserver.disconnect();
       resizeObserver.disconnect();
       reducedMotion.removeEventListener("change", handleReducedMotionChange);
+      window.removeEventListener(THEME_CHANGE_EVENT, handleThemeChange);
       document.removeEventListener("visibilitychange", syncAnimationLoop);
       logo.removeEventListener("load", initialize);
     };

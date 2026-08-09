@@ -6,11 +6,12 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 
 ## Layers
 
-- `app/layout.tsx` owns fonts, metadata, the preloader bootstrap, and global motion/cursor providers.
+- `app/layout.tsx` owns fonts, metadata, the preloader/theme bootstraps, and global motion/cursor providers.
 - `app/page.tsx` is a Server Component that assembles the nine-section page.
 - `lib/content.ts` is the typed content boundary sourced from `resources/*.txt`.
 - `components/hero/` owns the canonical Canvas 2D living-logo runtime.
 - `components/motion/` owns reusable reveal/stagger primitives and the hydration-safe reduced-motion store.
+- `components/theme/` owns the interactive color-theme control; `lib/theme.ts` owns client-side theme application, persistence, and the canvas notification event.
 - `components/site-nav/` owns scroll progress, current-section observation, and the responsive modal menu.
 - `components/sections/` owns section-local layouts, the visual-first Members portrait-deck state, and the interactive Product Breakdown client state.
 - `scripts/remove-team-backgrounds.mjs` and `scripts/process-team-photos.mjs` form the reproducible two-stage team-photo pipeline: AI segmentation to a temporary cache, then deterministic cleanup/framing to transparent WebP assets.
@@ -23,6 +24,8 @@ The particle field is rebuilt when its section resizes, caps device pixel ratio 
 ## Interaction and hydration contracts
 
 - Keep `app/page.tsx` server-rendered; place browser state and event listeners at the smallest client-component boundary.
+- Keep the server fallback `data-theme="dark"`, then resolve stored/system preference in the synchronous head script before first paint. Theme controls must update the root attribute and `color-scheme` without changing the semantic tree.
+- Canvas renderers must read the active theme and switch both palette and compositing mode; CSS-only inversion is insufficient for the living logo.
 - Motion preference must use `useHydratedReducedMotion()` where it affects rendered properties or variants. Do not branch to a different semantic tree during hydration.
 - Modal navigation must restore body styles and event listeners on every close/unmount path.
 - Canvas and scroll observers must clean up animation frames, media listeners, and observers; the hero remains suspendable off-screen and in background tabs.

@@ -1,0 +1,102 @@
+.toggle {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--control-bg);
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms var(--ease-expo-out),
+    box-shadow 180ms ease;
+}
+
+.toggle:hover {
+  color: var(--paper);
+}
+
+.toggle:active {
+  transform: translate(2px, 2px);
+}
+
+.lightLabel,
+.darkLabel {
+  transition: color 180ms ease, background 180ms ease;
+}
+
+:global(html[data-theme="dark"]) .darkLabel,
+:global(html[data-theme="light"]) .lightLabel {
+  color: var(--paper);
+}
+
+.divider {
+  opacity: 0.45;
+}
+
+:global(html[data-theme="light"]) .toggle {
+  min-height: 40px;
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .toggle:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .lightLabel {
+  padding: 0.2rem 0.28rem;
+  color: var(--paper);
+  background: var(--acid);
+}
+
+@media (max-width: 1120px) and (min-width: 901px) {
+  .toggle {
+    padding-inline: 0.5rem;
+  }
+
+  .divider,
+  .darkLabel {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .toggle {
+    padding-inline: 0.5rem;
+  }
+
+  .divider,
+  .darkLabel {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .lightLabel,
+  .darkLabel {
+    transition: none;
+  }
+}

@@ -27,5 +27,6 @@ The particle field is rebuilt when its section resizes, caps device pixel ratio 
 - Modal navigation must restore body styles and event listeners on every close/unmount path.
 - Canvas and scroll observers must clean up animation frames, media listeners, and observers; the hero remains suspendable off-screen and in background tabs.
 - Every decorative animation requires a static/reduced-motion path, and hidden breakpoint variants must not duplicate DOM IDs.
-- The Members deck keeps all portraits in one semantic carousel region, exposes only the active portrait in the keyboard tab order, and moves focus with Left/Right/Home/End selection changes. Long bios remain available through native disclosure controls rather than occupying the default layout.
+- The Members deck keeps all portraits in one semantic carousel region, exposes only the active portrait and its verified actions in the keyboard tab order, and moves focus with Left/Right/Home/End selection changes. Portrait activation scrolls to the synchronized inline profile; long bios remain available through native disclosure controls rather than occupying the default layout.
 - Members card magnetism is implemented with pointer-updated CSS custom properties, not React render state. It resets on pointer exit/selection change and is bypassed for touch pointers and reduced-motion users.
+- `app/team/[slug]/page.tsx` statically generates the seven shareable member profiles from `lib/content.ts`; unknown slugs 404 because `dynamicParams` is disabled.

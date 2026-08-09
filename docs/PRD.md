@@ -256,6 +256,8 @@ Current implementation, verified in `output/playwright/`:
 
 The section is deliberately **visual-first rather than biography-first**. A fanned, selectable portrait deck is the default experience; one name, role, and sourced superpower appear for the active person. Full source bios are retained behind an explicit “Read the full story” disclosure. Arrow buttons, direct-select dots, portrait selection, horizontal swipe, and Left/Right/Home/End keyboard navigation all address the same active profile. Fine-pointer cards respond magnetically with restrained tilt, portrait counter-motion, and glare; touch and reduced-motion users receive the same content and controls without those animated responses.
 
+**Interaction update, 2026-08-09:** the cohort label is now “The crew of 2026–27.” Owner-confirmed role stamps are President (Sai Harsha Sadhu), Vice President (Akhil Menon), and Member (the remaining five people). The active portrait card exposes compact Read More, LinkedIn, and Email actions when their source URLs exist. Selecting a portrait moves to the synchronized inline profile; Read More opens a statically generated `/team/[slug]` profile page with the full sourced story, contact links, and previous/next member navigation. A normal tap/click is used instead of long-press so the action remains discoverable, keyboard-operable, and compatible with horizontal swipe.
+
 **Remaining member-content gaps:** Supriya still has no last name or contact/socials in `Team-Summary.txt`, and Akshat’s repaired source sentence still needs his confirmation. These are content-quality gaps, not reasons to revert to an incomplete team roster.
 
 ### 8.2 Event Information (complete)

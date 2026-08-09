@@ -314,7 +314,7 @@
 .arrowButton:hover,
 .arrowButton:focus-visible {
   background: var(--acid);
-  color: var(--ink);
+  color: var(--accent-ink);
   transform: scale(1.06);
 }
 
@@ -429,7 +429,7 @@
   grid-template-columns: minmax(100px, 0.26fr) minmax(0, 1fr);
   gap: clamp(1rem, 4vw, 3rem);
   margin: clamp(1.6rem, 3vw, 2.5rem) 0 0;
-  color: rgba(244, 245, 240, 0.82);
+  color: color-mix(in srgb, var(--paper) 82%, transparent);
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.6;
 }
@@ -479,7 +479,7 @@
 .links a:hover {
   border-color: var(--acid);
   background: var(--acid);
-  color: var(--ink);
+  color: var(--accent-ink);
 }
 
 .story {
@@ -649,4 +649,105 @@
   .profile {
     animation: none;
   }
+}
+
+:global(html[data-theme="light"]) .section {
+  background:
+    radial-gradient(circle at 50% 41%, rgba(86, 220, 233, 0.34), transparent 28rem),
+    linear-gradient(180deg, rgba(201, 255, 61, 0.24), transparent 28%);
+}
+
+:global(html[data-theme="light"]) .section::after {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .prompt {
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .portraitCard {
+  border: 2px solid var(--paper);
+  border-radius: 3px;
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .portraitCard[data-active="true"] {
+  box-shadow: 12px 12px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .cardStamp {
+  border-width: 2px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+:global(html[data-theme="light"]) .namePlate {
+  border: 2px solid var(--paper);
+  border-radius: 1px;
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .arrowButton {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .arrowButton:hover,
+:global(html[data-theme="light"]) .arrowButton:focus-visible {
+  color: var(--paper);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .dot {
+  border: 1px solid var(--paper);
+  background: rgba(10, 10, 10, 0.25);
+}
+
+:global(html[data-theme="light"]) .dot[data-active="true"] {
+  border-width: 2px;
+  background: var(--acid);
+}
+
+:global(html[data-theme="light"]) .profile {
+  border-top: 2px solid var(--paper);
+}
+
+:global(html[data-theme="light"]) .profileIndex span:first-child,
+:global(html[data-theme="light"]) .role {
+  color: var(--paper);
+}
+
+:global(html[data-theme="light"]) .role {
+  max-width: 220px;
+  padding: 0.35rem 0.5rem;
+  border: 2px solid var(--paper);
+  background: var(--acid);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .profileActions {
+  border-top: 2px solid var(--paper);
+}
+
+:global(html[data-theme="light"]) .links a {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .story summary::before {
+  border: 2px solid var(--paper);
+  border-radius: 1px;
+  color: var(--paper);
+  background: var(--cyan);
+  box-shadow: 2px 2px 0 var(--shadow);
 }

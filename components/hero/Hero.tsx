@@ -84,7 +84,7 @@ export function Hero() {
         <span>SHOWCASE</span>
       </Reveal>
 
-      <Reveal variant="scaleUp" delay={0.7} y={12}>
+      <Reveal variant="scaleUp" delay={0.7} y={12} className={styles.eventChipReveal}>
         <motion.a
           className={styles.eventChip}
           href="#events"

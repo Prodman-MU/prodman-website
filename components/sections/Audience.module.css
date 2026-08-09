@@ -21,6 +21,10 @@
   background: var(--ink);
 }
 
+.persona:hover {
+  background: var(--surface-raised);
+}
+
 .personaName {
   margin: 0;
   font-family: var(--font-display);
@@ -69,4 +73,34 @@
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
+}
+
+:global(html[data-theme="light"]) .list {
+  gap: 2px;
+  border: 2px solid var(--paper);
+  background: var(--paper);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .persona {
+  background: var(--surface);
+}
+
+:global(html[data-theme="light"]) .persona:hover {
+  background: color-mix(in srgb, var(--cyan) 18%, var(--surface));
+}
+
+:global(html[data-theme="light"]) .personaName {
+  width: max-content;
+  max-width: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: var(--acid);
+  box-shadow: 3px 3px 0 var(--shadow);
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .closing {
+  font-weight: 600;
 }

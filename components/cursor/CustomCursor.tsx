@@ -150,7 +150,7 @@ export function CustomCursor() {
       scaleY: 1,
       borderRadius: "50%",
       backgroundColor: "rgba(201, 255, 61, 0)",
-      borderColor: "rgba(244, 245, 240, 0.4)",
+      borderColor: "var(--cursor-border)",
     },
     hover: {
       scaleX: cursorLabel ? 2.1 : 1.8,

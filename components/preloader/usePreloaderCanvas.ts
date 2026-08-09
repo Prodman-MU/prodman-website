@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getDocumentTheme, type ColorTheme } from "@/lib/theme";
 
 type Particle = {
   x: number;
@@ -17,7 +18,10 @@ type Particle = {
   alpha: number;
 };
 
-const PALETTE = ["244,245,240", "112,239,255", "201,255,61"];
+const PALETTES: Record<ColorTheme, string[]> = {
+  dark: ["244,245,240", "112,239,255", "201,255,61"],
+  light: ["10,10,10", "58,184,199", "122,161,14"],
+};
 
 function seededValue(index: number, salt = 1) {
   const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;
@@ -42,6 +46,7 @@ export function usePreloaderCanvas(logoSrc: string, progress: number) {
     if (!context) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const theme = getDocumentTheme();
 
     const state = {
       width: 0,
@@ -149,8 +154,9 @@ export function usePreloaderCanvas(logoSrc: string, progress: number) {
 
     function drawStaticFrame() {
       context!.clearRect(0, 0, state.width, state.height);
+      context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
       for (const particle of state.particles) {
-        context!.fillStyle = `rgba(${PALETTE[particle.tone]},${particle.alpha * 0.8})`;
+        context!.fillStyle = `rgba(${PALETTES[theme][particle.tone]},${particle.alpha * 0.85})`;
         context!.beginPath();
         context!.arc(particle.tx, particle.ty, particle.size, 0, Math.PI * 2);
         context!.fill();
@@ -168,7 +174,7 @@ export function usePreloaderCanvas(logoSrc: string, progress: number) {
       const convergenceEase = 1 - Math.pow(1 - normalizedProg, 3);
 
       context!.clearRect(0, 0, state.width, state.height);
-      context!.globalCompositeOperation = "lighter";
+      context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
 
       for (const particle of state.particles) {
         // Interpolate target from scatter coordinate to final target coordinate based on progress ease
@@ -190,7 +196,7 @@ export function usePreloaderCanvas(logoSrc: string, progress: number) {
         const alpha = particle.alpha * shimmer * Math.min(1, 0.3 + convergenceEase * 0.7);
         const radius = particle.size * (0.8 + convergenceEase * 0.4);
 
-        context!.fillStyle = `rgba(${PALETTE[particle.tone]},${alpha})`;
+        context!.fillStyle = `rgba(${PALETTES[theme][particle.tone]},${alpha})`;
         context!.beginPath();
         context!.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
         context!.fill();

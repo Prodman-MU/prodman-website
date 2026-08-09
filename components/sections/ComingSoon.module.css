@@ -17,3 +17,9 @@
 .badge {
   justify-self: center;
 }
+
+:global(html[data-theme="light"]) .panel {
+  border: 3px dashed var(--paper);
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--shadow);
+}

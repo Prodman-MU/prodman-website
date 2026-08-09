@@ -119,3 +119,38 @@
   line-height: 1.4;
   text-align: center;
 }
+
+:global(html[data-theme="light"]) .card {
+  border-color: var(--paper);
+}
+
+:global(html[data-theme="light"]) .whatsapp {
+  background: color-mix(in srgb, var(--acid) 38%, var(--surface));
+}
+
+:global(html[data-theme="light"]) .newsletter {
+  background: color-mix(in srgb, var(--cyan) 30%, var(--surface));
+}
+
+:global(html[data-theme="light"]) .cardTitle {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .highlights li::before {
+  width: 9px;
+  height: 3px;
+  background: var(--paper);
+}
+
+:global(html[data-theme="light"]) .input {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+  }
+}

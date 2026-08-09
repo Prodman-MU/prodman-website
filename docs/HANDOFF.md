@@ -8,6 +8,8 @@ On top of that v1 base, an **Awwwards-elevation pass** (brand preloader, custom 
 
 A follow-on **navigation and runtime-quality pass** continues the earlier Gemini navigation work: the sticky bar has active-section tracking and progress feedback, mobile has a full-viewport editorial menu, and the shared motion layer is hydration-safe under reduced motion. See "Navigation + Runtime QA Continuation" below.
 
+The site now also has a complete **editorial neo-brutalist light mode**. It follows the visitor's system setting on first load, remembers an explicit selection, and themes every major surface including both particle canvases. See "Light Mode + Neo-Brutalist System" below.
+
 ## What Has Been Implemented
 
 - Hero (Section 0): the living-logo prototype ported into `components/hero/Hero.tsx` + `useLivingLogo.ts` — same particle field, sheen/scan, pointer response, pause control, reduced-motion fallback, off-screen suspension, now with an added "next event" chip linking to the Events section.
@@ -49,6 +51,15 @@ This pass read and reconciled `AGENTS.md`, `docs/PRD.md`, git history, the live 
 2. Duplicate DOM `id` — an interim fix for a mobile-keyboard-nav bug gave both the mobile step buttons and desktop orbital-dial buttons the same `id="pm-tab-N"` (both render at once, one hidden via CSS `display:none`). Fixed by keeping them distinct (`mobile-tab-N` vs `pm-tab-N`) and pointing `aria-labelledby` at both.
 3. A copy typo (`it's—again` vs the source's `it—again`) in the Product Breakdown payoff line.
 
+## Light Mode + Neo-Brutalist System (2026-08-08)
+
+- **Theme contract:** first visit follows `prefers-color-scheme`; explicit light/dark selection persists under `prodman_color_theme`. A `beforeInteractive` head script sets `data-theme` and `color-scheme` before paint, while `ThemeToggle` handles changes without altering the server-rendered tree.
+- **Visual direction:** warm paper, near-black ink, acid/cyan accents, selective purple/coral fields, 2px borders, square controls, hard offset shadows, stronger mono labels, and Fraunces-led editorial hierarchy. Dark mode remains intact.
+- **Full-site coverage:** preloader, living-logo canvas, hero chrome, custom cursor, sticky navigation, mobile menu, Members, Events, Mission, Audience, Community, Product Breakdown, Coming Soon panels, and footer all have explicit light treatments.
+- **Canvas coverage:** hero and preloader switch away from additive `lighter` compositing in light mode and use theme-specific dark/accent particles for legibility.
+- **QA repair:** the hero's event chip had been positioned inside a transformed reveal wrapper and rendered above the mobile viewport. Its positioning now lives on the reveal wrapper, restoring it at the bottom of both desktop and mobile heroes.
+- **Browser verification:** Chromium desktop at 1440×1000 and mobile at 390×844; theme toggling and reload persistence; no horizontal overflow at 390px; light hero, Members, Events, Mission, Product Breakdown, and mobile menu; menu focus/scroll lock/Escape restoration; zero browser console errors.
+
 **Verification status:**
 - `npm run typecheck`, `npx eslint .`, `npm run build` all pass clean as of the last commit (`d2f31bd`) — re-verified independently after every commit in this pass, not just trusted from the orchestrator's self-reports.
 - Milestones 1–3 (preloader/cursor, interactive breakdown, entrance animations) each got an independent reviewer + challenger + forensic-auditor pass from the orchestrator, all CLEAN/APPROVE/PASSED, plus the fixes above from the Claude Code pass.
@@ -59,6 +70,7 @@ This pass read and reconciled `AGENTS.md`, `docs/PRD.md`, git history, the live 
 - `app/page.tsx` — assembles all sections
 - `lib/content.ts` — typed content, sourced from `resources/*.txt` with provenance notes inline
 - `components/hero/` — the ported living-logo hero
+- `components/theme/`, `lib/theme.ts` — persisted system-aware light/dark theme runtime
 - `components/sections/` — the eight sections below the hero
 - `docs/PRD.md` — full product spec, content extraction, and open questions
 
@@ -83,7 +95,7 @@ The seven original portraits remain under `public/team/`. Website-ready transpar
 npm run photos:process
 ```
 
-`scripts/remove-team-backgrounds.mjs` performs AI person segmentation into a temporary lossless cache. `scripts/process-team-photos.mjs` then finds the primary subject, applies the documented per-photo cleanup/framing overrides, and exports 900×1125 alpha WebPs. Akhil’s override removes a retained plant without flattening his hair; Supriya’s tighter framing excludes a detached table fragment.
+`scripts/remove-team-backgrounds.mjs` performs AI person segmentation into a temporary lossless cache. `scripts/process-team-photos.mjs` then finds the primary subject, applies the documented per-photo cleanup/framing overrides, and exports 900×1125 alpha WebPs. Akhil’s override removes a retained plant without flattening his hair. Supriya’s replacement formal portrait exports as `supriya-v2.webp` so Next/Image and deployed CDN caches do not reuse the previous cutout.
 
 (runs eslint, tsc --noEmit, and `next build`)
 
@@ -103,6 +115,53 @@ npm run photos:process
 3. Connect Vercel to this GitHub repo for preview deploys off `feat/nextjs-v1`.
 4. Fill remaining content gaps (Resources, Projects) per `docs/PRD.md` Section 13.
 5. Wire a real event-registration flow and newsletter backend.
+
+## Notes From A Concurrent Claude Code Session (2026-08-09)
+
+This session was asked to crop the team photo backgrounds and make the Members
+section more interactive/immersive — independently, in parallel with a Codex
+session already doing the same work. Findings before stopping:
+
+- **The ask is already done.** `50aa404`/`d047e84` and `f1eaf16`/`f573dd0`
+  (see "Team Photo Pipeline" above) already ship AI background removal,
+  subject-anchored 4:5 cropping, and the interactive portrait-deck carousel
+  in `Members.tsx`/`Members.module.css` — drag/swipe, keyboard nav, magnetic
+  pointer-tilt, per-card accent tones, and an expandable bio. This covers the
+  request; no further Members-section work is needed on top of it.
+- **One regression caught and reverted.** This session re-ran a from-scratch
+  version of the photo pipeline against a stale cached raw cutout of
+  Supriya's *old* source photo (from before Codex's commit `f1eaf16` swapped
+  in her replacement portrait) and briefly overwrote
+  `public/team/cutouts/supriya-v2.webp` with output built from the old
+  photo. Caught via `git status` + `git diff --stat` against `HEAD` and
+  restored with `git checkout -- public/team/cutouts/supriya-v2.webp` before
+  anything was committed. No lasting effect, but a live reminder that two
+  agents writing to the same working tree can clobber each other's file
+  writes with no error — diff against `HEAD` before trusting freshly
+  generated output in a shared session.
+- **Verified clean as of `f573dd0` + the in-progress light-mode changes
+  below:** `npx tsc --noEmit` and `npx eslint .` both pass with zero output.
+  This does not cover a full `next build` — that pass belongs to whoever
+  finishes the light-mode work below.
+- **Browser-verified the Members carousel, with one cache gotcha worth
+  knowing about.** Ran `npm run photos:process` (the documented pipeline)
+  end-to-end, confirmed it's idempotent against what's committed (byte-
+  identical output for 6 of 7 members; Supriya's differs only at the WebP
+  encoder level — same pixels — so that regen was discarded rather than
+  committed). Loaded the site in a real browser: on first load, Akhil's card
+  still showed the pothos-plant artifact the "Team Photo Pipeline" section
+  above says is fixed. Root cause was **not** a code or asset bug — it was a
+  stale `.next/cache/images` entry from an earlier build predating the
+  `colorErase` fix, served over the freshly-regenerated (correct) source
+  file. `rm -rf .next/cache/images` and a reload showed the plant-free card
+  as intended. If this crops up again during review, clear that directory
+  before assuming the underlying WebP is wrong.
+- The large "Changes not staged for commit" list at the top of `git status`
+  (touching nearly every component) is the **Light Mode + Neo-Brutalist
+  System** work described above, apparently still in progress under a
+  concurrent Codex session at the time this note was written. This session
+  did not review or verify that work — it only confirmed the repo typechecks
+  and lints clean with it present.
 
 ## Notes For Future Codex Sessions
 

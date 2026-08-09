@@ -31,7 +31,7 @@ export function Audience() {
             <StaggerItem key={persona.name} variant="fadeUp">
               <motion.div
                 className={styles.persona}
-                whileHover={{ x: 6, backgroundColor: "rgba(244, 245, 240, 0.035)" }}
+                whileHover={{ x: 6 }}
                 transition={slideAccentSpring}
                 data-cursor-text="Persona"
               >

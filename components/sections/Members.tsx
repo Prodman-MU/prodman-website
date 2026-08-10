@@ -29,6 +29,40 @@ const cardTones = [
 const HOLD_DURATION_MS = 380;
 const HOLD_CANCEL_DISTANCE = 10;
 
+type IconProps = {
+  className?: string;
+};
+
+function LinkedInIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM3.56 9h3.56v11.45H3.56V9Z"
+      />
+    </svg>
+  );
+}
+
+function WhatsAppIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M12.04 2a9.84 9.84 0 0 0-8.43 14.91L2.05 22l5.22-1.51A9.94 9.94 0 1 0 12.04 2Zm0 17.93a8 8 0 0 1-4.08-1.12l-.29-.17-3.1.9.92-3.02-.19-.31a7.91 7.91 0 1 1 6.74 3.72Zm4.35-5.92c-.24-.12-1.41-.69-1.63-.77-.22-.08-.38-.12-.54.12-.16.24-.62.77-.76.93-.14.16-.28.18-.52.06-1.4-.7-2.32-1.25-3.25-2.84-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.17.86 2.31.98 2.47.12.16 1.68 2.56 4.07 3.59.57.24 1.01.39 1.36.5.57.18 1.09.16 1.5.1.46-.07 1.41-.58 1.61-1.14.2-.55.2-1.03.14-1.13-.06-.1-.22-.16-.46-.28Z"
+      />
+    </svg>
+  );
+}
+
+function ArrowUpRightIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" strokeWidth="2.4" />
+    </svg>
+  );
+}
+
 type DeckCardStyle = CSSProperties & {
   "--offset": number;
   "--distance": number;
@@ -258,10 +292,9 @@ export function Members() {
                 const tone = cardTones[index % cardTones.length];
                 const linkedin = member.links.find((link) => link.label === "LinkedIn");
                 const whatsapp = member.links.find((link) => link.label === "WhatsApp");
-                const email = member.links.find((link) => link.href.startsWith("mailto:"));
                 const isActive = index === activeIndex;
                 const isFlipped = isActive && flippedIndex === index;
-                const iconCount = [linkedin, whatsapp, email].filter(Boolean).length + 1;
+                const iconCount = [linkedin, whatsapp].filter(Boolean).length + 1;
                 const cardStyle: DeckCardStyle = {
                   "--offset": offset,
                   "--distance": Math.abs(offset),
@@ -358,7 +391,7 @@ export function Members() {
                             aria-label="LinkedIn"
                             data-cursor-text="Connect"
                           >
-                            <Image src="/logo/linkedin-logo.avif" alt="" width={28} height={28} className={styles.nameIcon} />
+                            <LinkedInIcon className={styles.nameIcon} />
                           </a>
                         ) : null}
                         {whatsapp ? (
@@ -370,26 +403,17 @@ export function Members() {
                             aria-label="WhatsApp"
                             data-cursor-text="WhatsApp"
                           >
-                            <Image src="/logo/whatsapp-logo.avif" alt="" width={28} height={28} className={styles.nameIcon} />
-                          </a>
-                        ) : null}
-                        {email ? (
-                          <a
-                            href={email.href}
-                            tabIndex={isActive && !isFlipped ? undefined : -1}
-                            aria-label="Email"
-                            data-cursor-text="Email"
-                          >
-                            <Image src="/logo/gmail_logo.webp" alt="" width={28} height={28} className={styles.nameIcon} />
+                            <WhatsAppIcon className={styles.nameIcon} />
                           </a>
                         ) : null}
                         <Link
                           href={`/team/${member.slug}`}
+                          className={styles.nameIconArrow}
                           tabIndex={isActive && !isFlipped ? undefined : -1}
                           aria-label="Read more"
                           data-cursor-text="Story"
                         >
-                          <Image src="/logo/right-top-arrow.png" alt="" width={28} height={28} className={styles.nameIcon} />
+                          <ArrowUpRightIcon className={styles.nameIcon} />
                         </Link>
                       </div>
 

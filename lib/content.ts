@@ -5,7 +5,7 @@
 export interface Member {
   readonly slug: string;
   readonly name: string;
-  readonly role: "President" | "Vice President" | "Member";
+  readonly role: "President" | "Vice President" | "Core Member";
   readonly bio: string;
   readonly superpower: string;
   readonly links: readonly { label: string; href: string }[];
@@ -47,7 +47,7 @@ export const members: readonly Member[] = [
   {
     slug: "anusha-p-b",
     name: "Anusha P. B.",
-    role: "Member",
+    role: "Core Member",
     bio: "I spot what’s missing in a market—and build the business that should exist there. At Ather Energy, I built the accessories and merchandise category from scratch, scaling it into a ₹100+ crore business with 50%+ gross margins and a 4,000+ member community. Before that, I redesigned cricket products at Decathlon and launched India’s first women’s cricket apparel line. Now at Masters’ Union, I’m exploring the intersection of sports, technology, and business to help shape India’s next wave of sports innovation.",
     superpower: "Seeing whitespace before it becomes obvious—and owning everything from the first sketch to the final P&L.",
     links: [
@@ -60,7 +60,7 @@ export const members: readonly Member[] = [
   {
     slug: "akshat-dhaundiyal",
     name: "Akshat Dhaundiyal",
-    role: "Member",
+    role: "Core Member",
     // NOTE: source (resources/Team-Summary.txt) has a dropped word after "business" —
     // "turn complex business." reads as cut off. Filled minimally pending Akshat's
     // confirmation; see docs/PRD.md open question 19 before treating as final.
@@ -77,7 +77,7 @@ export const members: readonly Member[] = [
   {
     slug: "saffa-ahmad",
     name: "Saffa Ahmad",
-    role: "Member",
+    role: "Core Member",
     // NOTE: bio/superpower are drafted from Saffa's LinkedIn resume (public/saffa-info.pdf),
     // not first-person copy she wrote herself — unlike the rest of this file. Flag for her
     // review/confirmation before treating as final; see docs/PRD.md content-provenance note
@@ -94,7 +94,7 @@ export const members: readonly Member[] = [
   {
     slug: "muskan-sharma",
     name: "Muskan Sharma",
-    role: "Member",
+    role: "Core Member",
     bio: "I am an AI product enthusiast who loves turning messy problems into simple, user-focused solutions. With around 3.5 years of experience across AI consulting, product discovery, and strategy, I enjoy connecting business needs with technology. My superpower is bringing structure to chaos and taking ideas from “What if?” to “It’s live!” \u{1F680}",
     superpower:
       "Bringing structure to chaos. Give me an ambiguous problem, five conflicting stakeholder opinions, and a tight deadline—and I’ll turn them into a clear plan that everyone can rally around.",
@@ -110,7 +110,7 @@ export const members: readonly Member[] = [
   {
     slug: "supriya",
     name: "Supriya",
-    role: "Member",
+    role: "Core Member",
     bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
     superpower: "Turning ambiguity into action. ⚡",
     links: [{ label: "WhatsApp", href: "https://wa.me/917406521184" }],
@@ -120,7 +120,7 @@ export const members: readonly Member[] = [
   {
     slug: "om-umrania",
     name: "Om Umrania",
-    role: "Member",
+    role: "Core Member",
     bio: "I build AI products, decode data, and occasionally make 13 AI agents work together without starting a rebellion. From RAG systems to automation workflows, I enjoy taking ambitious ideas from 0→1 and turning them into products that create real impact. My superpower? Switching between product strategy and technical execution without losing the plot—or the user.",
     superpower: "Going from “This sounds impossible” to “I’ve already built a prototype.” \u{1F4A1}",
     links: [

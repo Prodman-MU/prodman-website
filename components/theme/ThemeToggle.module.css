@@ -1,110 +1,87 @@
 .toggle {
-  position: relative;
-  display: inline-flex;
+  display: inline-grid;
   flex: none;
-  gap: 0.35rem;
-  align-items: center;
-  justify-content: center;
-  min-height: 38px;
-  padding: 0.45rem 0.65rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--muted);
-  background: var(--control-bg);
-  font-family: var(--font-mono);
-  font-size: 0.57rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  text-transform: uppercase;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: var(--paper);
+  background: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition:
     color 180ms ease,
-    background 180ms ease,
-    transform 180ms var(--ease-expo-out),
-    box-shadow 180ms ease;
+    transform 180ms var(--ease-expo-out);
 }
 
 .toggle:hover {
-  color: var(--paper);
+  color: var(--acid);
 }
 
 .toggle:active {
-  transform: translate(2px, 2px);
+  transform: rotate(-4deg) scale(0.9);
 }
 
-.lightLabel,
-.darkLabel {
-  transition: color 180ms ease, background 180ms ease;
+.toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 
-:global(html[data-theme="dark"]) .darkLabel,
-:global(html[data-theme="light"]) .lightLabel {
-  color: var(--paper);
+.iconFrame {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
-.divider {
-  opacity: 0.45;
+.icon {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+  transition:
+    opacity 220ms ease,
+    transform 320ms var(--ease-expo-out);
 }
 
-:global(html[data-theme="light"]) .toggle {
-  min-height: 40px;
-  border: 2px solid var(--paper);
-  border-radius: 2px;
-  background: var(--surface);
-  box-shadow: 3px 3px 0 var(--shadow);
+.sunIcon {
+  opacity: 0;
+  transform: rotate(-28deg) scale(0.58);
+}
+
+.moonIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+:global(html[data-theme="light"]) .sunIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+:global(html[data-theme="light"]) .moonIcon {
+  opacity: 0;
+  transform: rotate(24deg) scale(0.58);
+}
+
+.toggle:hover .sunIcon {
+  transform: rotate(12deg) scale(1);
+}
+
+.toggle:hover .moonIcon {
+  transform: translate(-1px, -1px) rotate(-5deg) scale(1);
 }
 
 :global(html[data-theme="light"]) .toggle:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--shadow);
-}
-
-:global(html[data-theme="light"]) .toggle:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--shadow);
-}
-
-:global(html[data-theme="light"]) .lightLabel {
-  padding: 0.2rem 0.28rem;
   color: var(--paper);
-  background: var(--acid);
-}
-
-@media (max-width: 1120px) and (min-width: 901px) {
-  .toggle {
-    padding-inline: 0.5rem;
-  }
-
-  .divider {
-    display: none;
-  }
-}
-
-@media (max-width: 420px) {
-  .toggle {
-    padding-inline: 0.5rem;
-  }
-
-  .divider {
-    display: none;
-  }
-}
-
-/* Below these widths only one label fits — show whichever one is actually
-   active instead of always showing "Light", so the button's text matches
-   the theme it's about to switch away from. */
-@media (max-width: 1120px) and (min-width: 901px), (max-width: 420px) {
-  :global(html[data-theme="dark"]) .lightLabel,
-  :global(html[data-theme="light"]) .darkLabel {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .toggle,
-  .lightLabel,
-  .darkLabel {
+  .icon {
     transition: none;
   }
 }

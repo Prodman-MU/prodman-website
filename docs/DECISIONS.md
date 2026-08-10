@@ -47,3 +47,15 @@
 - Context: The portrait deck needs visible role and contact actions while retaining its swipe/select behavior. The project owner also wants a full profile destination for each member and a card gesture that reveals the inline information.
 - Decision: Keep the nameplate, add owner-confirmed President/Vice President/Member stamps, and show Read More plus only the verified LinkedIn/Email actions on the active card. A portrait tap/click selects the member and scrolls to the synchronized inline profile; Read More navigates in the same tab to a statically generated `/team/[slug]` page. Do not use long-press because it conflicts with deck swiping, browser gestures, keyboard access, and discoverability.
 - Consequences: The homepage remains a fast visual introduction while every profile has a durable shareable URL and complete sourced story. Missing contacts are omitted rather than fabricated, and all seven routes are prerendered from the typed member registry.
+
+## 2026-08-10 - Start every fresh page load in light mode
+
+- Context: The earlier theme contract followed the operating-system preference and persisted an explicit choice. The project owner now wants the public site to open in light mode regardless of system preference or previously stored browser data.
+- Decision: Render `data-theme="light"` directly on the root document and stop reading or writing theme preference in `localStorage`. Keep the existing theme control, but treat dark mode as a visit-local choice that resets to light on the next full page load.
+- Consequences: The first paint is deterministically light without a theme-bootstrap script or hydration flash. Dark mode and both theme-aware canvases remain available during the live visit, while old `prodman_color_theme` values are ignored. The Events accordion continues to initialize with Event 01 expanded so its lead event is visible without a click.
+
+## 2026-08-10 - Replace the text theme control with branded icons
+
+- Context: The boxed `LIGHT / DARK` label carried more visual weight than the adjacent two-line mobile menu and introduced button chrome into the otherwise minimal navigation controls.
+- Decision: Use custom square-cored sun and angular crescent SVGs with the menu glyph's line weight. Keep both icons in the rendered tree, let the root theme attribute select the visible state, and leave the 44px control transparent and shadow-free except for its keyboard-only focus outline.
+- Consequences: The theme and menu controls now share one zero-gap layout group and read as a single neo-brutalist icon pair at every viewport. The menu trigger remains available on desktop as well as mobile. To keep the navigation strictly one row, the redundant inline section-link strip is non-wrapping on wide screens and hidden at `<=1280px`, where the same destinations remain available in the menu. The accessible theme label still announces the destination mode, reduced-motion users receive an instant state change, and the current light-first visit contract remains unchanged.

@@ -24,7 +24,7 @@ The particle field is rebuilt when its section resizes, caps device pixel ratio 
 ## Interaction and hydration contracts
 
 - Keep `app/page.tsx` server-rendered; place browser state and event listeners at the smallest client-component boundary.
-- Keep the server fallback `data-theme="dark"`, then resolve stored/system preference in the synchronous head script before first paint. Theme controls must update the root attribute and `color-scheme` without changing the semantic tree.
+- Render `data-theme="light"` at the document root on every full page load. Theme controls may update the root attribute and `color-scheme` for the current visit, but must not read or persist browser preference or change the semantic tree.
 - Canvas renderers must read the active theme and switch both palette and compositing mode; CSS-only inversion is insufficient for the living logo.
 - Motion preference must use `useHydratedReducedMotion()` where it affects rendered properties or variants. Do not branch to a different semantic tree during hydration.
 - Modal navigation must restore body styles and event listeners on every close/unmount path.

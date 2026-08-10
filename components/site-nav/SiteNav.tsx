@@ -174,14 +174,17 @@ export function SiteNav() {
           <motion.a
             className={styles.wordmark}
             href="#hero"
-            aria-label="MU ProdMan Career Club — home"
+            aria-label="ProdMan Career Club — home"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             data-cursor-text="Home"
           >
             <span className={styles.wordmarkSignal} aria-hidden="true" />
             <span className={styles.wordmarkText}>
-              <span className={styles.wordmarkPrimary}>MU PRODMAN</span>
+              <span className={styles.wordmarkPrimary}>
+                <span className={styles.wordmarkMu}>MU </span>
+                PRODMAN
+              </span>
               <span className={styles.wordmarkSecondary}>CAREER CLUB</span>
             </span>
           </motion.a>
@@ -206,8 +209,25 @@ export function SiteNav() {
             );
           })}
         </ul>
-        <div className={styles.themeToggleSlot}>
-          <ThemeToggle />
+        <div className={styles.navControls}>
+          <div className={styles.themeToggleSlot}>
+            <ThemeToggle />
+          </div>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className={styles.menuButton}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+            data-cursor-text={menuOpen ? "Close" : "Menu"}
+          >
+            <span className={styles.menuIcon} aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
         <motion.a
           className={`cta cta--acid ${styles.join}`}
@@ -218,21 +238,6 @@ export function SiteNav() {
         >
           Join
         </motion.a>
-        <button
-          ref={menuButtonRef}
-          type="button"
-          className={styles.menuButton}
-          aria-expanded={menuOpen}
-          aria-controls="site-menu"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMenuOpen((open) => !open)}
-          data-cursor-text={menuOpen ? "Close" : "Menu"}
-        >
-          <span className={styles.menuIcon} aria-hidden="true">
-            <span />
-            <span />
-          </span>
-        </button>
         <motion.span className={styles.progress} style={{ scaleX: progress }} aria-hidden="true" />
       </motion.nav>
 

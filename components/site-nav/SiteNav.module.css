@@ -135,6 +135,10 @@
   white-space: nowrap;
 }
 
+.wordmarkMu {
+  display: none;
+}
+
 @keyframes signalPing {
   0% {
     opacity: 0.9;
@@ -170,17 +174,20 @@
 .affiliationMark {
   display: block;
   width: auto;
-  height: 1.64rem;
+  height: 1.8rem;
 }
 
 .links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.35rem;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: clamp(0.75rem, 1.2vw, 1.35rem);
+  justify-content: center;
+  min-width: 0;
   margin: 0;
   padding: 0;
   list-style: none;
-  overflow-x: auto;
+  overflow: hidden;
 }
 
 .links a {
@@ -249,13 +256,22 @@
 }
 
 .menuButton {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 44px;
   min-height: 44px;
   padding: 0;
   border: 0;
   color: var(--paper);
   background: transparent;
+}
+
+.navControls {
+  display: inline-flex;
+  flex: none;
+  gap: 0;
+  align-items: center;
 }
 
 .themeToggleSlot {
@@ -574,11 +590,17 @@
   background: var(--acid);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1280px) {
   .links {
     display: none;
   }
 
+  .navControls {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 900px) {
   .nav {
     padding: 0.55rem 3.3vw;
   }
@@ -586,22 +608,6 @@
   .nav[data-scrolled] {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-
-  .join {
-    order: 1;
-    margin-left: auto;
-  }
-
-  .themeToggleSlot {
-    order: 2;
-  }
-
-  .menuButton {
-    order: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
@@ -615,12 +621,12 @@
     display: none;
   }
 
-  .join {
-    display: none;
+  .wordmarkMu {
+    display: inline;
   }
 
-  .themeToggleSlot {
-    margin-left: auto;
+  .join {
+    display: none;
   }
 
   .menuPanelInner {

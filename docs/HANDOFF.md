@@ -8,7 +8,7 @@ On top of that v1 base, an **Awwwards-elevation pass** (brand preloader, custom 
 
 A follow-on **navigation and runtime-quality pass** continues the earlier Gemini navigation work: the sticky bar has active-section tracking and progress feedback, mobile has a full-viewport editorial menu, and the shared motion layer is hydration-safe under reduced motion. See "Navigation + Runtime QA Continuation" below.
 
-The site now also has a complete **editorial neo-brutalist light mode**. It follows the visitor's system setting on first load, remembers an explicit selection, and themes every major surface including both particle canvases. See "Light Mode + Neo-Brutalist System" below.
+The site now also has a complete **editorial neo-brutalist light mode**. Every fresh page load starts in light mode regardless of system preference or previously stored browser data; visitors can still switch to dark mode for the current visit. Every major surface, including both particle canvases, is theme-aware. See "Light Mode + Neo-Brutalist System" below.
 
 ## What Has Been Implemented
 
@@ -53,12 +53,13 @@ This pass read and reconciled `AGENTS.md`, `docs/PRD.md`, git history, the live 
 
 ## Light Mode + Neo-Brutalist System (2026-08-08)
 
-- **Theme contract:** first visit follows `prefers-color-scheme`; explicit light/dark selection persists under `prodman_color_theme`. A `beforeInteractive` head script sets `data-theme` and `color-scheme` before paint, while `ThemeToggle` handles changes without altering the server-rendered tree.
+- **Theme contract (updated 2026-08-10):** every full page load renders `data-theme="light"` at the document root, independent of `prefers-color-scheme` and old `prodman_color_theme` values. `ThemeToggle` can switch to dark mode for the current visit, but the choice is intentionally not persisted. Its custom shadow-free sun/moon icons share a zero-gap control group with the persistent desktop/mobile menu glyph and remain simultaneously rendered so the root theme attribute can switch their visibility without changing the semantic tree. The desktop link strip never wraps; at `<=1280px` it is hidden in favor of the same destinations in the menu, keeping the header to one row.
 - **Visual direction:** warm paper, near-black ink, acid/cyan accents, selective purple/coral fields, 2px borders, square controls, hard offset shadows, stronger mono labels, and Fraunces-led editorial hierarchy. Dark mode remains intact.
 - **Full-site coverage:** preloader, living-logo canvas, hero chrome, custom cursor, sticky navigation, mobile menu, Members, Events, Mission, Audience, Community, Product Breakdown, Coming Soon panels, and footer all have explicit light treatments.
 - **Canvas coverage:** hero and preloader switch away from additive `lighter` compositing in light mode and use theme-specific dark/accent particles for legibility.
 - **QA repair:** the hero's event chip had been positioned inside a transformed reveal wrapper and rendered above the mobile viewport. Its positioning now lives on the reveal wrapper, restoring it at the bottom of both desktop and mobile heroes.
 - **Browser verification:** Chromium desktop at 1440×1000 and mobile at 390×844; theme toggling and reload persistence; no horizontal overflow at 390px; light hero, Members, Events, Mission, Product Breakdown, and mobile menu; menu focus/scroll lock/Escape restoration; zero browser console errors.
+- **2026-08-10 browser verification:** Chromium at 390×844 with dark system preference emulation and a stale stored `dark` value still opened in light mode. The live toggle switched to dark, a reload returned to light, Event 01 was expanded while Event 02 stayed collapsed, and the console remained error-free.
 
 **Verification status:**
 - `npm run typecheck`, `npx eslint .`, `npm run build` all pass clean as of the last commit (`d2f31bd`) — re-verified independently after every commit in this pass, not just trusted from the orchestrator's self-reports.
@@ -70,7 +71,7 @@ This pass read and reconciled `AGENTS.md`, `docs/PRD.md`, git history, the live 
 - `app/page.tsx` — assembles all sections
 - `lib/content.ts` — typed content, sourced from `resources/*.txt` with provenance notes inline
 - `components/hero/` — the ported living-logo hero
-- `components/theme/`, `lib/theme.ts` — persisted system-aware light/dark theme runtime
+- `components/theme/`, `lib/theme.ts` — light-first, visit-local light/dark theme runtime
 - `components/sections/` — the eight sections below the hero
 - `docs/PRD.md` — full product spec, content extraction, and open questions
 

@@ -106,7 +106,7 @@ Om's decision: **take penguin-capital's typography restraint, motifs, and pacing
 
 ### 5c. Resolved 2026-08-08 — Add an editorial neo-brutalist light mode
 
-Om approved a complete light counterpart rather than replacing the existing dark identity. It follows the visitor's system preference on first visit and remembers explicit selection. The approved balance is **70% neo-brutalist / 30% editorial restraint**: warm paper, near-black ink, the existing acid/cyan accents, selective purple/coral fields, 2px structural borders, hard offset shadows, square controls, and the existing Fraunces/Inter/mono typography. Every major surface—including the preloader and living-logo canvases—must be theme-aware; dark mode remains intact.
+Om approved a complete light counterpart rather than replacing the existing dark identity. **Update 2026-08-10:** every fresh page load must now start in light mode regardless of system preference or previously stored browser data. Dark mode remains available through the visible control for the current visit, but the selection does not persist across a full reload. The approved balance is **70% neo-brutalist / 30% editorial restraint**: warm paper, near-black ink, the existing acid/cyan accents, selective purple/coral fields, 2px structural borders, hard offset shadows, square controls, and the existing Fraunces/Inter/mono typography. Every major surface—including the preloader and living-logo canvases—must be theme-aware; dark mode remains intact.
 
 ### 5d. threejs.org and awwwards.com — now secondary, pattern-level references only
 

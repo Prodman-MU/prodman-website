@@ -55,6 +55,13 @@
 - [x] Preserve dark mode, reduced motion, mobile behavior, and semantic markup
 - [x] Verify desktop/mobile rendering, persistence, overflow, mobile menu focus/scroll lock, and browser console integrity
 
+## Light-first startup and event lead — completed 2026-08-10
+
+- [x] Start every full page load in light mode, ignoring system preference and old stored theme data
+- [x] Keep dark mode available as a non-persisted choice for the current visit
+- [x] Keep Event 01 expanded by default so its details are visible without a click
+- [x] Update the PRD, decisions, architecture, and handoff contracts
+
 ## Relevant Files
 
 - `app/page.tsx`, `lib/content.ts`, `components/`

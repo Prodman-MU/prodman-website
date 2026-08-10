@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { whoWeAre } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
@@ -39,11 +39,55 @@ export function WhoAreWe() {
   const useHorizontalScroll = isMobile && !shouldReduceMotion;
 
   const trackOuterRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: trackOuterRef,
-    offset: ["start start", "end end"],
-  });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${((cardCount - 1) / cardCount) * 100}%`]);
+  const trackStickyRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // The card's height is content-driven (no forced 100svh box — that left
+  // dead space above/below a shorter card), so the pin's scroll-linked
+  // progress can't be derived from a viewport-relative target offset either
+  // (that only lines up with the sticky's real stuck duration when the
+  // sticky height equals the viewport height). Instead we measure the
+  // sticky's actual geometry — its height, how far it needs to sit below
+  // the fixed nav, and how far the track still has to travel — and drive
+  // the horizontal scroll directly off the raw page scroll position.
+  const [pin, setPin] = useState<{ navOffset: number; outerHeight: number; start: number; distance: number }>();
+
+  useEffect(() => {
+    if (!useHorizontalScroll) return;
+    const outerEl = trackOuterRef.current;
+    const stickyEl = trackStickyRef.current;
+    const trackEl = trackRef.current;
+    if (!outerEl || !stickyEl || !trackEl) return;
+
+    const navEl = document.querySelector("nav");
+
+    const measure = () => {
+      const navOffset = navEl ? navEl.getBoundingClientRect().height : 0;
+      const distance = trackEl.scrollWidth - stickyEl.clientWidth;
+      const outerTop = outerEl.getBoundingClientRect().top + window.scrollY;
+      // Sticky engages once (scrollY + navOffset) reaches outerTop, i.e. at
+      // scrollY = outerTop - navOffset — not at outerTop itself.
+      setPin({ navOffset, outerHeight: stickyEl.offsetHeight + distance, start: outerTop - navOffset, distance });
+    };
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(stickyEl);
+    observer.observe(trackEl);
+    if (navEl) observer.observe(navEl);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [useHorizontalScroll]);
+
+  const { scrollY } = useScroll();
+  const x = useTransform(
+    scrollY,
+    pin ? [pin.start, pin.start + pin.distance] : [0, 1],
+    pin ? [0, -pin.distance] : [0, 0],
+  );
 
   return (
     <section id="who-are-we" className={`section ${styles.section}`}>
@@ -67,11 +111,15 @@ export function WhoAreWe() {
         <div
           ref={trackOuterRef}
           className={useHorizontalScroll ? styles.trackOuter : undefined}
-          style={useHorizontalScroll ? ({ "--count": cardCount } as CountStyle) : undefined}
+          style={
+            useHorizontalScroll
+              ? ({ "--count": cardCount, height: pin?.outerHeight } as CountStyle)
+              : undefined
+          }
         >
           {useHorizontalScroll ? (
-            <div className={styles.trackSticky}>
-              <motion.div className={styles.track} style={{ x }}>
+            <div ref={trackStickyRef} className={styles.trackSticky} style={{ top: pin?.navOffset }}>
+              <motion.div ref={trackRef} className={styles.track} style={{ x }}>
                 {whoWeAre.paragraphs.map((paragraph, index) => (
                   <div key={paragraph} className={styles.trackItem}>
                     <div className={styles.card} style={cardStyleFor(index)} data-cursor-text="Us">

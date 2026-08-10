@@ -145,7 +145,12 @@
 
 /* Mobile-only pinned horizontal scroll variant of .cards (rendered instead
    of the grid below 720px, unless the user prefers reduced motion — see
-   WhoAreWe.tsx). --count is set inline to the card count. */
+   WhoAreWe.tsx). --count is set inline to the card count; the precise
+   height below is measured and set inline from the sticky card's real
+   rendered size once mounted (this is a pre-measurement fallback only —
+   using a fixed 100svh here would leave dead space above/below a shorter
+   card, since the pin's scroll length has to match the card's actual
+   height, not a guess). */
 
 .trackOuter {
   position: relative;
@@ -156,15 +161,11 @@
 .trackSticky {
   position: sticky;
   top: 0;
-  display: flex;
-  align-items: center;
-  height: 100svh;
   overflow: hidden;
 }
 
 .track {
   display: flex;
-  flex-shrink: 0;
   width: calc(var(--count) * 100%);
   will-change: transform;
 }

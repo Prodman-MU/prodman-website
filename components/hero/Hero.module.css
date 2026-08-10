@@ -327,18 +327,44 @@
   left: 0;
   width: 72%;
   filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  animation: heroStickerInFront 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
 .heroStickerBack {
   top: 24%;
   left: 30%;
   width: 66%;
+  animation-name: heroStickerInBack;
+  animation-delay: 0.4s;
 }
 
 .heroStickerImg {
   display: block;
   width: 100%;
   height: auto;
+}
+
+@keyframes heroStickerInFront {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-7deg);
+  }
+}
+
+@keyframes heroStickerInBack {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(4deg);
+  }
+  to {
+    opacity: 0.94;
+    transform: translateY(0) rotate(10deg);
+  }
 }
 
 @media (min-width: 1024px) {

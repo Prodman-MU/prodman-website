@@ -104,13 +104,7 @@ export function Hero() {
         </Reveal>
         <div className={styles.heroTitleRow}>
           <div className={styles.heroTitleStickers} aria-hidden="true">
-            <motion.div
-              className={`${styles.heroSticker} ${styles.heroStickerBack}`}
-              initial={{ opacity: 0, y: 16, rotate: 4 }}
-              whileInView={{ opacity: 0.94, y: 0, rotate: 10 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <div className={`${styles.heroSticker} ${styles.heroStickerBack}`}>
               <Image
                 src="/events/stickers/event-2.png"
                 alt=""
@@ -119,14 +113,8 @@ export function Hero() {
                 sizes="128px"
                 className={styles.heroStickerImg}
               />
-            </motion.div>
-            <motion.div
-              className={styles.heroSticker}
-              initial={{ opacity: 0, y: 16, rotate: 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: -7 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
+            </div>
+            <div className={styles.heroSticker}>
               <Image
                 src="/events/stickers/event-1.png"
                 alt=""
@@ -135,7 +123,7 @@ export function Hero() {
                 sizes="128px"
                 className={styles.heroStickerImg}
               />
-            </motion.div>
+            </div>
           </div>
 
           <h1 id="hero-title" className={styles.heroStatement} aria-label={HERO_STATEMENT}>

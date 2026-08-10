@@ -19,7 +19,9 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 
 ## Runtime behavior
 
-The particle field is rebuilt when its section resizes, caps device pixel ratio at 2, lowers the particle count on small screens, pauses while off-screen or in a background tab, and reacts locally to pointer movement. Users can pause motion, and `prefers-reduced-motion` receives a static composition.
+The particle field is rebuilt when its section resizes, caps device pixel ratio at 2, lowers the particle count on small screens, pauses while off-screen or in a background tab, and reacts locally to pointer movement. `prefers-reduced-motion` receives a static composition.
+
+Ambient and pointer displacement stays inside a responsive, logo-local motion envelope. The particle targets and ghost logo use the same 72vw desktop / 88vw mobile geometry so the two layers remain registered instead of spilling into separate outer bands.
 
 ## Interaction and hydration contracts
 

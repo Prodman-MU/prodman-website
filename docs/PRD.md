@@ -205,7 +205,8 @@ Current implementation, verified in `output/playwright/`:
 - Signal strip: `DISCOVER — DESIGN — VALIDATE — SHIP`
 - Scroll cue: `EXPLORE`
 - Geo Easter egg: `28.4595° N / 77.0266° E` (Gurugram coordinates) + `IDENTITY / 01` · `BUILD MODE: ON`
-- Persistent header: wordmark `PROD/MAN`, `MASTERS' UNION · GURUGRAM`, pause-motion control
+- Persistent header: wordmark `PROD/MAN`, `MASTERS' UNION · GURUGRAM`
+- Motion behavior: respects `prefers-reduced-motion` and suspends rendering off-screen or in a hidden tab; the visible pause/play control was removed by product direction on 2026-08-10.
 
 **Two things to reconcile before calling this final:**
 
@@ -445,7 +446,7 @@ No content file exists. This is the section doing the most work for the "externa
 ## 10. Global UX / craft requirements
 
 - **Persistent nav/footer:** the current prototype's header only exists inside the hero section (`brand-orbit`). Once Sections 1–8 exist, spec a persistent site header (logo, section jump-links, MU affiliation lockup) and footer (socials, MU disclaimer, WhatsApp/newsletter repeat CTA, sitemap).
-- **Motion & accessibility:** already set a strong bar (pause control, `prefers-reduced-motion`, off-screen suspension) — carry this standard into every new animated section, not just the hero.
+- **Motion & accessibility:** respect `prefers-reduced-motion` and suspend expensive animation work while off-screen or in a hidden tab. The canonical hero no longer exposes a visible pause/play control as of 2026-08-10; keep any future continuous animation controls deliberate and consistent with product direction.
 - **Performance:** the hero already caps device pixel ratio and lowers particle density on small screens. Extend that discipline site-wide — target LCP < 2.5s even with the animation layer; lazy-mount any heavy canvas/WebGL work until it's in viewport.
 - **Repeat the community CTA:** the whiteboard places the WhatsApp/newsletter CTA at position 5, before Sections 6–8. Keeping that position as instructed, but recommend a lightweight repeat of the same CTA at the very end (footer) too, since most visitors won't convert on a first mid-scroll pass — this is additive, not a reordering.
 - **Preloader (added 2026-08-08):** penguin-capital.co.jp gates its homepage behind a percentage-based "Now loading... X%" screen before reveal — a common Awwwards-caliber craft signal the current ProdMan build doesn't have at all. Recommend adding a short branded loading state (using the logo/particle system already built) rather than a blank flash on first paint. Keep it brief and skippable/instant on repeat visits so it doesn't become a usability tax — it should support the Design/Creativity score, not cost Usability points.

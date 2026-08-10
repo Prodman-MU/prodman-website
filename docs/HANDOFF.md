@@ -12,7 +12,7 @@ The site now also has a complete **editorial neo-brutalist light mode**. Every f
 
 ## What Has Been Implemented
 
-- Hero (Section 0): the living-logo prototype ported into `components/hero/Hero.tsx` + `useLivingLogo.ts` — same particle field, sheen/scan, pointer response, pause control, reduced-motion fallback, off-screen suspension, now with an added "next event" chip linking to the Events section.
+- Hero (Section 0): the living-logo prototype ported into `components/hero/Hero.tsx` + `useLivingLogo.ts` — same particle field, sheen/scan, pointer response, reduced-motion fallback, and off-screen/background-tab suspension, now with an added "next event" chip linking to the Events section. The visible pause/play control was intentionally removed on 2026-08-10.
 - Members — a visual-first, seven-person portrait deck using normalized transparent WebP cutouts, direct portrait/dot/arrow selection, swipe, Left/Right/Home/End keyboard control, reduced-motion handling, and full bios disclosed on demand. Fine-pointer hover adds card attraction, 3D tilt, portrait counter-motion, and a restrained glare sweep; touch and reduced-motion paths stay static. Events, Mission, Who It's For, Community CTA, and Product Breakdown remain built from `resources/*.txt` content (see `lib/content.ts` and `docs/PRD.md` Section 8 for provenance).
 - Resources, Projects — honest "Coming Soon" states; no content exists yet for either (`docs/PRD.md` Section 13).
 - Persistent sticky site nav + footer (`components/site-nav/`, `components/site-footer/`) with a repeated WhatsApp CTA.

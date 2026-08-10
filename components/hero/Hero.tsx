@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
-import { SplitHeading } from "@/components/motion/SplitHeading";
 import { events, productBreakdown } from "@/lib/content";
 import styles from "./Hero.module.css";
 import { useLivingLogo } from "./useLivingLogo";
 
 const nextEvent = events[0];
+const HERO_STATEMENT = "Building The Next-Gen Product Leaders.";
 
 function shortEventDate(fullDate: string) {
   const [day, month] = fullDate.split(" ");
@@ -43,13 +44,13 @@ const STAGE_CARDS = [
 ] as const;
 
 export function Hero() {
-  const { stageRef, canvasRef, paused, toggleMotion } = useLivingLogo("/brand/prodman-logo.png");
+  const { stageRef, canvasRef } = useLivingLogo("/brand/prodman-logo.png");
 
   return (
     <section
       ref={stageRef as React.RefObject<HTMLElement>}
       id="hero"
-      className={`${styles.brandOrbit} ${paused ? styles.motionPaused : ""}`}
+      className={styles.brandOrbit}
       aria-labelledby="hero-title"
     >
       <div className={styles.ambientGrid} aria-hidden="true" />
@@ -57,24 +58,6 @@ export function Hero() {
       <div className={`${styles.orb} ${styles.orbAcid}`} aria-hidden="true" />
 
       <canvas ref={canvasRef} className={styles.brandParticles} aria-hidden="true" />
-
-      <Reveal variant="fadeIn" delay={0.15} className={styles.motionControlFloating}>
-        <motion.button
-          className={styles.motionControl}
-          type="button"
-          aria-pressed={paused}
-          onClick={toggleMotion}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.92 }}
-          data-cursor-text="Toggle"
-        >
-          <span
-            className={`${styles.motionControlIcon} ${paused ? styles.motionControlIconPaused : ""}`}
-            aria-hidden="true"
-          />
-          <span className={styles.motionControlLabel}>{paused ? "Play motion" : "Pause motion"}</span>
-        </motion.button>
-      </Reveal>
 
       <Reveal variant="fadeIn" delay={0.85} className={`${styles.coordinate} ${styles.coordinateLeft}`}>
         <span>28.4595&deg; N</span>
@@ -119,7 +102,74 @@ export function Hero() {
         <Reveal variant="fadeUp" delay={0.2} y={16}>
           <p className={styles.heroCopyEyebrow}>PRODUCT MANAGEMENT CLUB &middot; 2026</p>
         </Reveal>
-        <SplitHeading as="h1" id="hero-title" text="Building the next gen of product leaders." />
+        <div className={styles.heroTitleRow}>
+          <div className={styles.heroTitleStickers} aria-hidden="true">
+            <motion.div
+              className={`${styles.heroSticker} ${styles.heroStickerBack}`}
+              initial={{ opacity: 0, y: 16, rotate: 4 }}
+              whileInView={{ opacity: 0.94, y: 0, rotate: 10 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src="/events/stickers/event-2.png"
+                alt=""
+                width={512}
+                height={373}
+                sizes="128px"
+                className={styles.heroStickerImg}
+              />
+            </motion.div>
+            <motion.div
+              className={styles.heroSticker}
+              initial={{ opacity: 0, y: 16, rotate: 2 }}
+              whileInView={{ opacity: 1, y: 0, rotate: -7 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src="/events/stickers/event-1.png"
+                alt=""
+                width={512}
+                height={382}
+                sizes="128px"
+                className={styles.heroStickerImg}
+              />
+            </motion.div>
+          </div>
+
+          <h1 id="hero-title" className={styles.heroStatement} aria-label={HERO_STATEMENT}>
+            <span className={styles.heroStatementVisual} aria-hidden="true">
+              <Reveal
+                as="span"
+                variant="fadeUp"
+                delay={0.3}
+                y={18}
+                className={styles.heroStatementLead}
+              >
+                Building
+              </Reveal>
+              <Reveal
+                as="span"
+                variant="fadeUp"
+                delay={0.38}
+                y={22}
+                className={styles.heroStatementThesis}
+              >
+                The Next-Gen
+              </Reveal>
+              <Reveal
+                as="span"
+                variant="fadeUp"
+                delay={0.46}
+                y={24}
+                className={styles.heroStatementPayoff}
+              >
+                Product Leaders.
+              </Reveal>
+            </span>
+          </h1>
+        </div>
       </div>
 
       <Reveal variant="fadeUp" delay={0.6} y={16} className={styles.signalStrip}>
@@ -152,22 +202,29 @@ export function Hero() {
       </Reveal>
 
       <Reveal variant="fadeIn" delay={0.85} className={styles.scrollCue}>
-        <a
-          href="#who-are-we"
-          className={styles.scrollCueButton}
-          aria-label="Scroll down to explore"
-          data-cursor-text="Scroll"
-        >
-          <svg className={styles.scrollCueArrow} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M12 5v13M12 18l-6-6M12 18l6-6"
-              stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+        <div className={styles.scrollCueOrbit}>
+          <svg className={styles.scrollCueRing} viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path id="scrollCueRingPath" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0" />
+            </defs>
+            <text className={styles.scrollCueRingText}>
+              <textPath href="#scrollCueRingPath" startOffset="0%">
+                SCROLL DOWN &bull; CLICK HERE TO SCROLL DOWN &bull; SCROLL DOWN &bull; CLICK HERE TO SCROLL DOWN &bull;
+              </textPath>
+            </text>
           </svg>
-        </a>
+          <a href="#who-are-we" className={styles.scrollCueButton} aria-label="Scroll down to explore">
+            <svg className={styles.scrollCueArrow} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 5v13M12 18l-6-6M12 18l6-6"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
       </Reveal>
     </section>
   );

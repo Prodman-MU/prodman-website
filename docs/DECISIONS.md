@@ -59,3 +59,9 @@
 - Context: The boxed `LIGHT / DARK` label carried more visual weight than the adjacent two-line mobile menu and introduced button chrome into the otherwise minimal navigation controls.
 - Decision: Use custom square-cored sun and angular crescent SVGs with the menu glyph's line weight. Keep both icons in the rendered tree, let the root theme attribute select the visible state, and leave the 44px control transparent and shadow-free except for its keyboard-only focus outline.
 - Consequences: The theme and menu controls now share one zero-gap layout group and read as a single neo-brutalist icon pair at every viewport. The menu trigger remains available on desktop as well as mobile. To keep the navigation strictly one row, the redundant inline section-link strip is non-wrapping on wide screens and hidden at `<=1280px`, where the same destinations remain available in the menu. The accessible theme label still announces the destination mode, reduced-motion users receive an instant state change, and the current light-first visit contract remains unchanged.
+
+## 2026-08-10 - Remove the hero pause/play control
+
+- Context: The project owner does not want the standalone pause/play icon in the hero chrome.
+- Decision: Remove the visible manual motion control and its control-specific state and styles from the canonical Next.js hero. Keep `prefers-reduced-motion`, off-screen suspension, and background-tab suspension intact. The historical static prototype remains unchanged.
+- Consequences: The hero chrome is cleaner and no dead manual-pause code remains in the React implementation. Visitors can no longer pause the canonical hero independently of their operating-system motion preference.

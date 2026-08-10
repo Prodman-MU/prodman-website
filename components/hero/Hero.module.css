@@ -66,51 +66,11 @@
   animation: driftAcid 23s ease-in-out infinite alternate;
 }
 
-.motionControlFloating {
-  position: absolute;
-  z-index: 15;
-  top: calc(var(--nav-height, 84px) + 1.6rem);
-  right: 3.3vw;
-  font-family: var(--font-sans);
-  font-size: 0.67rem;
-  letter-spacing: 0.18em;
-}
-
-.motionControl {
-  display: inline-flex;
-  gap: 0.65rem;
-  align-items: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
 .headerActions {
   justify-self: end;
   display: flex;
   gap: 0.8rem;
   align-items: center;
-}
-
-.motionControlIcon {
-  width: 8px;
-  height: 10px;
-  border-right: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-}
-
-.motionControlIconPaused {
-  width: 0;
-  height: 0;
-  border: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid currentColor;
 }
 
 .brandParticles {
@@ -328,7 +288,7 @@
   position: absolute;
   z-index: 10;
   right: 0;
-  bottom: 10.5vh;
+  bottom: 13vh;
   left: 0;
   display: grid;
   justify-items: center;
@@ -345,13 +305,106 @@
   letter-spacing: 0.26em;
 }
 
-.heroCopy h1 {
+.heroTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: clamp(1.2rem, 3vw, 2.75rem);
+}
+
+.heroTitleStickers {
+  position: relative;
+  display: none;
+  flex: none;
+  width: clamp(88px, 7.5vw, 134px);
+  height: clamp(88px, 7.5vw, 134px);
+}
+
+.heroSticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 72%;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.55));
+}
+
+.heroStickerBack {
+  top: 24%;
+  left: 30%;
+  width: 66%;
+}
+
+.heroStickerImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .heroTitleStickers {
+    display: block;
+  }
+}
+
+.heroStatement {
+  width: min(1120px, 92vw);
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2.3rem, 5.25vw, 5.8rem);
   letter-spacing: -0.02em;
-  line-height: 0.98;
+}
+
+.heroStatementVisual {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  width: 100%;
+}
+
+.heroStatementLead {
+  grid-column: 2 / 6;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-self: start;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.66rem, 0.78vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.heroStatementLead::before {
+  width: clamp(2rem, 4vw, 4rem);
+  height: 1px;
+  background: var(--line-strong);
+  content: "";
+}
+
+.heroStatementThesis {
+  grid-column: 1 / 8;
+  display: block;
+  justify-self: end;
+  color: var(--acid);
+  font-size: clamp(2.8rem, 6vw, 6.6rem);
+  font-style: italic;
+  letter-spacing: -0.055em;
+  line-height: 0.84;
+  text-shadow: 0 0 48px rgba(201, 255, 61, 0.16);
+  white-space: nowrap;
+}
+
+.heroStatementPayoff {
+  grid-column: 4 / 13;
+  display: block;
+  justify-self: end;
+  margin-top: -0.02em;
+  font-size: clamp(2.8rem, 6.6vw, 7.25rem);
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  white-space: nowrap;
 }
 
 
@@ -499,15 +552,45 @@
 .scrollCue {
   position: absolute;
   z-index: 10;
-  bottom: 3vh;
+  bottom: 1vh;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.scrollCueButton {
+.scrollCueOrbit {
+  position: relative;
   display: grid;
-  width: 3.4rem;
-  height: 3.4rem;
+  width: clamp(7rem, 8.5vw, 8.25rem);
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.scrollCueRing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  animation: scrollCueSpin 22s linear infinite;
+}
+
+.scrollCueRingText {
+  fill: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.scrollCueButton {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: clamp(3.6rem, 4.8vw, 4.3rem);
+  height: clamp(3.6rem, 4.8vw, 4.3rem);
   border: 2.5px solid var(--accent-ink);
   border-radius: 50%;
   background: var(--acid);
@@ -524,15 +607,27 @@
   box-shadow: 7px 7px 0 var(--accent-ink);
 }
 
+.scrollCueButton:hover .scrollCueArrow,
+.scrollCueButton:focus-visible .scrollCueArrow {
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+}
+
 .scrollCueButton:active {
   transform: translate(3px, 3px);
   box-shadow: 0 0 0 var(--accent-ink);
 }
 
+.scrollCueButton:active .scrollCueArrow {
+  animation-play-state: paused;
+  transform: translateY(4px);
+}
+
 .scrollCueArrow {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: clamp(1.4rem, 1.9vw, 1.7rem);
+  height: clamp(1.4rem, 1.9vw, 1.7rem);
   animation: scrollCueBounce 1.7s ease-in-out infinite;
+  transition: transform 0.2s var(--ease-expo-out);
 }
 
 @keyframes spectralSweep {
@@ -570,6 +665,12 @@
   }
 }
 
+@keyframes scrollCueSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes scrollCueBounce {
   0%,
   100% {
@@ -590,12 +691,6 @@
   to {
     transform: translate(-15vw, -8vw) scale(1.16);
   }
-}
-
-.motionPaused :global(*),
-.motionPaused :global(*::before),
-.motionPaused :global(*::after) {
-  animation-play-state: paused !important;
 }
 
 :global(html[data-theme="light"]) .brandOrbit {
@@ -680,9 +775,18 @@
   box-shadow: 4px 4px 0 var(--shadow);
 }
 
-:global(html[data-theme="light"]) .heroCopy h1 {
+:global(html[data-theme="light"]) .heroStatement {
   font-weight: 600;
   text-shadow: 3px 3px 0 rgba(86, 220, 233, 0.7);
+}
+
+:global(html[data-theme="light"]) .heroStatementLead {
+  color: rgba(10, 10, 10, 0.72);
+}
+
+:global(html[data-theme="light"]) .heroStatementThesis {
+  color: var(--paper);
+  text-shadow: 3px 3px 0 var(--acid);
 }
 
 :global(html[data-theme="light"]) .coordinate,
@@ -763,25 +867,48 @@
     display: none;
   }
 
-  .motionControlFloating {
-    top: calc(var(--nav-height, 70px) + 1.1rem);
-    right: 5vw;
-  }
-
-  .motionControlLabel {
-    display: none;
-  }
-
   .headerActions {
     gap: 0.55rem;
   }
 
   .logoSystem {
     top: 40%;
+    width: 88vw;
   }
 
   .heroCopy {
     bottom: 14vh;
+    padding: 0 5vw;
+  }
+
+  .heroStatement {
+    width: 100%;
+  }
+
+  .heroStatementVisual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroStatementLead {
+    align-self: flex-start;
+    margin: 0 0 0.55rem 4vw;
+  }
+
+  .heroStatementThesis,
+  .heroStatementPayoff {
+    align-self: center;
+    justify-self: auto;
+  }
+
+  .heroStatementThesis {
+    font-size: clamp(2.25rem, 11.5vw, 4.6rem);
+  }
+
+  .heroStatementPayoff {
+    margin-top: 0.08em;
+    font-size: clamp(2.1rem, 10.6vw, 4.2rem);
   }
 
   .eventChipReveal {
@@ -815,9 +942,5 @@
 
   .logoSystemGhost {
     opacity: 0.82;
-  }
-
-  .motionControl {
-    display: none;
   }
 }

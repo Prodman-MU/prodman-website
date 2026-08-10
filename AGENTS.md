@@ -12,7 +12,7 @@ Build the public website for the Masters' Union Product Management Club, beginni
 - Auth: none yet — Phase 2, restricted to club exec / @mastersunion.org emails
 - Deployment: Vercel (connected to this GitHub repo), not yet live — see docs/PRD.md Section 1 and PLANS.md
 - AI/LLM: none
-- Other: the original framework-neutral Canvas 2D living-logo prototype (`index.html`, `demo.css`, `resources/prodman-living-logo/`) is kept as historical reference — the canonical implementation is now `components/hero/Hero.tsx` + `components/hero/useLivingLogo.ts`, a faithful React port with the same pause/reduced-motion/off-screen-suspension behavior contract.
+- Other: the original framework-neutral Canvas 2D living-logo prototype (`index.html`, `demo.css`, `resources/prodman-living-logo/`) is kept as historical reference — the canonical implementation is now `components/hero/Hero.tsx` + `components/hero/useLivingLogo.ts`, retaining reduced-motion and off-screen/background-tab suspension without a visible manual pause control.
 
 **Decision resolved 2026-08-08** (was previously an open question in this file): framework is Next.js, not left framework-neutral. See docs/PRD.md Section 9 for the full reasoning and phasing. Please read docs/PRD.md before making further stack, content, or design decisions in this repo — it is the shared source of truth between concurrent sessions working on this project.
 

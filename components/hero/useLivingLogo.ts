@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   getDocumentTheme,
   THEME_CHANGE_EVENT,
@@ -18,6 +18,7 @@ type Particle = {
   size: number;
   tone: number;
   alpha: number;
+  motionRadius: number;
 };
 
 const PALETTES: Record<ColorTheme, string[]> = {
@@ -28,14 +29,12 @@ const PALETTES: Record<ColorTheme, string[]> = {
 /**
  * Ports resources/prodman-living-logo/prodman-living-logo.js (a dependency-free
  * Canvas 2D particle field sampled from the logo's alpha channel) into a React
- * lifecycle. Behavior is preserved exactly; only the DOM-query/global-listener
- * setup became refs + effect cleanup so it's safe across mount/unmount.
+ * lifecycle. The React port retains reduced-motion handling and suspends work
+ * while the hero is off-screen or the document is hidden.
  */
 export function useLivingLogo(logoSrc: string) {
   const stageRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const toggleRef = useRef<() => void>(() => {});
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -56,7 +55,6 @@ export function useLivingLogo(logoSrc: string) {
       frame: 0,
       ready: false,
       visible: true,
-      pausedByUser: false,
       startTime: performance.now(),
     };
 
@@ -84,7 +82,7 @@ export function useLivingLogo(logoSrc: string) {
     }
 
     function buildParticleField() {
-      const mobile = state.width < 720;
+      const mobile = state.width <= 720;
       const displayWidth = Math.min(state.width * (mobile ? 0.88 : 0.72), 920);
       const displayHeight = displayWidth * (logo.naturalHeight / logo.naturalWidth);
       const sampleWidth = Math.min(620, Math.max(260, Math.round(displayWidth * 0.74)));
@@ -112,17 +110,21 @@ export function useLivingLogo(logoSrc: string) {
       const originX = (state.width - displayWidth) / 2;
       const centerY = state.height * (mobile ? 0.4 : 0.42);
       const originY = centerY - displayHeight / 2;
+      const motionRadius = Math.max(
+        mobile ? 6 : 10,
+        Math.min(mobile ? 10 : 18, displayWidth * 0.018),
+      );
 
       state.particles = Array.from({ length: selectedCount }, (_, index) => {
         const candidate = candidates[Math.floor((index / selectedCount) * candidates.length)];
         const targetX = originX + (candidate.x / sampleWidth) * displayWidth;
         const targetY = originY + (candidate.y / sampleHeight) * displayHeight;
         const angle = seededValue(index, 2) * Math.PI * 2;
-        const distance = Math.max(state.width, state.height) * (0.26 + seededValue(index, 3) * 0.44);
+        const introOffset = motionRadius * (0.35 + seededValue(index, 3) * 0.65);
 
         return {
-          x: state.width / 2 + Math.cos(angle) * distance,
-          y: centerY + Math.sin(angle) * distance,
+          x: targetX + Math.cos(angle) * introOffset,
+          y: targetY + Math.sin(angle) * introOffset,
           vx: 0,
           vy: 0,
           tx: targetX,
@@ -131,6 +133,7 @@ export function useLivingLogo(logoSrc: string) {
           size: 0.45 + seededValue(index, 5) * 1.2,
           tone: seededValue(index, 6) > 0.91 ? (seededValue(index, 7) > 0.5 ? 1 : 2) : 0,
           alpha: 0.32 + (candidate.alpha / 255) * 0.62,
+          motionRadius,
         };
       });
 
@@ -149,7 +152,7 @@ export function useLivingLogo(logoSrc: string) {
     }
 
     function shouldAnimate() {
-      return state.ready && !state.pausedByUser && state.visible && !document.hidden && !reducedMotion.matches;
+      return state.ready && state.visible && !document.hidden && !reducedMotion.matches;
     }
 
     function syncAnimationLoop() {
@@ -174,7 +177,7 @@ export function useLivingLogo(logoSrc: string) {
         context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
 
         const centerX = state.width / 2;
-        const centerY = state.height * (state.width < 720 ? 0.4 : 0.42);
+        const centerY = state.height * (state.width <= 720 ? 0.4 : 0.42);
         const bloom = Math.pow(Math.max(0, Math.sin(elapsed * 0.3 - 1.2)), 12);
 
         for (const particle of state.particles) {
@@ -206,6 +209,18 @@ export function useLivingLogo(logoSrc: string) {
           particle.x += particle.vx;
           particle.y += particle.vy;
 
+          const displacementX = particle.x - particle.tx;
+          const displacementY = particle.y - particle.ty;
+          const displacement = Math.hypot(displacementX, displacementY);
+
+          if (displacement > particle.motionRadius) {
+            const containment = particle.motionRadius / displacement;
+            particle.x = particle.tx + displacementX * containment;
+            particle.y = particle.ty + displacementY * containment;
+            particle.vx *= 0.35;
+            particle.vy *= 0.35;
+          }
+
           const velocity = Math.min(1, Math.hypot(particle.vx, particle.vy) * 0.12);
           const shimmer = 0.72 + Math.sin(elapsed * 1.4 + particle.phase) * 0.24;
           const alpha = particle.alpha * shimmer * (0.76 + velocity * 0.24);
@@ -221,13 +236,6 @@ export function useLivingLogo(logoSrc: string) {
         state.frame = window.requestAnimationFrame(render);
       }
     }
-
-    function handleMotionToggle() {
-      state.pausedByUser = !state.pausedByUser;
-      setPaused(state.pausedByUser);
-      syncAnimationLoop();
-    }
-    toggleRef.current = handleMotionToggle;
 
     function updatePointer(event: PointerEvent) {
       const bounds = stage!.getBoundingClientRect();
@@ -295,7 +303,5 @@ export function useLivingLogo(logoSrc: string) {
     };
   }, [logoSrc]);
 
-  const toggleMotion = useCallback(() => toggleRef.current(), []);
-
-  return { stageRef, canvasRef, paused, toggleMotion };
+  return { stageRef, canvasRef };
 }

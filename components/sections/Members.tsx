@@ -232,10 +232,7 @@ export function Members() {
     <section id="members" className={`section ${styles.section}`}>
       <div className="container">
         <div className={styles.intro}>
-          <Reveal amount={0.2}>
-            <p className="section__label">The crew of 2026–27</p>
-          </Reveal>
-          <SplitHeading as="h2" className="section__heading" text="The people behind ProdMan." />
+          <SplitHeading as="h2" className="section__heading" text="The crew of 2026–27" />
           <Reveal delay={0.08} amount={0.2}>
             <p className={styles.prompt}>Seven curious minds. Pick a portrait, hold to flip it.</p>
           </Reveal>

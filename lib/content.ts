@@ -153,13 +153,13 @@ export const whoWeAre = {
 export const events = [
   {
     number: 1,
-    title: "Product Design Workshop & Hackathon",
+    title: "Back to Future",
     date: "14 August 2026",
     type: "internal" as const,
-    tagline: "Bring a problem. Leave with a prototype.",
+    tagline: "Go old-school. Think like a PM. Ship like it's '95.",
     description:
-      "Participants identify a meaningful problem, understand their users, generate ideas, and build a rapid prototype in one intensive product-design experience.",
-    outcomes: "Problem discovery, design thinking, ideation, rapid prototyping",
+      "Plot twist: it's 1995. No apps, no smartphones, no AI — but you still need to build Uber, Spotify, Swiggy, or Bumble. Strip the product down to what people actually need, rebuild it with 1995 tools, and ship it before the internet saves you.",
+    outcomes: "Product teardown, constraint-based thinking, retro prototyping, scrappy execution",
     cta: "Register Now",
     urgency: "Less than a week to go",
   },

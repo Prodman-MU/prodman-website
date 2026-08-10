@@ -50,6 +50,7 @@ const SLUGS = [
   "akhil-menon",
   "anusha",
   "akshat",
+  "saffa",
   "muskan-sharma",
   "supriya",
   "om-umrania",

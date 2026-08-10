@@ -25,6 +25,7 @@ export const members: readonly Member[] = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/r-e-sai-harsha-sadhu/" },
       { label: "Portfolio", href: "https://saiharsha.framer.website/" },
       { label: "Email", href: "mailto:saiharsha2407@outlook.com" },
+      { label: "WhatsApp", href: "https://wa.me/917287828919" },
     ],
     photo: "/team/sai-harsha.png",
     cutout: "/team/cutouts/sai-harsha.webp",
@@ -38,6 +39,7 @@ export const members: readonly Member[] = [
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/akhilmn18/" },
       { label: "Email", href: "mailto:akhilmn18work@gmail.com" },
+      { label: "WhatsApp", href: "https://wa.me/917977440681" },
     ],
     photo: "/team/akhil-menon.jpeg",
     cutout: "/team/cutouts/akhil-menon.webp",
@@ -48,7 +50,10 @@ export const members: readonly Member[] = [
     role: "Member",
     bio: "I spot what’s missing in a market—and build the business that should exist there. At Ather Energy, I built the accessories and merchandise category from scratch, scaling it into a ₹100+ crore business with 50%+ gross margins and a 4,000+ member community. Before that, I redesigned cricket products at Decathlon and launched India’s first women’s cricket apparel line. Now at Masters’ Union, I’m exploring the intersection of sports, technology, and business to help shape India’s next wave of sports innovation.",
     superpower: "Seeing whitespace before it becomes obvious—and owning everything from the first sketch to the final P&L.",
-    links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/anushapb/" }],
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/anushapb/" },
+      { label: "WhatsApp", href: "https://wa.me/919382299775" },
+    ],
     photo: "/team/anusha.png",
     cutout: "/team/cutouts/anusha.webp",
   },
@@ -64,9 +69,27 @@ export const members: readonly Member[] = [
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/akshat-dhaundiyal-1664a9122" },
       { label: "Email", href: "mailto:akshat.dhaundiyal2027@mastersunion.org" },
+      { label: "WhatsApp", href: "https://wa.me/919560615045" },
     ],
     photo: "/team/akshat.jpeg",
     cutout: "/team/cutouts/akshat.webp",
+  },
+  {
+    slug: "saffa-ahmad",
+    name: "Saffa Ahmad",
+    role: "Member",
+    // NOTE: bio/superpower are drafted from Saffa's LinkedIn resume (public/saffa-info.pdf),
+    // not first-person copy she wrote herself — unlike the rest of this file. Flag for her
+    // review/confirmation before treating as final; see docs/PRD.md content-provenance note
+    // at the top of this file.
+    bio: "I'm a Generative AI engineer with three years at Tata Consultancy Services, where I moved from Assistant System Engineer to System Engineer building software for real production systems. I hold a patent for a Smart Electric Switch, and my current focus is applying LLMs—particularly LLaMA—to practical engineering problems, backed by a BE in Computer Science with Honours in Data Science.",
+    superpower: "Turning patent-grade ideas into production systems—now doing the same with Generative AI and LLaMA.",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/saffa523/" },
+      { label: "WhatsApp", href: "https://wa.me/919404083985" },
+    ],
+    photo: "/team/saffa.jpeg",
+    cutout: "/team/cutouts/saffa.webp",
   },
   {
     slug: "muskan-sharma",
@@ -78,6 +101,7 @@ export const members: readonly Member[] = [
     links: [
       { label: "Email", href: "mailto:muskan.sharma2027@mastersunion.org" },
       { label: "LinkedIn", href: "https://linkedin.com/in/muskan-sharma-273128193" },
+      { label: "WhatsApp", href: "https://wa.me/918373944571" },
     ],
     location: "Gurugram, India",
     photo: "/team/muskan-sharma.jpg",
@@ -89,7 +113,7 @@ export const members: readonly Member[] = [
     role: "Member",
     bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
     superpower: "Turning ambiguity into action. ⚡",
-    links: [],
+    links: [{ label: "WhatsApp", href: "https://wa.me/917406521184" }],
     photo: "/team/supriya.jpg",
     cutout: "/team/cutouts/supriya-v2.webp",
   },
@@ -103,6 +127,7 @@ export const members: readonly Member[] = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/omumrania" },
       { label: "GitHub", href: "https://github.com/om-umrania" },
       { label: "Portfolio", href: "https://omumrania.com/" },
+      { label: "WhatsApp", href: "https://wa.me/919175968322" },
     ],
     photo: "/team/om-umrania.png",
     cutout: "/team/cutouts/om-umrania.webp",

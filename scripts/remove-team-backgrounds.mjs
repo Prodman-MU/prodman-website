@@ -10,6 +10,7 @@ const SOURCES = [
   "akhil-menon.jpeg",
   "anusha.png",
   "akshat.jpeg",
+  "saffa.jpeg",
   "muskan-sharma.jpg",
   "supriya.jpg",
   "om-umrania.png",

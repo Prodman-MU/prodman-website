@@ -26,6 +26,9 @@ const cardTones = [
   { accent: "#91f0c8", ink: "#050505" },
 ] as const;
 
+const HOLD_DURATION_MS = 380;
+const HOLD_CANCEL_DISTANCE = 10;
+
 type DeckCardStyle = CSSProperties & {
   "--offset": number;
   "--distance": number;
@@ -40,6 +43,7 @@ type DeckCardStyle = CSSProperties & {
   "--glare-x": string;
   "--glare-y": string;
   "--glare-opacity": number;
+  "--icon-count": number;
 };
 
 function wrapIndex(index: number) {
@@ -58,11 +62,13 @@ function getCircularOffset(index: number, activeIndex: number) {
 
 export function Members() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const cardButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const profileRef = useRef<HTMLDivElement>(null);
+  const holdTimeoutRef = useRef<number | null>(null);
+  const longPressActiveRef = useRef(false);
+  const pressOriginRef = useRef<{ x: number; y: number } | null>(null);
   const reducedMotion = useHydratedReducedMotion();
-  const activeMember = members[activeIndex];
 
   const resetMagneticCard = (card: HTMLElement | null) => {
     if (!card) return;
@@ -84,22 +90,92 @@ export function Members() {
 
   const moveBy = (delta: number) => {
     resetAllMagneticCards();
+    setFlippedIndex(null);
     setActiveIndex((current) => wrapIndex(current + delta));
   };
 
   const selectMember = (index: number) => {
     resetAllMagneticCards();
+    setFlippedIndex(null);
     setActiveIndex(index);
   };
 
-  const showMemberProfile = (index: number) => {
-    selectMember(index);
-    window.requestAnimationFrame(() => {
-      profileRef.current?.scrollIntoView({
-        behavior: reducedMotion ? "auto" : "smooth",
-        block: "start",
-      });
-    });
+  const clearHoldTimer = () => {
+    if (holdTimeoutRef.current !== null) {
+      window.clearTimeout(holdTimeoutRef.current);
+      holdTimeoutRef.current = null;
+    }
+  };
+
+  const endHold = (index: number) => {
+    clearHoldTimer();
+    pressOriginRef.current = null;
+    if (longPressActiveRef.current) {
+      longPressActiveRef.current = false;
+      setFlippedIndex((current) => (current === index ? null : current));
+    }
+  };
+
+  const handleFrontPointerDown = (event: ReactPointerEvent<HTMLButtonElement>, index: number) => {
+    if (event.pointerType === "mouse" || index !== activeIndex) return;
+
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Capture is a best-effort robustness net so a held finger sliding off
+      // the button still reports its release; the hold timer works without it.
+    }
+    pressOriginRef.current = { x: event.clientX, y: event.clientY };
+    clearHoldTimer();
+    holdTimeoutRef.current = window.setTimeout(() => {
+      longPressActiveRef.current = true;
+      setFlippedIndex(index);
+    }, HOLD_DURATION_MS);
+  };
+
+  const handleFrontPointerMoveForHold = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType === "mouse" || holdTimeoutRef.current === null) return;
+
+    const origin = pressOriginRef.current;
+    if (!origin) return;
+
+    const dx = event.clientX - origin.x;
+    const dy = event.clientY - origin.y;
+    if (Math.hypot(dx, dy) > HOLD_CANCEL_DISTANCE) {
+      clearHoldTimer();
+    }
+  };
+
+  const handleFrontPointerUp = (event: ReactPointerEvent<HTMLButtonElement>, index: number) => {
+    if (event.pointerType === "mouse") {
+      if (index !== activeIndex) {
+        selectMember(index);
+      } else {
+        setFlippedIndex((current) => (current === index ? null : index));
+      }
+      return;
+    }
+
+    const wasHolding = longPressActiveRef.current;
+    endHold(index);
+    if (!wasHolding && index !== activeIndex) {
+      selectMember(index);
+    }
+  };
+
+  const handleFrontPointerCancel = (_event: ReactPointerEvent<HTMLButtonElement>, index: number) => {
+    endHold(index);
+  };
+
+  const handleFrontKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+
+    if (index !== activeIndex) {
+      selectMember(index);
+    } else {
+      setFlippedIndex((current) => (current === index ? null : index));
+    }
   };
 
   const handleCardPointerMove = (event: ReactPointerEvent<HTMLDivElement>, index: number) => {
@@ -161,7 +237,7 @@ export function Members() {
           </Reveal>
           <SplitHeading as="h2" className="section__heading" text="The people behind ProdMan." />
           <Reveal delay={0.08} amount={0.2}>
-            <p className={styles.prompt}>Seven curious minds. Pick a portrait.</p>
+            <p className={styles.prompt}>Seven curious minds. Pick a portrait, hold to flip it.</p>
           </Reveal>
         </div>
 
@@ -184,7 +260,11 @@ export function Members() {
                 const offset = getCircularOffset(index, activeIndex);
                 const tone = cardTones[index % cardTones.length];
                 const linkedin = member.links.find((link) => link.label === "LinkedIn");
+                const whatsapp = member.links.find((link) => link.label === "WhatsApp");
                 const email = member.links.find((link) => link.href.startsWith("mailto:"));
+                const isActive = index === activeIndex;
+                const isFlipped = isActive && flippedIndex === index;
+                const iconCount = [linkedin, whatsapp, email].filter(Boolean).length;
                 const cardStyle: DeckCardStyle = {
                   "--offset": offset,
                   "--distance": Math.abs(offset),
@@ -199,6 +279,7 @@ export function Members() {
                   "--glare-x": "50%",
                   "--glare-y": "45%",
                   "--glare-opacity": 0,
+                  "--icon-count": iconCount,
                   zIndex: members.length - Math.abs(offset),
                 };
 
@@ -210,83 +291,129 @@ export function Members() {
                     }}
                     className={styles.portraitCard}
                     style={cardStyle}
-                    data-active={index === activeIndex}
+                    data-active={isActive}
+                    data-flipped={isFlipped}
                     onPointerMove={(event) => handleCardPointerMove(event, index)}
                     onPointerLeave={(event) => resetMagneticCard(event.currentTarget)}
                     onPointerCancel={(event) => resetMagneticCard(event.currentTarget)}
                   >
-                    <button
-                      ref={(node) => {
-                        cardButtonRefs.current[index] = node;
-                      }}
-                      type="button"
-                      className={styles.cardSelect}
-                      aria-pressed={index === activeIndex}
-                      aria-controls="active-member-profile"
-                      aria-label={`Show ${member.name}, ${member.role} profile`}
-                      tabIndex={index === activeIndex ? 0 : -1}
-                      onClick={() => showMemberProfile(index)}
-                      data-cursor-text={index === activeIndex ? "Profile" : "Meet"}
-                    >
-                      <span className={styles.cardIndex} aria-hidden="true">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className={styles.cardStamp} aria-hidden="true">
-                        {member.role}
-                      </span>
-                      <span className={styles.portraitWrap}>
-                        {member.cutout ?? member.photo ? (
-                          <Image
-                            src={member.cutout ?? member.photo ?? ""}
-                            alt=""
-                            fill
-                            className={styles.portrait}
-                            sizes="(max-width: 700px) 68vw, 320px"
-                          />
-                        ) : (
-                          <span className={styles.photoPlaceholder} aria-hidden="true">
-                            {member.name
-                              .split(" ")
-                              .map((part) => part[0])
-                              .join("")}
-                          </span>
-                        )}
-                      </span>
-                      <span className={styles.namePlate}>{member.name}</span>
-                    </button>
-
-                    <div
-                      className={styles.cardActions}
-                      aria-label={`${member.name} actions`}
-                      aria-hidden={index !== activeIndex}
-                    >
-                      <Link
-                        href={`/team/${member.slug}`}
-                        tabIndex={index === activeIndex ? undefined : -1}
-                        data-cursor-text="Story"
+                    <div className={styles.cardFlipper}>
+                      <button
+                        ref={(node) => {
+                          cardButtonRefs.current[index] = node;
+                        }}
+                        type="button"
+                        className={styles.cardSelect}
+                        aria-pressed={isActive}
+                        aria-label={
+                          !isActive
+                            ? `Show ${member.name}, ${member.role} profile`
+                            : `${member.name}, ${member.role}. Press, or press and hold, to flip and see contact details.`
+                        }
+                        tabIndex={isActive ? 0 : -1}
+                        onPointerDown={(event) => handleFrontPointerDown(event, index)}
+                        onPointerMove={handleFrontPointerMoveForHold}
+                        onPointerUp={(event) => handleFrontPointerUp(event, index)}
+                        onPointerCancel={(event) => handleFrontPointerCancel(event, index)}
+                        onKeyDown={(event) => handleFrontKeyDown(event, index)}
+                        data-cursor-text={!isActive ? "Meet" : isFlipped ? "Photo" : "Hold"}
                       >
-                        Read more <span aria-hidden="true">→</span>
-                      </Link>
-                      {linkedin ? (
-                        <a
-                          href={linkedin.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          tabIndex={index === activeIndex ? undefined : -1}
-                          data-cursor-text="Connect"
-                        >
-                          LinkedIn <span aria-hidden="true">↗</span>
-                        </a>
-                      ) : null}
-                      {email ? (
-                        <a
-                          href={email.href}
-                          tabIndex={index === activeIndex ? undefined : -1}
-                          data-cursor-text="Email"
-                        >
-                          Email <span aria-hidden="true">↗</span>
-                        </a>
-                      ) : null}
+                        <span className={styles.cardIndex} aria-hidden="true">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className={styles.cardStamp} aria-hidden="true">
+                          {member.role}
+                        </span>
+                        <span className={styles.portraitWrap}>
+                          {member.cutout ?? member.photo ? (
+                            <Image
+                              src={member.cutout ?? member.photo ?? ""}
+                              alt=""
+                              fill
+                              className={styles.portrait}
+                              sizes="(max-width: 700px) 68vw, 320px"
+                            />
+                          ) : (
+                            <span className={styles.photoPlaceholder} aria-hidden="true">
+                              {member.name
+                                .split(" ")
+                                .map((part) => part[0])
+                                .join("")}
+                            </span>
+                          )}
+                        </span>
+                        <span className={styles.namePlate}>
+                          <span className={styles.namePlateText}>{member.name}</span>
+                        </span>
+                      </button>
+
+                      <div
+                        className={styles.nameIcons}
+                        aria-label={`${member.name} contact links`}
+                        aria-hidden={!isActive || isFlipped}
+                      >
+                        {linkedin ? (
+                          <a
+                            href={linkedin.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            tabIndex={isActive && !isFlipped ? undefined : -1}
+                            aria-label="LinkedIn"
+                            data-cursor-text="Connect"
+                          >
+                            <Image src="/logo/linkedin-logo.avif" alt="" width={28} height={28} className={styles.nameIcon} />
+                          </a>
+                        ) : null}
+                        {whatsapp ? (
+                          <a
+                            href={whatsapp.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            tabIndex={isActive && !isFlipped ? undefined : -1}
+                            aria-label="WhatsApp"
+                            data-cursor-text="WhatsApp"
+                          >
+                            <Image src="/logo/whatsapp-logo.avif" alt="" width={28} height={28} className={styles.nameIcon} />
+                          </a>
+                        ) : null}
+                        {email ? (
+                          <a
+                            href={email.href}
+                            tabIndex={isActive && !isFlipped ? undefined : -1}
+                            aria-label="Email"
+                            data-cursor-text="Email"
+                          >
+                            <Image src="/logo/gmail_logo.webp" alt="" width={28} height={28} className={styles.nameIcon} />
+                          </a>
+                        ) : null}
+                      </div>
+
+                      <div
+                        className={styles.cardBack}
+                        aria-hidden={!isFlipped}
+                        aria-label={`${member.name} contact details`}
+                        onClick={() => setFlippedIndex(null)}
+                      >
+                        <span className={styles.flipHintBack} aria-hidden="true">
+                          ⟲
+                        </span>
+
+                        <div className={styles.cardBackTop}>
+                          <p className={styles.cardBackKicker}>Superpower</p>
+                          <p className={styles.cardBackSuperpower}>{member.superpower}</p>
+                        </div>
+
+                        <div className={styles.cardBackActions}>
+                          <Link
+                            href={`/team/${member.slug}`}
+                            tabIndex={isFlipped ? undefined : -1}
+                            className={styles.cardBackReadMore}
+                            data-cursor-text="Story"
+                          >
+                            Read more <span aria-hidden="true">→</span>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
@@ -330,58 +457,6 @@ export function Members() {
             </div>
           </div>
         </Reveal>
-
-        <div
-          ref={profileRef}
-          id="active-member-profile"
-          className={styles.profile}
-          key={activeMember.name}
-        >
-          <div className={styles.profileIndex} aria-hidden="true">
-            <span>{String(activeIndex + 1).padStart(2, "0")}</span>
-            <span className={styles.profileRule} />
-            <span>{String(members.length).padStart(2, "0")}</span>
-          </div>
-
-          <div className={styles.profileBody} aria-live="polite">
-            <div className={styles.profileHeading}>
-              <div>
-                <p className={styles.profileKicker}>Currently meeting</p>
-                <h3 className={styles.name}>{activeMember.name}</h3>
-              </div>
-              {activeMember.role ? <p className={styles.role}>{activeMember.role}</p> : null}
-            </div>
-
-            <p className={styles.superpower}>
-              <span>Superpower</span>
-              {activeMember.superpower}
-            </p>
-
-            <div className={styles.profileActions}>
-              {activeMember.links.length > 0 ? (
-                <div className={styles.links} aria-label={`${activeMember.name} links`}>
-                  {activeMember.links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                      rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                      data-cursor-text="Connect"
-                    >
-                      {link.label}
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  ))}
-                </div>
-              ) : null}
-
-              <details className={styles.story}>
-                <summary data-cursor-text="Story">Read the full story</summary>
-                <p>{activeMember.bio}</p>
-              </details>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

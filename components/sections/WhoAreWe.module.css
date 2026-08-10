@@ -143,6 +143,42 @@
   line-height: 1.6;
 }
 
+/* Mobile-only pinned horizontal scroll variant of .cards (rendered instead
+   of the grid below 720px, unless the user prefers reduced motion — see
+   WhoAreWe.tsx). --count is set inline to the card count. */
+
+.trackOuter {
+  position: relative;
+  height: calc(100svh + (var(--count) - 1) * var(--container));
+  margin: 0 0 clamp(3rem, 6vw, 5rem);
+}
+
+.trackSticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  flex-shrink: 0;
+  width: calc(var(--count) * 100%);
+  will-change: transform;
+}
+
+.trackItem {
+  flex: 0 0 calc(100% / var(--count));
+  min-width: 0;
+  padding: 0 clamp(0.9rem, 3.5vw, 1.25rem);
+}
+
+.trackItem .card {
+  transform: none;
+}
+
 .closingWrap {
   display: flex;
   justify-content: center;

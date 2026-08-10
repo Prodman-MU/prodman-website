@@ -41,7 +41,7 @@ export const members: readonly Member[] = [
       { label: "Email", href: "mailto:akhilmn18work@gmail.com" },
       { label: "WhatsApp", href: "https://wa.me/917977440681" },
     ],
-    photo: "/team/akhil-menon.jpeg",
+    photo: "/team/akhil-menon.png",
     cutout: "/team/cutouts/akhil-menon.webp",
   },
   {
@@ -71,7 +71,7 @@ export const members: readonly Member[] = [
       { label: "Email", href: "mailto:akshat.dhaundiyal2027@mastersunion.org" },
       { label: "WhatsApp", href: "https://wa.me/919560615045" },
     ],
-    photo: "/team/akshat.jpeg",
+    photo: "/team/akshat.png",
     cutout: "/team/cutouts/akshat.webp",
   },
   {
@@ -88,7 +88,7 @@ export const members: readonly Member[] = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/saffa523/" },
       { label: "WhatsApp", href: "https://wa.me/919404083985" },
     ],
-    photo: "/team/saffa.jpeg",
+    photo: "/team/saffa.png",
     cutout: "/team/cutouts/saffa.webp",
   },
   {
@@ -104,7 +104,7 @@ export const members: readonly Member[] = [
       { label: "WhatsApp", href: "https://wa.me/918373944571" },
     ],
     location: "Gurugram, India",
-    photo: "/team/muskan-sharma.jpg",
+    photo: "/team/muskan-sharma.png",
     cutout: "/team/cutouts/muskan-sharma.webp",
   },
   {
@@ -114,7 +114,7 @@ export const members: readonly Member[] = [
     bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
     superpower: "Turning ambiguity into action. ⚡",
     links: [{ label: "WhatsApp", href: "https://wa.me/917406521184" }],
-    photo: "/team/supriya.jpg",
+    photo: "/team/supriya.png",
     cutout: "/team/cutouts/supriya-v2.webp",
   },
   {

@@ -76,8 +76,7 @@
     padding-inline: 0.5rem;
   }
 
-  .divider,
-  .darkLabel {
+  .divider {
     display: none;
   }
 }
@@ -87,8 +86,17 @@
     padding-inline: 0.5rem;
   }
 
-  .divider,
-  .darkLabel {
+  .divider {
+    display: none;
+  }
+}
+
+/* Below these widths only one label fits — show whichever one is actually
+   active instead of always showing "Light", so the button's text matches
+   the theme it's about to switch away from. */
+@media (max-width: 1120px) and (min-width: 901px), (max-width: 420px) {
+  :global(html[data-theme="dark"]) .lightLabel,
+  :global(html[data-theme="light"]) .darkLabel {
     display: none;
   }
 }

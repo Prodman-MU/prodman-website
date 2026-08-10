@@ -154,6 +154,23 @@ export function SiteNav() {
         onPointerMove={handlePointerMove}
       >
         <div className={styles.brand}>
+          <a
+            className={styles.affiliation}
+            href="https://www.mastersunion.org"
+            target="_blank"
+            rel="noreferrer"
+            data-cursor-text="Visit"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF must be served as-is, not re-encoded by next/image */}
+            <img
+              src="/brand/masters-union-animation.gif"
+              alt="Masters' Union"
+              width={769}
+              height={303}
+              className={styles.affiliationMark}
+            />
+          </a>
+          <span className={styles.affiliationDivider} aria-hidden="true" />
           <motion.a
             className={styles.wordmark}
             href="#hero"
@@ -168,23 +185,6 @@ export function SiteNav() {
               <span className={styles.wordmarkSecondary}>CAREER CLUB</span>
             </span>
           </motion.a>
-          <a
-            className={styles.affiliation}
-            href="https://www.mastersunion.org"
-            target="_blank"
-            rel="noreferrer"
-            data-cursor-text="Visit"
-          >
-            <span className={styles.affiliationDivider} aria-hidden="true" />
-            {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF must be served as-is, not re-encoded by next/image */}
-            <img
-              src="/brand/masters-union-animation.gif"
-              alt="Masters' Union"
-              width={769}
-              height={303}
-              className={styles.affiliationMark}
-            />
-          </a>
         </div>
         <ul className={styles.links}>
           {siteNav.map((item) => {
@@ -206,7 +206,9 @@ export function SiteNav() {
             );
           })}
         </ul>
-        <ThemeToggle />
+        <div className={styles.themeToggleSlot}>
+          <ThemeToggle />
+        </div>
         <motion.a
           className={`cta cta--acid ${styles.join}`}
           href={whatsappUrl}
@@ -222,10 +224,10 @@ export function SiteNav() {
           className={styles.menuButton}
           aria-expanded={menuOpen}
           aria-controls="site-menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((open) => !open)}
           data-cursor-text={menuOpen ? "Close" : "Menu"}
         >
-          <span>{menuOpen ? "Close" : "Menu"}</span>
           <span className={styles.menuIcon} aria-hidden="true">
             <span />
             <span />

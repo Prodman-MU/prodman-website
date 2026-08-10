@@ -250,22 +250,22 @@
 
 .menuButton {
   display: none;
-  min-width: 82px;
+  min-width: 44px;
   min-height: 44px;
-  padding: 0 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  padding: 0;
+  border: 0;
   color: var(--paper);
-  background: rgba(244, 245, 240, 0.04);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  background: transparent;
+}
+
+.themeToggleSlot {
+  display: flex;
+  align-items: center;
 }
 
 .menuIcon {
   position: relative;
-  width: 15px;
+  width: 18px;
   height: 8px;
 }
 
@@ -520,19 +520,6 @@
   display: none;
 }
 
-:global(html[data-theme="light"]) .menuButton {
-  border: 2px solid var(--paper);
-  border-radius: 2px;
-  background: var(--surface);
-  box-shadow: 3px 3px 0 var(--shadow);
-  font-weight: 700;
-}
-
-:global(html[data-theme="light"]) .menuButton:active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
-}
-
 :global(html[data-theme="light"]) .menuPanel {
   background:
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
@@ -602,12 +589,17 @@
   }
 
   .join {
+    order: 1;
     margin-left: auto;
   }
 
+  .themeToggleSlot {
+    order: 2;
+  }
+
   .menuButton {
+    order: 3;
     display: inline-flex;
-    gap: 0.65rem;
     align-items: center;
     justify-content: center;
   }
@@ -618,12 +610,17 @@
     display: none;
   }
 
-  .affiliation {
+  .affiliation,
+  .affiliationDivider {
     display: none;
   }
 
   .join {
     display: none;
+  }
+
+  .themeToggleSlot {
+    margin-left: auto;
   }
 
   .menuPanelInner {

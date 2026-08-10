@@ -3,14 +3,44 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { events, productBreakdown } from "@/lib/content";
 import styles from "./Hero.module.css";
 import { useLivingLogo } from "./useLivingLogo";
 
-const NEXT_EVENT = {
-  label: "Product Design Workshop & Hackathon",
-  date: "14 Aug",
-  urgency: "Less than a week to go",
-};
+const nextEvent = events[0];
+
+function shortEventDate(fullDate: string) {
+  const [day, month] = fullDate.split(" ");
+  return `${day} ${month.slice(0, 3)}`;
+}
+
+const STAGE_CARDS = [
+  {
+    stage: "Discover",
+    ...productBreakdown.find((item) => item.id === "spot-the-problem")!,
+    accent: "var(--acid)",
+    className: styles.stageCardDiscover,
+  },
+  {
+    stage: "Design",
+    ...productBreakdown.find((item) => item.id === "design-the-experience")!,
+    accent: "var(--cyan)",
+    className: styles.stageCardDesign,
+  },
+  {
+    stage: "Validate",
+    ...productBreakdown.find((item) => item.id === "let-the-data-judge")!,
+    accent: "var(--coral)",
+    className: styles.stageCardValidate,
+  },
+  {
+    stage: "Showcase",
+    title: events[3].title,
+    hook: events[3].tagline,
+    accent: "var(--purple)",
+    className: styles.stageCardShowcase,
+  },
+] as const;
 
 export function Hero() {
   const { stageRef, canvasRef, paused, toggleMotion } = useLivingLogo("/brand/prodman-logo.png");
@@ -62,16 +92,34 @@ export function Hero() {
         <div className={styles.logoSystemScan} />
       </div>
 
+      <div className={styles.stageCards} aria-label="How the club builds: Discover, Design, Validate, Showcase">
+        {STAGE_CARDS.map((card, index) => (
+          <Reveal
+            key={card.stage}
+            variant="scaleUp"
+            delay={0.5 + index * 0.08}
+            y={10}
+            className={`${styles.stageCard} ${card.className}`}
+          >
+            <a
+              href="#breakdown"
+              className={styles.stageCardLink}
+              style={{ "--stage-accent": card.accent } as React.CSSProperties}
+              data-cursor-text="Breakdown"
+            >
+              <span className={styles.stageCardLabel}>{card.stage}</span>
+              <span className={styles.stageCardTitle}>{card.title}</span>
+              <span className={styles.stageCardHook}>{card.hook}</span>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+
       <div className={styles.heroCopy}>
         <Reveal variant="fadeUp" delay={0.2} y={16}>
           <p className={styles.heroCopyEyebrow}>PRODUCT MANAGEMENT CLUB &middot; 2026</p>
         </Reveal>
-        <SplitHeading as="h1" id="hero-title" text="Build what should exist." />
-        <Reveal variant="fadeUp" delay={0.45} y={20}>
-          <p className={styles.heroCopyBody}>
-            We question boldly, prototype rapidly, and turn messy problems into products that matter.
-          </p>
-        </Reveal>
+        <SplitHeading as="h1" id="hero-title" text="Building the next gen of product leaders." />
       </div>
 
       <Reveal variant="fadeUp" delay={0.6} y={16} className={styles.signalStrip}>
@@ -90,19 +138,36 @@ export function Hero() {
           href="#events"
           whileHover={{ y: -3, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          data-cursor-text="14 Aug"
+          data-cursor-text={shortEventDate(nextEvent.date)}
         >
-          <span className={styles.eventChipDot} aria-hidden="true" />
-          <span>
-            {NEXT_EVENT.date} &middot; {NEXT_EVENT.label}
+          <span className={styles.eventChipPulse} aria-hidden="true">
+            <span className={styles.eventChipDot} />
           </span>
-          <span className={styles.eventChipUrgency}>{NEXT_EVENT.urgency}</span>
+          <span className={styles.eventChipDate}>{shortEventDate(nextEvent.date)}</span>
+          <span className={styles.eventChipBody}>
+            <span className={styles.eventChipLabel}>{nextEvent.title}</span>
+            <span className={styles.eventChipUrgency}>{nextEvent.urgency}</span>
+          </span>
         </motion.a>
       </Reveal>
 
       <Reveal variant="fadeIn" delay={0.85} className={styles.scrollCue}>
-        <span>EXPLORE</span>
-        <i />
+        <a
+          href="#who-are-we"
+          className={styles.scrollCueButton}
+          aria-label="Scroll down to explore"
+          data-cursor-text="Scroll"
+        >
+          <svg className={styles.scrollCueArrow} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 5v13M12 18l-6-6M12 18l6-6"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </Reveal>
     </section>
   );

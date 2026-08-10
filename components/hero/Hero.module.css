@@ -203,6 +203,127 @@
   animation: scanDrift 12s linear infinite;
 }
 
+.stageCards {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stageCard {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.stageCardLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: clamp(148px, 12.5vw, 190px);
+  padding: 0.85rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--stage-accent) 45%, transparent);
+  border-radius: 0.85rem;
+  background: rgba(8, 9, 9, 0.72);
+  color: var(--paper);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--stage-accent) 14%, transparent),
+    0 20px 44px -22px rgba(0, 0, 0, 0.85);
+  transition: transform 0.35s var(--ease-expo-out), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stageCardLink:hover,
+.stageCardLink:focus-visible {
+  border-color: var(--stage-accent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--stage-accent) 40%, transparent),
+    0 26px 54px -20px rgba(0, 0, 0, 0.9);
+}
+
+.stageCardLabel {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.2rem 0.42rem;
+  border-radius: 4px;
+  background: var(--stage-accent);
+  color: #050505;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stageCardTitle {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.stageCardHook {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.42;
+}
+
+.stageCardDiscover {
+  top: 9%;
+  left: 4vw;
+}
+
+.stageCardDiscover .stageCardLink {
+  transform: rotate(-6deg);
+}
+
+.stageCardDiscover .stageCardLink:hover,
+.stageCardDiscover .stageCardLink:focus-visible {
+  transform: rotate(-6deg) translateY(-6px);
+}
+
+.stageCardDesign {
+  top: 21%;
+  right: 5vw;
+}
+
+.stageCardDesign .stageCardLink {
+  transform: rotate(5deg);
+}
+
+.stageCardDesign .stageCardLink:hover,
+.stageCardDesign .stageCardLink:focus-visible {
+  transform: rotate(5deg) translateY(-6px);
+}
+
+.stageCardValidate {
+  top: 60%;
+  left: 4vw;
+}
+
+.stageCardValidate .stageCardLink {
+  transform: rotate(4deg);
+}
+
+.stageCardValidate .stageCardLink:hover,
+.stageCardValidate .stageCardLink:focus-visible {
+  transform: rotate(4deg) translateY(-6px);
+}
+
+.stageCardShowcase {
+  top: 60%;
+  right: 5vw;
+}
+
+.stageCardShowcase .stageCardLink {
+  transform: rotate(-5deg);
+}
+
+.stageCardShowcase .stageCardLink:hover,
+.stageCardShowcase .stageCardLink:focus-visible {
+  transform: rotate(-5deg) translateY(-6px);
+}
+
 .heroCopy {
   position: absolute;
   z-index: 10;
@@ -233,14 +354,6 @@
   line-height: 0.98;
 }
 
-.heroCopyBody {
-  max-width: 520px;
-  margin: 1.2rem 0 0;
-  color: var(--muted);
-  font-family: var(--font-sans);
-  font-size: clamp(0.88rem, 1vw, 1rem);
-  line-height: 1.55;
-}
 
 .coordinate {
   position: absolute;
@@ -292,38 +405,94 @@
 
 .eventChip {
   display: flex;
-  gap: 0.55rem;
+  gap: 0.7rem;
   align-items: center;
-  padding: 0.5rem 0.85rem 0.5rem 0.6rem;
-  border: 1px solid var(--line);
+  padding: 0.5rem 1.1rem 0.5rem 0.55rem;
+  border: 1px solid rgba(201, 255, 61, 0.4);
   border-radius: 999px;
   color: var(--paper);
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   letter-spacing: 0.02em;
   text-decoration: none;
-  background: rgba(5, 5, 5, 0.4);
-  backdrop-filter: blur(6px);
-  transition: border-color 0.3s var(--ease-expo-out);
+  background: rgba(5, 5, 5, 0.55);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 0 1px rgba(201, 255, 61, 0.1), 0 14px 34px -16px rgba(201, 255, 61, 0.45);
+  transition: border-color 0.3s var(--ease-expo-out), box-shadow 0.3s var(--ease-expo-out);
 }
 
 .eventChip:hover {
   border-color: var(--acid);
+  box-shadow: 0 0 0 1px rgba(201, 255, 61, 0.28), 0 18px 42px -16px rgba(201, 255, 61, 0.6);
+}
+
+.eventChipPulse {
+  position: relative;
+  display: grid;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+}
+
+.eventChipPulse::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(201, 255, 61, 0.3);
+  animation: eventChipPulse 2.2s ease-out infinite;
 }
 
 .eventChipDot {
   position: relative;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   flex: none;
   border-radius: 50%;
   background: var(--acid);
-  box-shadow: 0 0 10px rgba(201, 255, 61, 0.75);
+  box-shadow: 0 0 10px rgba(201, 255, 61, 0.85);
+}
+
+@keyframes eventChipPulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+.eventChipDate {
+  flex: none;
+  padding: 0.28rem 0.5rem;
+  border-radius: 6px;
+  background: var(--acid);
+  color: #050505;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.eventChipBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  line-height: 1.25;
+}
+
+.eventChipLabel {
+  font-weight: 600;
 }
 
 .eventChipUrgency {
   color: var(--acid);
   font-family: var(--font-mono);
+  font-size: 0.6rem;
   letter-spacing: 0.06em;
 }
 
@@ -332,30 +501,38 @@
   z-index: 10;
   bottom: 3vh;
   left: 50%;
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
   transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.2em;
 }
 
-.scrollCue i {
-  position: relative;
-  width: 52px;
-  height: 1px;
-  overflow: hidden;
-  background: var(--line);
+.scrollCueButton {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 2.5px solid var(--accent-ink);
+  border-radius: 50%;
+  background: var(--acid);
+  color: var(--accent-ink);
+  text-decoration: none;
+  box-shadow: 5px 5px 0 var(--accent-ink);
+  place-items: center;
+  transition: transform 0.3s var(--ease-expo-out), box-shadow 0.3s var(--ease-expo-out);
 }
 
-.scrollCue i::after {
-  position: absolute;
-  content: "";
-  width: 50%;
-  height: 100%;
-  background: var(--paper);
-  animation: cueTravel 2.4s ease-in-out infinite;
+.scrollCueButton:hover,
+.scrollCueButton:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--accent-ink);
+}
+
+.scrollCueButton:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--accent-ink);
+}
+
+.scrollCueArrow {
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: scrollCueBounce 1.7s ease-in-out infinite;
 }
 
 @keyframes spectralSweep {
@@ -393,12 +570,13 @@
   }
 }
 
-@keyframes cueTravel {
-  0% {
-    transform: translateX(-110%);
-  }
+@keyframes scrollCueBounce {
+  0%,
   100% {
-    transform: translateX(220%);
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
   }
 }
 
@@ -514,21 +692,69 @@
 }
 
 :global(html[data-theme="light"]) .eventChip {
-  border: 2px solid var(--paper);
-  border-radius: 2px;
+  border: 2.5px solid var(--paper);
+  border-radius: 3px;
   background: var(--surface);
-  box-shadow: 5px 5px 0 var(--shadow);
+  box-shadow: 6px 6px 0 var(--shadow);
   backdrop-filter: none;
   font-weight: 600;
 }
 
 :global(html[data-theme="light"]) .eventChip:hover {
   border-color: var(--paper);
+  box-shadow: 9px 9px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .eventChipPulse::before {
+  display: none;
+}
+
+:global(html[data-theme="light"]) .eventChipDot {
+  box-shadow: none;
+}
+
+:global(html[data-theme="light"]) .eventChipDate {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .eventChipLabel {
+  font-weight: 700;
+}
+
+:global(html[data-theme="light"]) .stageCardLink {
+  border: 2.5px solid var(--paper);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--paper);
+  backdrop-filter: none;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .stageCardLink:hover,
+:global(html[data-theme="light"]) .stageCardLink:focus-visible {
+  border-color: var(--paper);
   box-shadow: 7px 7px 0 var(--shadow);
 }
 
-:global(html[data-theme="light"]) .scrollCue {
-  font-weight: 700;
+:global(html[data-theme="light"]) .stageCardLabel {
+  border: 1.5px solid var(--paper);
+}
+
+:global(html[data-theme="light"]) .stageCardTitle {
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .stageCardHook {
+  color: rgba(10, 10, 10, 0.66);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .stageCards {
+    display: none;
+  }
 }
 
 @media (max-width: 720px) {
@@ -558,10 +784,6 @@
     bottom: 14vh;
   }
 
-  .heroCopyBody {
-    max-width: 340px;
-  }
-
   .eventChipReveal {
     left: 5vw;
     right: 5vw;
@@ -571,14 +793,7 @@
   .eventChip {
     width: 100%;
     max-width: 100%;
-    flex-wrap: wrap;
-    row-gap: 0.35rem;
-    font-size: 0.62rem;
-  }
-
-  .eventChipUrgency {
-    width: 100%;
-    padding-left: 1.15rem;
+    font-size: 0.64rem;
   }
 
   .scrollCue {

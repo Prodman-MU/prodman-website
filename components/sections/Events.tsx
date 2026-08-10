@@ -7,9 +7,16 @@ import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
+import { EventCountdown } from "./EventCountdown";
+import { EventSticker } from "./EventVisuals";
 import styles from "./Events.module.css";
 
 const panelTransition = { duration: 0.4, ease: [0.16, 1, 0.3, 1] } as const;
+
+function railBadge(fullDate: string) {
+  const [day, month] = fullDate.split(" ");
+  return { day, month: month.slice(0, 3).toUpperCase() };
+}
 
 export function Events() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -34,12 +41,16 @@ export function Events() {
             const isOpen = openIndex === index;
             const headerId = `event-header-${event.number}`;
             const panelId = `event-panel-${event.number}`;
+            const { day, month } = railBadge(event.date);
 
             return (
               <StaggerItem key={event.number} variant="fadeUp" className={styles.rowWrap}>
                 <article className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
                   <div className={styles.rail} aria-hidden="true">
-                    <span className={styles.number}>{String(event.number).padStart(2, "0")}</span>
+                    <span className={styles.number}>
+                      <span className={styles.numberDay}>{day}</span>
+                      <span className={styles.numberMonth}>{month}</span>
+                    </span>
                   </div>
 
                   <div className={styles.content}>
@@ -59,6 +70,7 @@ export function Events() {
                             {"typeLabel" in event ? event.typeLabel : "Internal Event"}
                           </span>
                           <span className={styles.date}>{event.date}</span>
+                          <EventCountdown date={event.date} />
                         </span>
                       </span>
                       <span className={styles.toggle}>
@@ -81,22 +93,27 @@ export function Events() {
                           className={styles.panel}
                         >
                           <div className={styles.panelInner}>
-                            <p className={styles.tagline}>&ldquo;{event.tagline}&rdquo;</p>
-                            <p className={styles.description}>{event.description}</p>
-                            <p className={styles.outcomes}>{event.outcomes}</p>
-                            <div className={styles.footer}>
-                              <motion.a
-                                className="cta cta--ghost"
-                                href={event.cta === "Register Now" ? registrationUrl : "#events"}
-                                whileHover={{ y: -2, scale: 1.03 }}
-                                whileTap={{ scale: 0.96 }}
-                                data-cursor-text="Register"
-                              >
-                                {event.cta}
-                              </motion.a>
-                              {"urgency" in event && event.urgency ? (
-                                <span className={styles.urgency}>{event.urgency}</span>
-                              ) : null}
+                            <div className={styles.panelText}>
+                              <p className={styles.tagline}>&ldquo;{event.tagline}&rdquo;</p>
+                              <p className={styles.description}>{event.description}</p>
+                              <p className={styles.outcomes}>{event.outcomes}</p>
+                              <div className={styles.footer}>
+                                <motion.a
+                                  className="cta cta--ghost"
+                                  href={event.cta === "Register Now" ? registrationUrl : "#events"}
+                                  whileHover={{ y: -2, scale: 1.03 }}
+                                  whileTap={{ scale: 0.96 }}
+                                  data-cursor-text="Register"
+                                >
+                                  {event.cta}
+                                </motion.a>
+                                {"urgency" in event && event.urgency ? (
+                                  <span className={styles.urgency}>{event.urgency}</span>
+                                ) : null}
+                              </div>
+                            </div>
+                            <div className={styles.panelVisual} aria-hidden="true">
+                              <EventSticker number={event.number} />
                             </div>
                           </div>
                         </motion.div>

@@ -1,6 +1,7 @@
 import { Hero } from "@/components/hero/Hero";
 import { SiteNav } from "@/components/site-nav/SiteNav";
 import { SiteFooter } from "@/components/site-footer/SiteFooter";
+import { WhoAreWe } from "@/components/sections/WhoAreWe";
 import { Members } from "@/components/sections/Members";
 import { Events } from "@/components/sections/Events";
 import { Mission } from "@/components/sections/Mission";
@@ -16,6 +17,7 @@ export default function Home() {
       <SiteNav />
       <Hero />
       <main>
+        <WhoAreWe />
         <Members />
         <Events />
         <Mission />

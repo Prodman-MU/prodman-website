@@ -138,6 +138,18 @@ export function getMemberBySlug(slug: string) {
   return members.find((member) => member.slug === slug);
 }
 
+export const whoWeAre = {
+  eyebrow: "Who Are We",
+  heading: "Who Are We?",
+  lede: "We are the people who look at everyday frustrations and ask, “How could this work better?”",
+  paragraphs: [
+    "ProdMan Club is a community of curious thinkers, problem-solvers, and builders who believe that great products begin with understanding people—not just technology. We explore the entire journey from identifying real user problems and challenging assumptions to designing, testing, launching, and improving meaningful solutions.",
+    "Through hands-on challenges, product teardowns, simulations, industry interactions, and collaborative building, we turn product management from a classroom concept into a practical craft.",
+    "We don’t just discuss products. We question them, break them down, rebuild them—and learn how to create experiences people genuinely value.",
+  ],
+  closing: "We don’t predict the future. We build what deserves to exist in it.",
+} as const;
+
 export const events = [
   {
     number: 1,
@@ -374,6 +386,7 @@ export const productBreakdown: readonly ProductBreakdownItem[] = [
 export const newsletterTopics = ["Product Teardowns", "AI Trends", "PM Frameworks", "Opportunities", "Club Updates"];
 
 export const siteNav = [
+  { label: "Who We Are", href: "#who-are-we" },
   { label: "Members", href: "#members" },
   { label: "Events", href: "#events" },
   { label: "Mission", href: "#mission" },

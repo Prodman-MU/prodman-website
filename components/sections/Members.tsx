@@ -264,7 +264,7 @@ export function Members() {
                 const email = member.links.find((link) => link.href.startsWith("mailto:"));
                 const isActive = index === activeIndex;
                 const isFlipped = isActive && flippedIndex === index;
-                const iconCount = [linkedin, whatsapp, email].filter(Boolean).length;
+                const iconCount = [linkedin, whatsapp, email].filter(Boolean).length + 1;
                 const cardStyle: DeckCardStyle = {
                   "--offset": offset,
                   "--distance": Math.abs(offset),
@@ -386,6 +386,14 @@ export function Members() {
                             <Image src="/logo/gmail_logo.webp" alt="" width={28} height={28} className={styles.nameIcon} />
                           </a>
                         ) : null}
+                        <Link
+                          href={`/team/${member.slug}`}
+                          tabIndex={isActive && !isFlipped ? undefined : -1}
+                          aria-label="Read more"
+                          data-cursor-text="Story"
+                        >
+                          <Image src="/logo/right-top-arrow.png" alt="" width={28} height={28} className={styles.nameIcon} />
+                        </Link>
                       </div>
 
                       <div

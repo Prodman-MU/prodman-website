@@ -2,6 +2,7 @@
   position: relative;
   isolation: isolate;
   min-height: 100svh;
+  margin-top: calc(var(--nav-height, 84px) * -1);
   overflow: hidden;
   color: var(--paper);
   background:
@@ -65,62 +66,14 @@
   animation: driftAcid 23s ease-in-out infinite alternate;
 }
 
-.siteHeader {
+.motionControlFloating {
   position: absolute;
-  z-index: 20;
-  top: 0;
-  right: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  min-height: 82px;
-  margin: 0 3.3vw;
-  border-bottom: 1px solid var(--line);
+  z-index: 15;
+  top: calc(var(--nav-height, 84px) + 1.6rem);
+  right: 3.3vw;
   font-family: var(--font-sans);
   font-size: 0.67rem;
   letter-spacing: 0.18em;
-}
-
-.wordmark {
-  display: inline-flex;
-  gap: 0.7rem;
-  align-items: center;
-  width: max-content;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.wordmarkSignal {
-  position: relative;
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--acid);
-  box-shadow: 0 0 18px rgba(201, 255, 61, 0.88);
-}
-
-.wordmarkSignal::after {
-  position: absolute;
-  content: "";
-  inset: -5px;
-  border: 1px solid rgba(201, 255, 61, 0.48);
-  border-radius: inherit;
-  animation: signalPing 2.8s ease-out infinite;
-}
-
-.siteHeaderMeta {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  justify-self: center;
-  margin: 0;
-  color: var(--muted);
-}
-
-.muLogo {
-  opacity: 0.85;
 }
 
 .motionControl {
@@ -440,18 +393,6 @@
   }
 }
 
-@keyframes signalPing {
-  0% {
-    opacity: 0.9;
-    transform: scale(0.5);
-  }
-  70%,
-  100% {
-    opacity: 0;
-    transform: scale(1.65);
-  }
-}
-
 @keyframes cueTravel {
   0% {
     transform: translateX(-110%);
@@ -591,16 +532,14 @@
 }
 
 @media (max-width: 720px) {
-  .siteHeader {
-    grid-template-columns: 1fr auto;
-    min-height: 70px;
-    margin: 0 5vw;
-  }
-
-  .siteHeaderMeta,
   .coordinate,
   .signalStrip {
     display: none;
+  }
+
+  .motionControlFloating {
+    top: calc(var(--nav-height, 70px) + 1.1rem);
+    right: 5vw;
   }
 
   .motionControlLabel {

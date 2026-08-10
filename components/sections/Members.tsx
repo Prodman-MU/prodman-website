@@ -8,6 +8,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, type PanInfo } from "framer-motion";
 import { members } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
@@ -57,11 +58,13 @@ function getCircularOffset(index: number, activeIndex: number) {
 
 export function Members() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const cardRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const cardButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const profileRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useHydratedReducedMotion();
   const activeMember = members[activeIndex];
 
-  const resetMagneticCard = (card: HTMLButtonElement | null) => {
+  const resetMagneticCard = (card: HTMLElement | null) => {
     if (!card) return;
 
     card.style.setProperty("--magnet-x", "0px");
@@ -89,7 +92,17 @@ export function Members() {
     setActiveIndex(index);
   };
 
-  const handleCardPointerMove = (event: ReactPointerEvent<HTMLButtonElement>, index: number) => {
+  const showMemberProfile = (index: number) => {
+    selectMember(index);
+    window.requestAnimationFrame(() => {
+      profileRef.current?.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  };
+
+  const handleCardPointerMove = (event: ReactPointerEvent<HTMLDivElement>, index: number) => {
     if (reducedMotion || event.pointerType === "touch") return;
 
     const card = event.currentTarget;
@@ -129,7 +142,7 @@ export function Members() {
     if (nextIndex === null) return;
 
     selectMember(nextIndex);
-    requestAnimationFrame(() => cardRefs.current[nextIndex]?.focus());
+    requestAnimationFrame(() => cardButtonRefs.current[nextIndex]?.focus());
   };
 
   const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -144,7 +157,7 @@ export function Members() {
       <div className="container">
         <div className={styles.intro}>
           <Reveal amount={0.2}>
-            <p className="section__label">The crew</p>
+            <p className="section__label">The crew of 2026–27</p>
           </Reveal>
           <SplitHeading as="h2" className="section__heading" text="The people behind ProdMan." />
           <Reveal delay={0.08} amount={0.2}>
@@ -170,6 +183,8 @@ export function Members() {
               {members.map((member, index) => {
                 const offset = getCircularOffset(index, activeIndex);
                 const tone = cardTones[index % cardTones.length];
+                const linkedin = member.links.find((link) => link.label === "LinkedIn");
+                const email = member.links.find((link) => link.href.startsWith("mailto:"));
                 const cardStyle: DeckCardStyle = {
                   "--offset": offset,
                   "--distance": Math.abs(offset),
@@ -188,50 +203,92 @@ export function Members() {
                 };
 
                 return (
-                  <button
+                  <div
                     key={member.name}
                     ref={(node) => {
                       cardRefs.current[index] = node;
                     }}
-                    type="button"
                     className={styles.portraitCard}
                     style={cardStyle}
                     data-active={index === activeIndex}
-                    aria-pressed={index === activeIndex}
-                    aria-label={`Show profile for ${member.name}`}
-                    tabIndex={index === activeIndex ? 0 : -1}
-                    onClick={() => selectMember(index)}
                     onPointerMove={(event) => handleCardPointerMove(event, index)}
                     onPointerLeave={(event) => resetMagneticCard(event.currentTarget)}
                     onPointerCancel={(event) => resetMagneticCard(event.currentTarget)}
-                    data-cursor-text={index === activeIndex ? "Hello" : "Meet"}
                   >
-                    <span className={styles.cardIndex} aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className={styles.cardStamp} aria-hidden="true">
-                      ProdMan
-                    </span>
-                    <span className={styles.portraitWrap}>
-                      {member.cutout ?? member.photo ? (
-                        <Image
-                          src={member.cutout ?? member.photo ?? ""}
-                          alt=""
-                          fill
-                          className={styles.portrait}
-                          sizes="(max-width: 700px) 68vw, 320px"
-                        />
-                      ) : (
-                        <span className={styles.photoPlaceholder} aria-hidden="true">
-                          {member.name
-                            .split(" ")
-                            .map((part) => part[0])
-                            .join("")}
-                        </span>
-                      )}
-                    </span>
-                    <span className={styles.namePlate}>{member.name}</span>
-                  </button>
+                    <button
+                      ref={(node) => {
+                        cardButtonRefs.current[index] = node;
+                      }}
+                      type="button"
+                      className={styles.cardSelect}
+                      aria-pressed={index === activeIndex}
+                      aria-controls="active-member-profile"
+                      aria-label={`Show ${member.name}, ${member.role} profile`}
+                      tabIndex={index === activeIndex ? 0 : -1}
+                      onClick={() => showMemberProfile(index)}
+                      data-cursor-text={index === activeIndex ? "Profile" : "Meet"}
+                    >
+                      <span className={styles.cardIndex} aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={styles.cardStamp} aria-hidden="true">
+                        {member.role}
+                      </span>
+                      <span className={styles.portraitWrap}>
+                        {member.cutout ?? member.photo ? (
+                          <Image
+                            src={member.cutout ?? member.photo ?? ""}
+                            alt=""
+                            fill
+                            className={styles.portrait}
+                            sizes="(max-width: 700px) 68vw, 320px"
+                          />
+                        ) : (
+                          <span className={styles.photoPlaceholder} aria-hidden="true">
+                            {member.name
+                              .split(" ")
+                              .map((part) => part[0])
+                              .join("")}
+                          </span>
+                        )}
+                      </span>
+                      <span className={styles.namePlate}>{member.name}</span>
+                    </button>
+
+                    <div
+                      className={styles.cardActions}
+                      aria-label={`${member.name} actions`}
+                      aria-hidden={index !== activeIndex}
+                    >
+                      <Link
+                        href={`/team/${member.slug}`}
+                        tabIndex={index === activeIndex ? undefined : -1}
+                        data-cursor-text="Story"
+                      >
+                        Read more <span aria-hidden="true">→</span>
+                      </Link>
+                      {linkedin ? (
+                        <a
+                          href={linkedin.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          tabIndex={index === activeIndex ? undefined : -1}
+                          data-cursor-text="Connect"
+                        >
+                          LinkedIn <span aria-hidden="true">↗</span>
+                        </a>
+                      ) : null}
+                      {email ? (
+                        <a
+                          href={email.href}
+                          tabIndex={index === activeIndex ? undefined : -1}
+                          data-cursor-text="Email"
+                        >
+                          Email <span aria-hidden="true">↗</span>
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
                 );
               })}
             </motion.div>
@@ -274,7 +331,12 @@ export function Members() {
           </div>
         </Reveal>
 
-        <div className={styles.profile} key={activeMember.name}>
+        <div
+          ref={profileRef}
+          id="active-member-profile"
+          className={styles.profile}
+          key={activeMember.name}
+        >
           <div className={styles.profileIndex} aria-hidden="true">
             <span>{String(activeIndex + 1).padStart(2, "0")}</span>
             <span className={styles.profileRule} />

@@ -3,8 +3,9 @@
 // add a "Coming Soon" state instead when content doesn't exist yet.
 
 export interface Member {
+  readonly slug: string;
   readonly name: string;
-  readonly role: string | null;
+  readonly role: "President" | "Vice President" | "Member";
   readonly bio: string;
   readonly superpower: string;
   readonly links: readonly { label: string; href: string }[];
@@ -15,8 +16,9 @@ export interface Member {
 
 export const members: readonly Member[] = [
   {
+    slug: "sai-harsha-sadhu",
     name: "Sai Harsha Sadhu",
-    role: "President, ProdMan Club",
+    role: "President",
     bio: "I build products that don’t just look good in a pitch deck—they survive real users, real markets, and real-world complexity. Across five years, 10+ products, 200+ PRDs, and 2,000+ UI screens, I’ve shaped solutions across FinTech, HealthTech, AI, and digital identity. I thrive in high-ambiguity environments, turning scattered insights and competing priorities into products that are focused, functional, and built to scale.",
     superpower: "Seeing the product hiding inside a complex problem—and cutting through the noise until only what matters remains.",
     links: [
@@ -28,8 +30,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/sai-harsha.webp",
   },
   {
+    slug: "akhil-menon",
     name: "Akhil Menon",
-    role: null,
+    role: "Vice President",
     bio: "I’m a product builder at Jio Platforms who likes asking two questions: “Why would a user care?” and “What do the numbers say?” With 3+ years in B2C product development, I’ve redesigned high-traffic journeys, launched platforms for 350K+ users, and built an AI-powered survey product that enabled 13M+ responses. I work where technology, UX, and growth collide—turning customer friction into experiences that convert, scale, and stick.",
     superpower: "Finding the one broken step in a user journey that everyone else has learned to live with—and fixing it before the next sprint begins.",
     links: [
@@ -40,8 +43,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/akhil-menon.webp",
   },
   {
+    slug: "anusha-p-b",
     name: "Anusha P. B.",
-    role: null,
+    role: "Member",
     bio: "I spot what’s missing in a market—and build the business that should exist there. At Ather Energy, I built the accessories and merchandise category from scratch, scaling it into a ₹100+ crore business with 50%+ gross margins and a 4,000+ member community. Before that, I redesigned cricket products at Decathlon and launched India’s first women’s cricket apparel line. Now at Masters’ Union, I’m exploring the intersection of sports, technology, and business to help shape India’s next wave of sports innovation.",
     superpower: "Seeing whitespace before it becomes obvious—and owning everything from the first sketch to the final P&L.",
     links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/anushapb/" }],
@@ -49,8 +53,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/anusha.webp",
   },
   {
+    slug: "akshat-dhaundiyal",
     name: "Akshat Dhaundiyal",
-    role: null,
+    role: "Member",
     // NOTE: source (resources/Team-Summary.txt) has a dropped word after "business" —
     // "turn complex business." reads as cut off. Filled minimally pending Akshat's
     // confirmation; see docs/PRD.md open question 19 before treating as final.
@@ -64,8 +69,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/akshat.webp",
   },
   {
+    slug: "muskan-sharma",
     name: "Muskan Sharma",
-    role: null,
+    role: "Member",
     bio: "I am an AI product enthusiast who loves turning messy problems into simple, user-focused solutions. With around 3.5 years of experience across AI consulting, product discovery, and strategy, I enjoy connecting business needs with technology. My superpower is bringing structure to chaos and taking ideas from “What if?” to “It’s live!” \u{1F680}",
     superpower:
       "Bringing structure to chaos. Give me an ambiguous problem, five conflicting stakeholder opinions, and a tight deadline—and I’ll turn them into a clear plan that everyone can rally around.",
@@ -78,8 +84,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/muskan-sharma.webp",
   },
   {
+    slug: "supriya",
     name: "Supriya",
-    role: null,
+    role: "Member",
     bio: "I’m a Product Manager who gets unreasonably excited about problems. From building products from 0→1 to now building communities, I’m happiest somewhere between “what if?” and “let’s ship it.”",
     superpower: "Turning ambiguity into action. ⚡",
     links: [],
@@ -87,8 +94,9 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/supriya-v2.webp",
   },
   {
+    slug: "om-umrania",
     name: "Om Umrania",
-    role: null,
+    role: "Member",
     bio: "I build AI products, decode data, and occasionally make 13 AI agents work together without starting a rebellion. From RAG systems to automation workflows, I enjoy taking ambitious ideas from 0→1 and turning them into products that create real impact. My superpower? Switching between product strategy and technical execution without losing the plot—or the user.",
     superpower: "Going from “This sounds impossible” to “I’ve already built a prototype.” \u{1F4A1}",
     links: [
@@ -100,6 +108,10 @@ export const members: readonly Member[] = [
     cutout: "/team/cutouts/om-umrania.webp",
   },
 ] as const;
+
+export function getMemberBySlug(slug: string) {
+  return members.find((member) => member.slug === slug);
+}
 
 export const events = [
   {

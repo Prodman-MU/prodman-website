@@ -241,6 +241,27 @@
   width: clamp(92px, 15vw, 148px);
 }
 
+.panelBanner {
+  flex: 0 0 auto;
+  width: clamp(180px, 26vw, 300px);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.bannerImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+html[data-theme="light"] .panelBanner {
+  border: 2px solid var(--paper);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
 .stickerImg {
   display: block;
   width: 100%;
@@ -369,6 +390,11 @@ html[data-theme="light"] .typeBadge {
   font-weight: 700;
 }
 
+html[data-theme="light"] .urgency {
+  color: color-mix(in srgb, var(--accent) 42%, black 58%);
+  font-weight: 700;
+}
+
 html[data-theme="light"] .panel {
   border: 2px solid var(--paper);
   border-top: none;
@@ -430,6 +456,11 @@ html[data-theme="light"] .panelInner {
   .panelVisual {
     align-self: flex-end;
     width: 84px;
+  }
+
+  .panelBanner {
+    align-self: stretch;
+    width: 100%;
   }
 }
 

@@ -54,3 +54,43 @@ export function EventSticker({ number }: { number: number }) {
     />
   );
 }
+
+/* Full event poster, used in place of the sticker for events that have a
+   dedicated promo banner (public/events/hero-banner/*.png). Shown on the
+   left of the panel; when present, the sticker on the right is dropped. */
+
+interface BannerSpec {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+const eventBanners: Record<number, BannerSpec> = {
+  1: {
+    src: "/events/hero-banner/banner-1.png",
+    alt: "Back to the Future event poster: a product management challenge set in 1995 — no apps, no smartphones, no AI, no internet.",
+    width: 1536,
+    height: 1024,
+  },
+};
+
+export function hasEventBanner(number: number) {
+  return Boolean(eventBanners[number]);
+}
+
+export function EventBanner({ number }: { number: number }) {
+  const banner = eventBanners[number];
+  if (!banner) return null;
+
+  return (
+    <Image
+      src={banner.src}
+      alt={banner.alt}
+      width={banner.width}
+      height={banner.height}
+      className={styles.bannerImg}
+      sizes="(max-width: 720px) 100vw, 320px"
+    />
+  );
+}

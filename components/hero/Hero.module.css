@@ -797,6 +797,11 @@
   font-weight: 700;
 }
 
+:global(html[data-theme="light"]) .eventChipUrgency {
+  color: color-mix(in srgb, var(--acid) 42%, black 58%);
+  font-weight: 700;
+}
+
 :global(html[data-theme="light"]) .stageCardLink {
   border: 2.5px solid var(--paper);
   border-radius: 3px;

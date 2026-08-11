@@ -8,7 +8,7 @@ import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import { EventCountdown } from "./EventCountdown";
-import { EventSticker } from "./EventVisuals";
+import { EventBanner, EventSticker, hasEventBanner } from "./EventVisuals";
 import styles from "./Events.module.css";
 
 const panelTransition = { duration: 0.4, ease: [0.16, 1, 0.3, 1] } as const;
@@ -42,6 +42,7 @@ export function Events() {
             const headerId = `event-header-${event.number}`;
             const panelId = `event-panel-${event.number}`;
             const { day, month } = railBadge(event.date);
+            const showBanner = hasEventBanner(event.number);
 
             return (
               <StaggerItem key={event.number} variant="fadeUp" className={styles.rowWrap}>
@@ -93,6 +94,11 @@ export function Events() {
                           className={styles.panel}
                         >
                           <div className={styles.panelInner}>
+                            {showBanner ? (
+                              <div className={styles.panelBanner} aria-hidden="true">
+                                <EventBanner number={event.number} />
+                              </div>
+                            ) : null}
                             <div className={styles.panelText}>
                               <p className={styles.tagline}>&ldquo;{event.tagline}&rdquo;</p>
                               <p className={styles.description}>{event.description}</p>
@@ -112,9 +118,11 @@ export function Events() {
                                 ) : null}
                               </div>
                             </div>
-                            <div className={styles.panelVisual} aria-hidden="true">
-                              <EventSticker number={event.number} />
-                            </div>
+                            {!showBanner ? (
+                              <div className={styles.panelVisual} aria-hidden="true">
+                                <EventSticker number={event.number} />
+                              </div>
+                            ) : null}
                           </div>
                         </motion.div>
                       ) : null}

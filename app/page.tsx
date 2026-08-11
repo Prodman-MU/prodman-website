@@ -4,7 +4,6 @@ import { SiteFooter } from "@/components/site-footer/SiteFooter";
 import { WhoAreWe } from "@/components/sections/WhoAreWe";
 import { Members } from "@/components/sections/Members";
 import { Events } from "@/components/sections/Events";
-import { Mission } from "@/components/sections/Mission";
 import { Audience } from "@/components/sections/Audience";
 import { Community } from "@/components/sections/Community";
 import { ProductBreakdown } from "@/components/sections/ProductBreakdown";
@@ -20,7 +19,6 @@ export default function Home() {
         <WhoAreWe />
         <Members />
         <Events />
-        <Mission />
         <Audience />
         <Community />
         <ProductBreakdown />

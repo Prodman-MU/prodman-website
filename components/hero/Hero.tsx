@@ -35,8 +35,8 @@ const STAGE_CARDS = [
   },
   {
     stage: "Showcase",
-    title: events[3].title,
-    hook: events[3].tagline,
+    title: "Product Showcase: The Grand Finale",
+    hook: "From your first problem statement to a product worth presenting.",
     accent: "var(--purple)",
     className: styles.stageCardShowcase,
   },

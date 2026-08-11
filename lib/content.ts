@@ -153,52 +153,62 @@ export const whoWeAre = {
 export const events = [
   {
     number: 1,
+    slug: "back-to-future",
     title: "Back to Future",
+    subtitle: "A ProdMan Challenge for Everyone",
     date: "14 August 2026",
     type: "internal" as const,
-    tagline: "Go old-school. Think like a PM. Ship like it's '95.",
+    tagline: "You think you're smart. The internet doesn't exist. Go.",
     description:
-      "Plot twist: it's 1995. No apps, no smartphones, no AI — but you still need to build Uber, Spotify, Swiggy, or Bumble. Strip the product down to what people actually need, rebuild it with 1995 tools, and ship it before the internet saves you.",
-    outcomes: "Product teardown, constraint-based thinking, retro prototyping, scrappy execution",
+      "Your team of 4 draws a company worth billions — Amazon, Bumble, Swiggy — and gets 120 minutes to rebuild it using only 1995 technology, systems, and processes. No laptops. No AI. No internet. Just paper, landlines, cash, and people who were very good at their jobs.",
+    whatYoullDo: [
+      "Tear a product down to the job it really does",
+      "Design an entire business on paper",
+      "Find the one thing software quietly killed — and put it back",
+      "Pitch it in 90 seconds to judges who will interrupt you",
+    ],
+    highlights: "Win Cool Prizes · Teams of 4 · Limited seats",
+    time: "4:30–6:30 PM",
+    durationNote: "2 hours of fun",
+    venue: "CDS Auditorium",
+    registerUrl: "https://forms.gle/KYP1ZWvV58hLpekX9",
     cta: "Register Now",
     urgency: "Less than a week to go",
   },
   {
     number: 2,
-    title: "The Product Challenge",
+    title: "External Event 1",
     date: "9 October 2026",
     type: "external" as const,
     typeLabel: "External Flagship Event",
-    tagline: "Solve beyond the classroom.",
-    description:
-      "Participants tackle a real-world product challenge, uncover user insights, define a product strategy, and pitch a feasible and impactful solution.",
-    outcomes: "User research, product strategy, prioritisation, solution pitching",
-    cta: "Coming Soon",
+    tbd: true as const,
   },
   {
     number: 3,
-    title: "Build, Test & Iterate",
+    title: "Internal Event 2",
     date: "4 December 2026",
     type: "internal" as const,
-    tagline: "Great products are not born finished—they evolve.",
-    description:
-      "Teams test assumptions, gather feedback, measure outcomes, and improve their early solutions through rapid iterations.",
-    outcomes: "Validation, user testing, metrics, product iteration",
-    cta: "Save the Date",
+    tbd: true as const,
   },
   {
     number: 4,
-    title: "Product Showcase: The Grand Finale",
+    title: "External Flagship Event 2",
     date: "5 February 2027",
     type: "external" as const,
     typeLabel: "External Grand Finale",
-    tagline: "From your first problem statement to a product worth presenting.",
-    description:
-      "Teams present their refined products to industry leaders, mentors, and fellow builders, demonstrating the complete journey from problem discovery to final execution.",
-    outcomes: "Product showcase, expert feedback, networking, recognition",
-    cta: "Save the Date",
+    tbd: true as const,
   },
 ] as const;
+
+export function getFullEvents() {
+  return events.filter(
+    (event): event is Extract<(typeof events)[number], { slug: string }> => "slug" in event,
+  );
+}
+
+export function getEventBySlug(slug: string) {
+  return getFullEvents().find((event) => event.slug === slug);
+}
 
 export const personas = [
   {

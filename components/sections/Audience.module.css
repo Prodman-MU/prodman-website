@@ -6,45 +6,128 @@
   line-height: 1.6;
 }
 
-.list {
+.grid {
   display: grid;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.75rem);
 }
 
-.persona {
-  display: grid;
-  grid-template-columns: minmax(180px, 260px) 1fr;
-  gap: 1.5rem;
-  padding: 1.75rem;
-  background: var(--ink);
+.cardWrap:nth-child(4n + 1),
+.cardWrap:nth-child(4n + 4) {
+  --rotate: -2deg;
 }
 
-.persona:hover {
-  background: var(--surface-raised);
+.cardWrap:nth-child(4n + 2),
+.cardWrap:nth-child(4n + 3) {
+  --rotate: 2deg;
 }
 
-.personaName {
+.cardWrap {
+  min-width: 0;
+}
+
+.card {
+  height: 100%;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1.1rem;
+  padding: 1.5rem 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.headerText {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   font-weight: 500;
   color: var(--acid);
 }
 
-.personaYou {
-  margin: 0 0 0.5rem;
+.tagline {
+  margin: 0;
   color: var(--paper);
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  font-style: italic;
+  line-height: 1.45;
+  opacity: 0.85;
 }
 
-.personaFor {
+.stickerWrap {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: clamp(80px, 11vw, 148px);
+}
+
+.stickerImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+  transform: rotate(var(--rotate));
+}
+
+.toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--paper);
+}
+
+.toggleBarH,
+.toggleBarV {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+}
+
+.toggleBarH {
+  width: 100%;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.toggleBarV {
+  width: 2px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s var(--ease-expo-out);
+}
+
+.cardOpen .toggleBarV {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.description {
   margin: 0;
+  padding: 0 0 1.5rem;
+  max-width: 60ch;
   color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.55;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.6;
 }
 
 .closing {
@@ -69,28 +152,38 @@
 }
 
 @media (max-width: 720px) {
-  .persona {
+  .grid {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
   }
 }
 
-:global(html[data-theme="light"]) .list {
-  gap: 2px;
+/* Light theme: full neobrutalist card treatment, matching the reference
+   screenshot and the rest of this site's html[data-theme="light"] overrides. */
+
+:global(html[data-theme="light"]) .header {
+  padding: clamp(1.25rem, 2.2vw, 1.85rem);
   border: 2px solid var(--paper);
-  background: var(--paper);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--shadow);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+:global(html[data-theme="light"]) .header:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .cardOpen .header {
+  border-radius: 2px 2px 0 0;
+}
+
+:global(html[data-theme="light"]) .cardOpen .header:hover {
+  transform: none;
   box-shadow: 8px 8px 0 var(--shadow);
 }
 
-:global(html[data-theme="light"]) .persona {
-  background: var(--surface);
-}
-
-:global(html[data-theme="light"]) .persona:hover {
-  background: color-mix(in srgb, var(--cyan) 18%, var(--surface));
-}
-
-:global(html[data-theme="light"]) .personaName {
+:global(html[data-theme="light"]) .name {
   width: max-content;
   max-width: 100%;
   padding: 0.25rem 0.4rem;
@@ -101,6 +194,31 @@
   font-weight: 600;
 }
 
+:global(html[data-theme="light"]) .tagline {
+  color: var(--paper);
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .panel {
+  border: 2px solid var(--paper);
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+:global(html[data-theme="light"]) .description {
+  padding: 0 clamp(1.25rem, 2.2vw, 1.85rem) 1.5rem;
+  font-weight: 500;
+}
+
 :global(html[data-theme="light"]) .closing {
   font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .toggleBarV {
+    transition: none;
+  }
 }

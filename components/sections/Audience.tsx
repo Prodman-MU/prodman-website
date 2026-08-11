@@ -1,15 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { audienceClosing, offerings, personas } from "@/lib/content";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { audienceClosing, audienceGroups, offerings } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
+import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import styles from "./Audience.module.css";
 
-const slideAccentSpring = { type: "spring", stiffness: 400, damping: 28, mass: 0.6 } as const;
+const panelTransition = { duration: 0.4, ease: [0.16, 1, 0.3, 1] } as const;
 
 export function Audience() {
+  const [openCards, setOpenCards] = useState<Set<string>>(new Set());
+  const shouldReduceMotion = useHydratedReducedMotion();
+
+  const toggleCard = (name: string) => {
+    setOpenCards((current) => {
+      const next = new Set(current);
+      if (next.has(name)) {
+        next.delete(name);
+      } else {
+        next.add(name);
+      }
+      return next;
+    });
+  };
+
   return (
     <section id="audience" className="section">
       <div className="container">
@@ -26,23 +44,65 @@ export function Audience() {
           </p>
         </Reveal>
 
-        <StaggerContainer staggerDelay={0.06} viewportAmount={0.15} className={styles.list}>
-          {personas.map((persona) => (
-            <StaggerItem key={persona.name} variant="fadeUp">
-              <motion.div
-                className={styles.persona}
-                whileHover={{ x: 6 }}
-                transition={slideAccentSpring}
-                data-cursor-text="Persona"
-              >
-                <h3 className={styles.personaName}>{persona.name}</h3>
-                <div>
-                  <p className={styles.personaYou}>{persona.you}</p>
-                  <p className={styles.personaFor}>{persona.forWhom}</p>
+        <StaggerContainer staggerDelay={0.08} viewportAmount={0.15} className={styles.grid}>
+          {audienceGroups.map((group) => {
+            const isOpen = openCards.has(group.name);
+            const headerId = `audience-header-${group.name}`;
+            const panelId = `audience-panel-${group.name}`;
+
+            return (
+              <StaggerItem key={group.name} variant="fadeUp" className={styles.cardWrap}>
+                <div className={`${styles.card} ${isOpen ? styles.cardOpen : ""}`}>
+                  <button
+                    type="button"
+                    id={headerId}
+                    className={styles.header}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => toggleCard(group.name)}
+                    data-cursor-text={isOpen ? "Close" : "Open"}
+                  >
+                    <span className={styles.headerText}>
+                      <span className={styles.name}>{group.name}</span>
+                      <span className={styles.tagline}>{group.tagline}</span>
+                    </span>
+                    <span className={styles.stickerWrap} aria-hidden="true">
+                      <Image
+                        src={group.sticker.src}
+                        alt={group.sticker.alt}
+                        width={group.sticker.width}
+                        height={group.sticker.height}
+                        className={styles.stickerImg}
+                        sizes="(max-width: 720px) 84px, 130px"
+                      />
+                    </span>
+                    <span className={styles.toggle}>
+                      <span className={styles.toggleBarH} />
+                      <span className={styles.toggleBarV} />
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen ? (
+                      <motion.div
+                        key="panel"
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={headerId}
+                        initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={shouldReduceMotion ? { duration: 0 } : panelTransition}
+                        className={styles.panel}
+                      >
+                        <p className={styles.description}>{group.description}</p>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
                 </div>
-              </motion.div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </StaggerContainer>
 
         <Reveal delay={0.1} amount={0.2}>

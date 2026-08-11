@@ -210,36 +210,54 @@ export function getEventBySlug(slug: string) {
   return getFullEvents().find((event) => event.slug === slug);
 }
 
-export const personas = [
+export const audienceGroups = [
   {
-    name: "The Product Thinkers",
-    you: "You see a frustrating experience and immediately start redesigning it in your head.",
-    forWhom:
-      "For aspiring PMs, strategists, problem-solvers, and anyone constantly asking: “What problem are we actually solving?”",
+    name: "The Product Folks",
+    tagline: "The “Why, What, and When” crew!",
+    description:
+      "They understand users, prioritize features, build roadmaps, and keep everyone focused on creating something people actually need.",
+    sticker: {
+      src: "/events/stickers/event-1.png",
+      alt: "Sticker illustration of a product manager holding a clipboard beside a lightbulb idea",
+      width: 512,
+      height: 382,
+    },
   },
   {
-    name: "The Tech Builders",
-    you: "You turn “What if?” into “It works.”",
-    forWhom:
-      "For developers, engineers, no-code explorers, and technical minds ready to transform ambitious ideas into functional products.",
+    name: "The Tech Gurus",
+    tagline: "The builders behind the magic!",
+    description:
+      "They turn ambitious ideas into working products—writing code, fixing bugs, managing systems, and occasionally reminding everyone that “it’s not just a small change.”",
+    sticker: {
+      src: "/events/stickers/event-2.png",
+      alt: "Sticker illustration of a developer coding on a laptop",
+      width: 512,
+      height: 373,
+    },
   },
   {
-    name: "The AI Explorers",
-    you: "You don’t just prompt AI—you imagine what it should do next.",
-    forWhom:
-      "For curious minds experimenting with agents, automation, GenAI, intelligent experiences, and the products shaping tomorrow.",
+    name: "The Business Folks",
+    tagline: "The growth-and-money masterminds!",
+    description:
+      "They study markets, crunch numbers, build strategies, and ensure the brilliant idea can also become a brilliant business.",
+    sticker: {
+      src: "/events/stickers/event-4.png",
+      alt: "Sticker illustration of a presenter pointing at a rising growth chart",
+      width: 512,
+      height: 383,
+    },
   },
   {
-    name: "The Design Minds",
-    you: "You know that if users need a manual, something has already gone wrong.",
-    forWhom:
-      "For designers and experience enthusiasts who care about making products intuitive, useful, and impossible to ignore.",
-  },
-  {
-    name: "The Curious Generalists",
-    you: "No technical title? No problem. Curiosity is the only prerequisite.",
-    forWhom:
-      "For marketers, consultants, founders, operators, and business minds who want to understand how meaningful products move from insight to impact.",
+    name: "The Creative Ones",
+    tagline: "The “make it pop” squad!",
+    description:
+      "They bring products to life through design, branding, content, and storytelling—making sure everything looks good, feels right, and grabs attention.",
+    sticker: {
+      src: "/events/stickers/event-3.png",
+      alt: "Sticker illustration of a designer sketching in front of a monitor",
+      width: 512,
+      height: 383,
+    },
   },
 ] as const;
 

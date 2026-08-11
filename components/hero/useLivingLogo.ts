@@ -83,7 +83,7 @@ export function useLivingLogo(logoSrc: string) {
 
     function buildParticleField() {
       const mobile = state.width <= 720;
-      const displayWidth = Math.min(state.width * (mobile ? 0.88 : 0.72), 920);
+      const displayWidth = Math.min(state.width * (mobile ? 0.88 : 0.52), mobile ? 920 : 760);
       const displayHeight = displayWidth * (logo.naturalHeight / logo.naturalWidth);
       const sampleWidth = Math.min(620, Math.max(260, Math.round(displayWidth * 0.74)));
       const sampleHeight = Math.max(1, Math.round(sampleWidth * (logo.naturalHeight / logo.naturalWidth)));
@@ -108,7 +108,7 @@ export function useLivingLogo(logoSrc: string) {
 
       const selectedCount = Math.min(maxParticles, candidates.length);
       const originX = (state.width - displayWidth) / 2;
-      const centerY = state.height * (mobile ? 0.4 : 0.42);
+      const centerY = state.height * (mobile ? 0.4 : 0.34);
       const originY = centerY - displayHeight / 2;
       const motionRadius = Math.max(
         mobile ? 6 : 10,
@@ -177,7 +177,7 @@ export function useLivingLogo(logoSrc: string) {
         context!.globalCompositeOperation = theme === "light" ? "source-over" : "lighter";
 
         const centerX = state.width / 2;
-        const centerY = state.height * (state.width <= 720 ? 0.4 : 0.42);
+        const centerY = state.height * (state.width <= 720 ? 0.4 : 0.34);
         const bloom = Math.pow(Math.max(0, Math.sin(elapsed * 0.3 - 1.2)), 12);
 
         for (const particle of state.particles) {

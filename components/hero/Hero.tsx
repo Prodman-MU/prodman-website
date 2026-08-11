@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 import { events, productBreakdown } from "@/lib/content";
@@ -103,29 +102,6 @@ export function Hero() {
           <p className={styles.heroCopyEyebrow}>PRODUCT MANAGEMENT CLUB &middot; 2026</p>
         </Reveal>
         <div className={styles.heroTitleRow}>
-          <div className={styles.heroTitleStickers} aria-hidden="true">
-            <div className={`${styles.heroSticker} ${styles.heroStickerBack}`}>
-              <Image
-                src="/events/stickers/event-2.png"
-                alt=""
-                width={512}
-                height={373}
-                sizes="128px"
-                className={styles.heroStickerImg}
-              />
-            </div>
-            <div className={styles.heroSticker}>
-              <Image
-                src="/events/stickers/event-1.png"
-                alt=""
-                width={512}
-                height={382}
-                sizes="128px"
-                className={styles.heroStickerImg}
-              />
-            </div>
-          </div>
-
           <h1 id="hero-title" className={styles.heroStatement} aria-label={HERO_STATEMENT}>
             <span className={styles.heroStatementVisual} aria-hidden="true">
               <Reveal

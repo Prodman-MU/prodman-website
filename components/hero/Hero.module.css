@@ -85,9 +85,9 @@
 .logoSystem {
   position: absolute;
   z-index: 3;
-  top: 42%;
+  top: 34%;
   left: 50%;
-  width: min(72vw, 920px);
+  width: min(52vw, 760px);
   aspect-ratio: 84 / 43;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -286,14 +286,16 @@
 
 .heroCopy {
   position: absolute;
-  z-index: 10;
+  z-index: 12;
   right: 0;
   bottom: 13vh;
   left: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   padding: 0 6vw;
   text-align: center;
+  pointer-events: none;
 }
 
 .heroCopyEyebrow {
@@ -310,71 +312,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: clamp(1.2rem, 3vw, 2.75rem);
-}
-
-.heroTitleStickers {
-  position: relative;
-  display: none;
-  flex: none;
-  width: clamp(88px, 7.5vw, 134px);
-  height: clamp(88px, 7.5vw, 134px);
-}
-
-.heroSticker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 72%;
-  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.55));
-  opacity: 0;
-  animation: heroStickerInFront 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-}
-
-.heroStickerBack {
-  top: 24%;
-  left: 30%;
-  width: 66%;
-  animation-name: heroStickerInBack;
-  animation-delay: 0.4s;
-}
-
-.heroStickerImg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-@keyframes heroStickerInFront {
-  from {
-    opacity: 0;
-    transform: translateY(16px) rotate(2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(-7deg);
-  }
-}
-
-@keyframes heroStickerInBack {
-  from {
-    opacity: 0;
-    transform: translateY(16px) rotate(4deg);
-  }
-  to {
-    opacity: 0.94;
-    transform: translateY(0) rotate(10deg);
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroTitleStickers {
-    display: block;
-  }
+  min-width: 0;
 }
 
 .heroStatement {
-  width: min(1120px, 92vw);
+  width: min(1120px, 100%);
+  min-width: 0;
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
@@ -395,6 +338,7 @@
   align-items: center;
   justify-self: start;
   margin-bottom: 0.45rem;
+  margin-left: clamp(0px, calc(200px - 12vw), 95px);
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: clamp(0.66rem, 0.78vw, 0.8rem);
@@ -410,9 +354,9 @@
 }
 
 .heroStatementThesis {
-  grid-column: 1 / 8;
+  grid-column: 1 / 13;
   display: block;
-  justify-self: end;
+  justify-self: center;
   color: var(--acid);
   font-size: clamp(2.8rem, 6vw, 6.6rem);
   font-style: italic;
@@ -423,9 +367,9 @@
 }
 
 .heroStatementPayoff {
-  grid-column: 4 / 13;
+  grid-column: 1 / 13;
   display: block;
-  justify-self: end;
+  justify-self: center;
   margin-top: -0.02em;
   font-size: clamp(2.8rem, 6.6vw, 7.25rem);
   letter-spacing: -0.055em;

@@ -16,16 +16,6 @@ import { SplitHeading } from "@/components/motion/SplitHeading";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import styles from "./Members.module.css";
 
-const cardTones = [
-  { accent: "#c9ff3d", ink: "#050505" },
-  { accent: "#70efff", ink: "#050505" },
-  { accent: "#f4f5f0", ink: "#050505" },
-  { accent: "#b9a7ff", ink: "#050505" },
-  { accent: "#ff8d63", ink: "#050505" },
-  { accent: "#f8de62", ink: "#050505" },
-  { accent: "#91f0c8", ink: "#050505" },
-] as const;
-
 const HOLD_DURATION_MS = 380;
 const HOLD_CANCEL_DISTANCE = 10;
 
@@ -289,7 +279,6 @@ export function Members() {
             >
               {members.map((member, index) => {
                 const offset = getCircularOffset(index, activeIndex);
-                const tone = cardTones[index % cardTones.length];
                 const linkedin = member.links.find((link) => link.label === "LinkedIn");
                 const whatsapp = member.links.find((link) => link.label === "WhatsApp");
                 const isActive = index === activeIndex;
@@ -298,8 +287,8 @@ export function Members() {
                 const cardStyle: DeckCardStyle = {
                   "--offset": offset,
                   "--distance": Math.abs(offset),
-                  "--accent": tone.accent,
-                  "--accent-ink": tone.ink,
+                  "--accent": member.accent,
+                  "--accent-ink": member.accentInk ?? "#050505",
                   "--magnet-x": "0px",
                   "--magnet-y": "0px",
                   "--magnet-tilt-x": "0deg",

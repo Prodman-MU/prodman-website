@@ -148,22 +148,28 @@
 }
 
 /* Pinned card-stack variant of .cards (rendered instead of the grid unless
-   the user prefers reduced motion — see WhoAreWe.tsx). .stage sizes itself
-   to its content (tallest card) plus a modest padding-block, and centers
-   shorter cards within that via place-items: center — not flush against
-   the nav, but not padded out to fill the whole viewport either (that read
-   as bloated and made the scroll distance feel redundant for how little
-   copy each card holds). All 3 cards stay mounted, stacked in the same
-   grid cell (grid-area: 1/1); .stage's height only changes with content
-   (never with which card is active), which is what keeps the sticky
-   "hold" position from drifting mid-scroll. .stageOuter's total height
-   (which also has to account for the scroll distance spent on each card's
-   hold-then-advance step) is measured and set inline from WhoAreWe.tsx,
-   since CSS calc() can't do that in pure CSS. Per-step scroll distance
-   (clamp(200px, 30vh, 340px) equivalent) is computed directly in JS rather
-   than declared here as a custom property — getComputedStyle() can't
-   resolve a clamp()-valued custom property back into a px number, see the
-   comment in WhoAreWe.tsx's measurement effect. */
+   the user prefers reduced motion — see WhoAreWe.tsx). .stage fills the
+   available viewport height below the nav and centers its content
+   (place-items: center) so the held card sits at the visual center of the
+   screen — not parked near the top with a dead void filling the rest of
+   the viewport (that was the previous bug: sizing .stage to its own
+   content made it short, and a short sticky box anchored at the top just
+   *is* near the top, not centered). Growing .stage's height back out to
+   the full viewport is cheap: it's added to the pin's total scroll
+   distance exactly once (see WhoAreWe.tsx), unlike the per-card step
+   distance, which is added three times — so this doesn't reintroduce the
+   "too much scroll" problem. All 3 cards stay mounted, stacked in the
+   same grid cell (grid-area: 1/1); .stage's height only changes with the
+   viewport (never with which card is active), which is what keeps the
+   sticky "hold" position from drifting mid-scroll. .stageOuter's total
+   height (which also has to account for the scroll distance spent on
+   each card's hold-then-advance step) is measured and set inline from
+   WhoAreWe.tsx, since CSS calc() can't do that in pure CSS. Per-step
+   scroll distance (clamp(200px, 30vh, 340px) equivalent) is computed
+   directly in JS rather than declared here as a custom property —
+   getComputedStyle() can't resolve a clamp()-valued custom property back
+   into a px number, see the comment in WhoAreWe.tsx's measurement
+   effect. */
 
 .stageOuter {
   position: relative;
@@ -175,6 +181,7 @@
   top: var(--nav-height, 84px);
   display: grid;
   place-items: center;
+  min-height: calc(100svh - var(--nav-height, 84px));
   padding-block: clamp(0.75rem, 2vh, 1.5rem);
 }
 

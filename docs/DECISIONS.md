@@ -60,8 +60,9 @@
 - Decision: Use custom square-cored sun and angular crescent SVGs with the menu glyph's line weight. Keep both icons in the rendered tree, let the root theme attribute select the visible state, and leave the 44px control transparent and shadow-free except for its keyboard-only focus outline.
 - Consequences: The theme and menu controls now share one zero-gap layout group and read as a single neo-brutalist icon pair at every viewport. The menu trigger remains available on desktop as well as mobile. To keep the navigation strictly one row, the redundant inline section-link strip is non-wrapping on wide screens and hidden at `<=1280px`, where the same destinations remain available in the menu. The accessible theme label still announces the destination mode, reduced-motion users receive an instant state change, and the current light-first visit contract remains unchanged.
 
-## 2026-08-10 - Remove the hero pause/play control
+## 2026-08-17 - Couple member theme colors to data and provide distinct vibrant palette
 
-- Context: The project owner does not want the standalone pause/play icon in the hero chrome.
-- Decision: Remove the visible manual motion control and its control-specific state and styles from the canonical Next.js hero. Keep `prefers-reduced-motion`, off-screen suspension, and background-tab suspension intact. The historical static prototype remains unchanged.
-- Consequences: The hero chrome is cleaner and no dead manual-pause code remains in the React implementation. Visitors can no longer pause the canonical hero independently of their operating-system motion preference.
+- Context: In the 8-member circular carousel deck, Om Umrania (index 7) and Sai Harsha Sadhu (index 0) previously shared the same acid green `#c9ff3d` color due to an array-length wrap-around mismatch, placing two identical green cards directly adjacent to each other.
+- Decision: Couple accent and accent-ink colors directly to the `Member` schema in `lib/content.ts` as the single source of truth. Preserve Sai Harsha's acid green `#c9ff3d`, and assign Om Umrania a vibrant electric rose `#ff5c8a`. Remove disconnected `cardTones` / `memberAccents` arrays in `Members.tsx` and `app/team/[slug]/page.tsx`, and ensure `--member-accent` and subpage elements adapt cleanly in both light and dark modes.
+- Consequences: All 8 carousel cards have distinct, contrasting colors with zero consecutive duplicates across the circular deck loop. Om Umrania's portrait cutout has high contrast against the vibrant rose backdrop, and the `/team/om-umrania` profile subpage accurately reflects the same accent across badges, headings, and ambient glows in both dark and light modes.
+

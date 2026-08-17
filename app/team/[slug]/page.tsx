@@ -10,8 +10,6 @@ type MemberPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const memberAccents = ["#c9ff3d", "#70efff", "#f4f5f0", "#b9a7ff", "#ff8d63", "#f8de62", "#91f0c8"];
-
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -40,7 +38,7 @@ export default async function MemberPage({ params }: MemberPageProps) {
   const previousMember = members[(memberIndex - 1 + members.length) % members.length];
   const nextMember = members[(memberIndex + 1) % members.length];
   const portrait = member.cutout ?? member.photo;
-  const pageStyle = { "--member-accent": memberAccents[memberIndex] } as CSSProperties;
+  const pageStyle = { "--member-accent": member.accent } as CSSProperties;
 
   return (
     <main className={styles.page} style={pageStyle}>

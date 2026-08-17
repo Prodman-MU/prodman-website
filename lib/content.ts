@@ -12,6 +12,8 @@ export interface Member {
   readonly location?: string;
   readonly photo: string | null;
   readonly cutout?: string;
+  readonly accent: string;
+  readonly accentInk?: string;
 }
 
 export const members: readonly Member[] = [
@@ -29,6 +31,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/sai-harsha.png",
     cutout: "/team/cutouts/sai-harsha.webp",
+    accent: "#c9ff3d",
+    accentInk: "#050505",
   },
   {
     slug: "akhil-menon",
@@ -43,6 +47,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/akhil-menon.png",
     cutout: "/team/cutouts/akhil-menon.webp",
+    accent: "#70efff",
+    accentInk: "#050505",
   },
   {
     slug: "anusha-p-b",
@@ -56,6 +62,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/anusha.png",
     cutout: "/team/cutouts/anusha.webp",
+    accent: "#f4f5f0",
+    accentInk: "#050505",
   },
   {
     slug: "akshat-dhaundiyal",
@@ -73,6 +81,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/akshat.png",
     cutout: "/team/cutouts/akshat.webp",
+    accent: "#b9a7ff",
+    accentInk: "#050505",
   },
   {
     slug: "saffa-ahmad",
@@ -90,6 +100,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/saffa.png",
     cutout: "/team/cutouts/saffa.webp",
+    accent: "#ff8d63",
+    accentInk: "#050505",
   },
   {
     slug: "muskan-sharma",
@@ -106,6 +118,8 @@ export const members: readonly Member[] = [
     location: "Gurugram, India",
     photo: "/team/muskan-sharma.png",
     cutout: "/team/cutouts/muskan-sharma.webp",
+    accent: "#f8de62",
+    accentInk: "#050505",
   },
   {
     slug: "supriya",
@@ -116,6 +130,8 @@ export const members: readonly Member[] = [
     links: [{ label: "WhatsApp", href: "https://wa.me/917406521184" }],
     photo: "/team/supriya.png",
     cutout: "/team/cutouts/supriya-v2.webp",
+    accent: "#91f0c8",
+    accentInk: "#050505",
   },
   {
     slug: "om-umrania",
@@ -131,6 +147,8 @@ export const members: readonly Member[] = [
     ],
     photo: "/team/om-umrania.png",
     cutout: "/team/cutouts/om-umrania.webp",
+    accent: "#ff5c8a",
+    accentInk: "#050505",
   },
 ] as const;
 

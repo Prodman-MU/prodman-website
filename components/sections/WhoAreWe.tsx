@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { whoWeAre } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
-import { useMediaQuery } from "@/components/motion/useMediaQuery";
 import styles from "./WhoAreWe.module.css";
 
 const CARD_ACCENTS = ["var(--cyan)", "var(--coral)", "var(--purple)"] as const;
@@ -15,8 +14,22 @@ const CARD_ROTATIONS = ["-1.6deg", "1.1deg", "-0.7deg"] as const;
 
 const cardLiftSpring = { type: "spring", stiffness: 340, damping: 24, mass: 0.8 } as const;
 
+// Fixed-duration spring for the pinned card-stack's step transitions — the
+// outgoing card recedes (shrinks/fades back), the incoming card comes
+// forward, independent of scroll speed. Each card's variant is a pure
+// function of `index === activeIndex`, so reversing scroll direction just
+// swaps which cards are "active"/"inactive" — no direction tracking needed.
+const stackSpring = { type: "spring", stiffness: 300, damping: 32, mass: 1 } as const;
+
+const cardVariants = {
+  active: { opacity: 1, scale: 1, x: 0, y: 0, zIndex: 3 },
+  // Not fully transparent: keeps a legible stack visible before JS/scroll
+  // measurement has run (first paint, reduced-motion-preference detection,
+  // no-JS), and reads better as a card-deck anyway.
+  inactive: { opacity: 0.4, scale: 0.85, x: 10, y: 18, zIndex: 1 },
+} as const;
+
 type CardStyle = CSSProperties & { "--accent": string; "--rotate": string };
-type CountStyle = CSSProperties & { "--count": number };
 
 function cardStyleFor(index: number): CardStyle {
   return {
@@ -28,66 +41,67 @@ function cardStyleFor(index: number): CardStyle {
 export function WhoAreWe() {
   const cardCount = whoWeAre.paragraphs.length;
 
-  // Below 720px (this section's existing mobile breakpoint) the three cards
-  // become a scroll-pinned horizontal filmstrip instead of stacking
-  // vertically: the vertical scroll gesture drives horizontal movement
-  // through the cards, then releases back into normal page scroll once the
-  // last card has passed. Falls back to the original stacked layout when
-  // the user prefers reduced motion.
-  const isMobile = useMediaQuery("(max-width: 720px)");
+  // The three cards become a scroll-pinned, depth-receding stack: scrolling
+  // through the section holds each card on screen in turn, then snaps to
+  // the next (the previous card recedes back into the stack) before
+  // releasing back into normal page scroll once the last card has passed.
+  // Falls back to the original static grid layout when the user prefers
+  // reduced motion. (Currently enabled at all breakpoints — to restrict
+  // this back to mobile only, reintroduce `useMediaQuery("(max-width:
+  // 720px)")` and AND it into usePinnedStack below.)
   const shouldReduceMotion = useHydratedReducedMotion();
-  const useHorizontalScroll = isMobile && !shouldReduceMotion;
+  const usePinnedStack = !shouldReduceMotion;
 
-  const trackOuterRef = useRef<HTMLDivElement>(null);
-  const trackStickyRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const stageOuterRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  // The card's height is content-driven (no forced 100svh box — that left
-  // dead space above/below a shorter card), so the pin's scroll-linked
-  // progress can't be derived from a viewport-relative target offset either
-  // (that only lines up with the sticky's real stuck duration when the
-  // sticky height equals the viewport height). Instead we measure the
-  // sticky's actual geometry — its height, how far it needs to sit below
-  // the fixed nav, and how far the track still has to travel — and drive
-  // the horizontal scroll directly off the raw page scroll position.
-  const [pin, setPin] = useState<{ navOffset: number; outerHeight: number; start: number; distance: number }>();
+  // All 3 cards stay mounted, stacked in the same CSS grid cell, so .stage's
+  // height is pinned to the tallest card by the grid's own auto-sizing —
+  // stable all session, no JS measurement needed for that part (see
+  // WhoAreWe.module.css). We still need .stage's real pixel height, though,
+  // since CSS calc() can't reference an auto grid-track size directly, plus
+  // how far each card's scroll "step" (hold, then advance) should span.
+  const [pin, setPin] = useState<{ start: number; stepDistance: number; outerHeight: number }>();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (!useHorizontalScroll) return;
-    const outerEl = trackOuterRef.current;
-    const stickyEl = trackStickyRef.current;
-    const trackEl = trackRef.current;
-    if (!outerEl || !stickyEl || !trackEl) return;
-
-    const navEl = document.querySelector("nav");
+    if (!usePinnedStack) return;
+    const outerEl = stageOuterRef.current;
+    const stageEl = stageRef.current;
+    if (!outerEl || !stageEl) return;
 
     const measure = () => {
-      const navOffset = navEl ? navEl.getBoundingClientRect().height : 0;
-      const distance = trackEl.scrollWidth - stickyEl.clientWidth;
+      const navHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-height")) || 84;
+      // Mirrors WhoAreWe.module.css's old --step-distance: clamp(200px, 30vh,
+      // 340px) intent, computed directly in JS rather than round-tripped
+      // through a CSS custom property: getComputedStyle().getPropertyValue()
+      // on a custom prop returns its literal unresolved value ("clamp(...)"
+      // as a string), not the resolved px number, so parseFloat on it is
+      // always NaN — a real bug, not a hypothetical one.
+      const stepDistance = Math.min(340, Math.max(200, window.innerHeight * 0.3));
       const outerTop = outerEl.getBoundingClientRect().top + window.scrollY;
-      // Sticky engages once (scrollY + navOffset) reaches outerTop, i.e. at
-      // scrollY = outerTop - navOffset — not at outerTop itself.
-      setPin({ navOffset, outerHeight: stickyEl.offsetHeight + distance, start: outerTop - navOffset, distance });
+      // Sticky engages once (scrollY + navHeight) reaches outerTop, i.e. at
+      // scrollY = outerTop - navHeight — not at outerTop itself.
+      setPin({ start: outerTop - navHeight, stepDistance, outerHeight: stageEl.offsetHeight + cardCount * stepDistance });
     };
     measure();
 
     const observer = new ResizeObserver(measure);
-    observer.observe(stickyEl);
-    observer.observe(trackEl);
-    if (navEl) observer.observe(navEl);
+    observer.observe(stageEl);
     window.addEventListener("resize", measure);
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [useHorizontalScroll]);
+  }, [usePinnedStack, cardCount]);
 
   const { scrollY } = useScroll();
-  const x = useTransform(
-    scrollY,
-    pin ? [pin.start, pin.start + pin.distance] : [0, 1],
-    pin ? [0, -pin.distance] : [0, 0],
-  );
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (!pin) return;
+    const raw = Math.floor((latest - pin.start) / pin.stepDistance);
+    const next = Math.min(Math.max(raw, 0), cardCount - 1);
+    setActiveIndex((current) => (current === next ? current : next));
+  });
 
   return (
     <section id="who-are-we" className={`section ${styles.section}`}>
@@ -109,28 +123,30 @@ export function WhoAreWe() {
         </Reveal>
 
         <div
-          ref={trackOuterRef}
-          className={useHorizontalScroll ? styles.trackOuter : undefined}
-          style={
-            useHorizontalScroll
-              ? ({ "--count": cardCount, height: pin?.outerHeight } as CountStyle)
-              : undefined
-          }
+          ref={stageOuterRef}
+          className={usePinnedStack ? styles.stageOuter : undefined}
+          style={usePinnedStack ? { height: pin?.outerHeight } : undefined}
         >
-          {useHorizontalScroll ? (
-            <div ref={trackStickyRef} className={styles.trackSticky} style={{ top: pin?.navOffset }}>
-              <motion.div ref={trackRef} className={styles.track} style={{ x }}>
-                {whoWeAre.paragraphs.map((paragraph, index) => (
-                  <div key={paragraph} className={styles.trackItem}>
-                    <div className={styles.card} style={cardStyleFor(index)} data-cursor-text="Us">
-                      <span className={styles.cardIndex} aria-hidden="true">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <p>{paragraph}</p>
-                    </div>
+          {usePinnedStack ? (
+            <div ref={stageRef} className={styles.stage}>
+              {whoWeAre.paragraphs.map((paragraph, index) => (
+                <motion.div
+                  key={paragraph}
+                  className={styles.cardSlot}
+                  initial={false}
+                  animate={index === activeIndex ? "active" : "inactive"}
+                  variants={cardVariants}
+                  transition={stackSpring}
+                  style={{ pointerEvents: index === activeIndex ? "auto" : "none" }}
+                >
+                  <div className={styles.card} style={cardStyleFor(index)} data-cursor-text="Us" data-cursor>
+                    <span className={styles.cardIndex} aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p>{paragraph}</p>
                   </div>
-                ))}
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
           ) : (
             <StaggerContainer staggerDelay={0.1} viewportAmount={0.2} className={styles.cards}>

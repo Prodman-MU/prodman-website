@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { audienceClosing, audienceGroups, offerings } from "@/lib/content";
+import { audienceGroups } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
@@ -104,31 +104,6 @@ export function Audience() {
             );
           })}
         </StaggerContainer>
-
-        <Reveal delay={0.1} amount={0.2}>
-          <div>
-            {audienceClosing.map((paragraph) => (
-              <p key={paragraph} className={styles.closing}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-
-          <nav className={styles.offerings} aria-label="What ProdMan offers">
-            {offerings.map((item) => (
-              <motion.a
-                key={item.href}
-                className="tag"
-                href={item.href}
-                whileHover={{ y: -3, scale: 1.05 }}
-                whileTap={{ scale: 0.94 }}
-                data-cursor-text="Explore"
-              >
-                {item.label}
-              </motion.a>
-            ))}
-          </nav>
-        </Reveal>
       </div>
     </section>
   );

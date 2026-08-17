@@ -261,19 +261,6 @@ export const audienceGroups = [
   },
 ] as const;
 
-export const audienceClosing = [
-  "Coders build it. Designers shape it. Product minds question it. AI transforms it. We bring them all together.",
-  "If you’re curious enough to ask “Why?” and bold enough to build “What’s next?”—you belong here.",
-];
-
-export const offerings = [
-  { label: "Events", href: "#events" },
-  { label: "Product Breakdown", href: "#breakdown" },
-  { label: "Resources", href: "#resources" },
-  { label: "Community", href: "#community" },
-  { label: "Projects", href: "#projects" },
-];
-
 export type PMCategory = "strategy" | "design" | "tech" | "growth" | "ai_leadership";
 
 export interface ProductBreakdownItem {

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { audienceGroups } from "@/lib/content";
+import { audienceGroups, whatsappUrl } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
@@ -104,6 +104,38 @@ export function Audience() {
             );
           })}
         </StaggerContainer>
+
+        <Reveal delay={0.1} amount={0.2}>
+          <motion.aside
+            className={styles.whatsappCta}
+            whileHover={{ y: -3 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.8 }}
+          >
+            <div className={styles.whatsappCtaText}>
+              <p className={styles.whatsappCtaLabel}>Found your group?</p>
+              <h3 className={styles.whatsappCtaTitle}>Join the Product Circle</h3>
+              <p className={styles.whatsappCtaDescription}>
+                Where product conversations continue after the event ends—instant updates, opportunities,
+                and people equally obsessed with building better products.
+              </p>
+            </div>
+
+            <div className={styles.whatsappCtaAction}>
+              <motion.a
+                className="cta cta--acid"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
+                data-cursor-text="Join"
+              >
+                <Image src="/logo/whatsapp-logo-bw.png" alt="" width={18} height={18} className={styles.whatsappIcon} />
+                Join the WhatsApp Community &rarr;
+              </motion.a>
+            </div>
+          </motion.aside>
+        </Reveal>
       </div>
     </section>
   );

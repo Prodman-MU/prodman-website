@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { events, registrationUrl } from "@/lib/content";
+import { events, newsletterTopics, registrationUrl } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
@@ -29,6 +29,7 @@ function ArrowUpRightIcon({ className }: { className?: string }) {
 
 export function Events() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "submitted">("idle");
   const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
@@ -135,27 +136,33 @@ export function Events() {
                                 <span className={styles.fact}>{event.venue}</span>
                               </div>
                               <div className={styles.footer}>
-                                <motion.a
-                                  className="cta cta--ghost"
-                                  href={event.cta === "Register Now" ? (event.registerUrl ?? registrationUrl) : "#events"}
-                                  target={event.registerUrl ? "_blank" : undefined}
-                                  rel={event.registerUrl ? "noreferrer" : undefined}
-                                  whileHover={{ y: -2, scale: 1.03 }}
-                                  whileTap={{ scale: 0.96 }}
-                                  data-cursor-text="Register"
-                                >
-                                  {event.cta}
-                                </motion.a>
+                                {"photos" in event && event.photos?.length ? null : (
+                                  <motion.a
+                                    className="cta cta--ghost"
+                                    href={event.cta === "Register Now" ? (event.registerUrl ?? registrationUrl) : "#events"}
+                                    target={event.registerUrl ? "_blank" : undefined}
+                                    rel={event.registerUrl ? "noreferrer" : undefined}
+                                    whileHover={{ y: -2, scale: 1.03 }}
+                                    whileTap={{ scale: 0.96 }}
+                                    data-cursor-text="Register"
+                                  >
+                                    {event.cta}
+                                  </motion.a>
+                                )}
                                 <Link
                                   href={`/events/${event.slug}`}
                                   className={styles.readMore}
-                                  aria-label={`Read more about ${event.title}`}
-                                  data-cursor-text="Story"
+                                  aria-label={
+                                    "photos" in event && event.photos?.length
+                                      ? `View photos from ${event.title}`
+                                      : `Read more about ${event.title}`
+                                  }
+                                  data-cursor-text={"photos" in event && event.photos?.length ? "Photos" : "Story"}
                                 >
                                   <ArrowUpRightIcon className={styles.readMoreIcon} />
                                 </Link>
-                                {"urgency" in event && event.urgency ? (
-                                  <span className={styles.urgency}>{event.urgency}</span>
+                                {"photos" in event && event.photos?.length ? (
+                                  <span className={styles.urgency}>Event wrapped · see photos</span>
                                 ) : null}
                               </div>
                             </div>
@@ -175,6 +182,67 @@ export function Events() {
             );
           })}
         </StaggerContainer>
+
+        <Reveal delay={0.1} amount={0.2}>
+          <motion.aside
+            className={styles.newsletterCta}
+            whileHover={{ y: -3 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.8 }}
+          >
+            <div className={styles.newsletterCtaText}>
+              <p className={styles.newsletterCtaLabel}>Before you go</p>
+              <h3 className={styles.newsletterCtaTitle}>Product Drops, Minus the Fluff</h3>
+              <p className={styles.newsletterCtaDescription}>
+                Get the next event drop, plus product breakdowns and AI trends, straight to your inbox.
+              </p>
+              <div className={styles.newsletterCtaTags}>
+                {newsletterTopics.map((topic) => (
+                  <span key={topic} className="tag">
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.newsletterCtaAction}>
+              {newsletterStatus === "submitted" ? (
+                <p className={styles.newsletterCtaMicrocopy}>
+                  Newsletter signups are launching soon — join the WhatsApp community for updates in the
+                  meantime.
+                </p>
+              ) : (
+                <form
+                  className={styles.newsletterCtaForm}
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    setNewsletterStatus("submitted");
+                  }}
+                >
+                  <label className="visually-hidden" htmlFor="events-newsletter-email">
+                    Email address
+                  </label>
+                  <input
+                    id="events-newsletter-email"
+                    className={styles.newsletterCtaInput}
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    data-cursor="text"
+                  />
+                  <motion.button
+                    className="cta"
+                    type="submit"
+                    whileHover={{ y: -2, scale: 1.03 }}
+                    whileTap={{ scale: 0.96 }}
+                    data-cursor-text="Send"
+                  >
+                    Get Product Drops &rarr;
+                  </motion.button>
+                </form>
+              )}
+            </div>
+          </motion.aside>
+        </Reveal>
       </div>
     </section>
   );

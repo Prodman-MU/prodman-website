@@ -330,7 +330,7 @@ export function ProductBreakdown() {
                   stroke="var(--acid)"
                   strokeWidth="2"
                   strokeOpacity="0.8"
-                  style={{ transformOrigin: "200px 200px" }}
+                  style={{ transformBox: "view-box", transformOrigin: "200px 200px" }}
                   animate={{ rotate: activeAngle }}
                   transition={
                     shouldReduceMotion

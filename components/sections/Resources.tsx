@@ -38,6 +38,8 @@ export function Resources() {
             <motion.a
               className="cta cta--ghost"
               href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
               whileHover={{ y: -2, scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
               data-cursor-text="Join"

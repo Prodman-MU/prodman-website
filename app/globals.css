@@ -15,6 +15,15 @@
   --purple: #b9a7ff;
   --coral: #ff8d63;
   --accent-ink: #050505;
+  /* -text variants: same hue, only used for `color:` on running text/labels
+     (never for fills, borders, or decorative glyphs, which should stay the
+     neon value above). On the dark theme these equal the neon value since
+     it already reads fine on --ink; the light theme below darkens them so
+     text stays legible without dulling the accent everywhere else. */
+  --acid-text: var(--acid);
+  --cyan-text: var(--cyan);
+  --purple-text: var(--purple);
+  --coral-text: var(--coral);
 
   --font-display: "Fraunces", "Georgia", serif;
   --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -42,6 +51,17 @@ html[data-theme="light"] {
   --grid-line: rgba(10, 10, 10, 0.08);
   --cyan: #56dce9;
   --acid: #c9ff3d;
+  --purple: #b9a7ff;
+  --coral: #ff8d63;
+  /* Fills, borders, and decorative glyphs keep the neon values above. But
+     those same neon values as running TEXT on this theme's cream --ink
+     (#f2f0e8) fall below ~1.1:1 contrast and become unreadable — so the
+     -text variants only (used via `color: var(--acid-text)` etc., never
+     for backgrounds/borders) get darkened here to stay legible. */
+  --acid-text: #4d7c0f;
+  --cyan-text: #0f7480;
+  --purple-text: #6a3fd6;
+  --coral-text: #c1501f;
 }
 
 * {
@@ -286,12 +306,6 @@ html[data-theme="light"] #mission {
 
 html[data-theme="light"] #mission .section__label {
   background: var(--cyan);
-}
-
-html[data-theme="light"] #community {
-  background:
-    linear-gradient(0deg, transparent 0 86%, rgba(255, 141, 99, 0.2) 86% 100%),
-    var(--ink);
 }
 
 html[data-theme="light"] #breakdown {

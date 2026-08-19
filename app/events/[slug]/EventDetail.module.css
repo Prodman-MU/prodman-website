@@ -68,7 +68,7 @@
 
 .back:hover,
 .back:focus-visible {
-  color: var(--event-accent);
+  color: var(--event-accent-text);
   transform: translateX(-3px);
 }
 
@@ -107,7 +107,7 @@
   padding: 0.2rem 0.55rem;
   border: 1px solid var(--event-accent);
   border-radius: 999px;
-  color: var(--event-accent);
+  color: var(--event-accent-text);
 }
 
 .date {
@@ -116,7 +116,7 @@
 
 .subtitle {
   margin: 0 0 0.6rem;
-  color: var(--event-accent);
+  color: var(--event-accent-text);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
@@ -136,7 +136,7 @@
 .tagline {
   margin: 0 0 1rem;
   max-width: 56ch;
-  color: var(--event-accent);
+  color: var(--event-accent-text);
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   font-style: italic;
 }
@@ -149,6 +149,27 @@
   line-height: 1.7;
 }
 
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 2.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tagChip {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--event-accent);
+  border-radius: 999px;
+  color: var(--event-accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .doSection {
   margin-bottom: 2.25rem;
   padding-top: 1.5rem;
@@ -157,7 +178,7 @@
 
 .doSection h2 {
   margin: 0 0 1rem;
-  color: var(--event-accent);
+  color: var(--event-accent-text);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
@@ -215,10 +236,26 @@
 }
 
 .urgency {
-  color: var(--event-accent);
+  color: var(--event-accent-text);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gallerySection {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.gallerySection h2 {
+  margin: 0 0 1.1rem;
+  color: var(--event-accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 

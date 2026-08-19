@@ -22,10 +22,13 @@ export function SiteFooter() {
           <motion.a
             className="cta cta--acid"
             href={whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
             whileHover={{ y: -3, scale: 1.03 }}
             whileTap={{ scale: 0.96 }}
             data-cursor-text="Join"
           >
+            <Image src="/logo/whatsapp-logo-bw.png" alt="" width={18} height={18} className={styles.whatsappIcon} />
             Join the WhatsApp Community &rarr;
           </motion.a>
         </StaggerItem>
@@ -55,6 +58,8 @@ export function SiteFooter() {
               <li>
                 <motion.a
                   href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   whileHover={{ x: 4 }}
                   transition={slideAccentSpring}
                   data-cursor-text="Link"
@@ -64,7 +69,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <motion.a
-                  href="#community"
+                  href="#events"
                   whileHover={{ x: 4 }}
                   transition={slideAccentSpring}
                   data-cursor-text="Link"

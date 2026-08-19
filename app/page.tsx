@@ -5,7 +5,6 @@ import { WhoAreWe } from "@/components/sections/WhoAreWe";
 import { Members } from "@/components/sections/Members";
 import { Events } from "@/components/sections/Events";
 import { Audience } from "@/components/sections/Audience";
-import { Community } from "@/components/sections/Community";
 import { ProductBreakdown } from "@/components/sections/ProductBreakdown";
 import { Resources } from "@/components/sections/Resources";
 import { Projects } from "@/components/sections/Projects";
@@ -20,7 +19,6 @@ export default function Home() {
         <Members />
         <Events />
         <Audience />
-        <Community />
         <ProductBreakdown />
         <Resources />
         <Projects />

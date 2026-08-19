@@ -1,0 +1,219 @@
+.galleryGrid {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 150px;
+  gap: 0.6rem;
+}
+
+.galleryItem {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  background: none;
+  appearance: none;
+}
+
+/* Collage: the opening group photo runs large; the two stage moments run
+   wide; everything else fills a single cell — reads as a mosaic rather
+   than a uniform grid of same-size tiles. */
+.galleryItem:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.galleryItem:nth-child(4),
+.galleryItem:nth-child(6),
+.galleryItem:nth-child(8) {
+  grid-column: span 2;
+}
+
+.galleryImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  transition: transform 500ms var(--ease-expo-out);
+}
+
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent 55%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.galleryOverlay svg {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.galleryItem:hover .galleryImg,
+.galleryItem:focus-visible .galleryImg {
+  transform: scale(1.06);
+}
+
+.galleryItem:hover .galleryOverlay,
+.galleryItem:focus-visible .galleryOverlay {
+  opacity: 1;
+}
+
+.galleryItem:focus-visible {
+  outline: 2px solid var(--event-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 130px;
+  }
+
+  .galleryItem:nth-child(4),
+  .galleryItem:nth-child(6),
+  .galleryItem:nth-child(8) {
+    grid-column: span 1;
+  }
+}
+
+/* Lightbox — always renders in a dark chrome regardless of site theme,
+   consistent with the near-universal convention for photo viewers. */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(5, 5, 5, 0.94);
+  backdrop-filter: blur(6px);
+}
+
+.lightboxTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f4f5f0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.lightboxCount {
+  opacity: 0.7;
+}
+
+.lightboxActions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.lightboxButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(244, 245, 240, 0.3);
+  border-radius: 999px;
+  color: #f4f5f0;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.lightboxButton:hover,
+.lightboxButton:focus-visible {
+  border-color: #f4f5f0;
+  background: rgba(244, 245, 240, 0.12);
+  transform: translateY(-1px);
+}
+
+.lightboxStage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.lightboxImg {
+  max-width: 100%;
+  max-height: 78svh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.lightboxNav {
+  position: fixed;
+  top: 50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(244, 245, 240, 0.3);
+  border-radius: 999px;
+  color: #f4f5f0;
+  background: rgba(5, 5, 5, 0.4);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.lightboxNav:hover,
+.lightboxNav:focus-visible {
+  border-color: #f4f5f0;
+  background: rgba(244, 245, 240, 0.16);
+}
+
+.lightboxNavLeft {
+  left: clamp(0.75rem, 3vw, 2rem);
+}
+
+.lightboxNavRight {
+  right: clamp(0.75rem, 3vw, 2rem);
+}
+
+.lightboxCaption {
+  margin: 0.75rem auto 0;
+  max-width: 60ch;
+  color: rgba(244, 245, 240, 0.7);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .lightboxNav {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
+  .lightboxNavLeft {
+    left: 0.4rem;
+  }
+
+  .lightboxNavRight {
+    right: 0.4rem;
+  }
+}

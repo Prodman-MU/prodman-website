@@ -177,60 +177,6 @@
   height: 1.8rem;
 }
 
-.links {
-  display: flex;
-  flex: 1 1 auto;
-  flex-wrap: nowrap;
-  gap: clamp(0.75rem, 1.2vw, 1.35rem);
-  justify-content: center;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-}
-
-.links a {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.3rem;
-  color: var(--muted);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color 0.3s var(--ease-expo-out);
-}
-
-.links a::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--acid), var(--cyan));
-  transform: scaleX(0);
-  transform-origin: 50% 50%;
-  transition: transform 0.45s var(--ease-expo-out);
-}
-
-.links a:hover,
-.links a:focus-visible {
-  color: var(--paper);
-}
-
-.links a:hover::after,
-.links a:focus-visible::after,
-.links a[data-active]::after {
-  transform: scaleX(1);
-}
-
-.links a[data-active] {
-  color: var(--paper);
-}
-
 .join {
   position: relative;
   flex: none;
@@ -272,6 +218,15 @@
   flex: none;
   gap: 0;
   align-items: center;
+  margin-left: auto;
+}
+
+.joinIcon {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .themeToggleSlot {
@@ -519,15 +474,6 @@
   filter: invert(1);
 }
 
-:global(html[data-theme="light"]) .links a {
-  font-weight: 700;
-}
-
-:global(html[data-theme="light"]) .links a::after {
-  height: 3px;
-  background: var(--paper);
-}
-
 :global(html[data-theme="light"]) .join {
   overflow: visible;
 }
@@ -588,16 +534,6 @@
 :global(html[data-theme="light"]) .menuList a[data-active] {
   color: var(--paper);
   background: var(--acid);
-}
-
-@media (max-width: 1280px) {
-  .links {
-    display: none;
-  }
-
-  .navControls {
-    margin-left: auto;
-  }
 }
 
 @media (max-width: 900px) {
@@ -674,7 +610,6 @@
   .nav,
   .nav[data-scrolled],
   .join::before,
-  .links a::after,
   .menuIcon span,
   .menuList a {
     transition: none !important;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   AnimatePresence,
   motion,
@@ -189,26 +190,6 @@ export function SiteNav() {
             </span>
           </motion.a>
         </div>
-        <ul className={styles.links}>
-          {siteNav.map((item) => {
-            const isActive = activeHref === item.href;
-
-            return (
-              <li key={item.href}>
-                <motion.a
-                  href={item.href}
-                  aria-current={isActive ? "location" : undefined}
-                  data-active={isActive || undefined}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.96 }}
-                  data-cursor-text="View"
-                >
-                  {item.label}
-                </motion.a>
-              </li>
-            );
-          })}
-        </ul>
         <div className={styles.navControls}>
           <div className={styles.themeToggleSlot}>
             <ThemeToggle />
@@ -232,10 +213,13 @@ export function SiteNav() {
         <motion.a
           className={`cta cta--acid ${styles.join}`}
           href={whatsappUrl}
+          target="_blank"
+          rel="noreferrer"
           whileHover={{ y: -3, scale: 1.04 }}
           whileTap={{ scale: 0.95 }}
           data-cursor-text="Join"
         >
+          <Image src="/logo/whatsapp-logo-bw.png" alt="" width={16} height={16} className={styles.joinIcon} />
           Join
         </motion.a>
         <motion.span className={styles.progress} style={{ scaleX: progress }} aria-hidden="true" />
@@ -297,10 +281,13 @@ export function SiteNav() {
                 <motion.a
                   className={`cta cta--acid ${styles.menuJoin}`}
                   href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={() => setMenuOpen(false)}
                   whileTap={{ scale: 0.97 }}
                   data-cursor-text="Join"
                 >
+                  <Image src="/logo/whatsapp-logo-bw.png" alt="" width={18} height={18} className={styles.joinIcon} />
                   Join the community <span aria-hidden="true">↗</span>
                 </motion.a>
               </div>

@@ -168,6 +168,16 @@ export const whoWeAre = {
   closing: "We don’t predict the future. We build what deserves to exist in it.",
 } as const;
 
+export interface EventPhoto {
+  readonly src: string;
+  readonly alt: string;
+  /** CSS object-position for the cropped collage thumbnail (e.g. "50% 30%") —
+   * keeps faces/subjects in frame when a photo's aspect ratio doesn't match
+   * its collage cell. Defaults to "50% 40%" when omitted. Full photo is
+   * never cropped in the lightbox (object-fit: contain there). */
+  readonly focus?: string;
+}
+
 export const events = [
   {
     number: 1,
@@ -179,6 +189,7 @@ export const events = [
     tagline: "You think you're smart. The internet doesn't exist. Go.",
     description:
       "Your team of 4 draws a company worth billions — Amazon, Bumble, Swiggy — and gets 120 minutes to rebuild it using only 1995 technology, systems, and processes. No laptops. No AI. No internet. Just paper, landlines, cash, and people who were very good at their jobs.",
+    tags: ["Product Teardown", "Rapid Prototyping", "Business Strategy", "Pitching"],
     whatYoullDo: [
       "Tear a product down to the job it really does",
       "Design an entire business on paper",
@@ -191,7 +202,17 @@ export const events = [
     venue: "CDS Auditorium",
     registerUrl: "https://forms.gle/KYP1ZWvV58hLpekX9",
     cta: "Register Now",
-    urgency: "Less than a week to go",
+    photos: [
+      { src: "/events/event-photos/back-to-future/btf-15.jpg", alt: "Full ProdMan Club and guests group photo", focus: "50% 35%" },
+      { src: "/events/event-photos/back-to-future/btf-09.jpg", alt: "Winning team posing on stage with judges", focus: "50% 35%" },
+      { src: "/events/event-photos/back-to-future/btf-13.jpg", alt: "A team laughing while sketching their business on paper", focus: "50% 35%" },
+      { src: "/events/event-photos/back-to-future/btf-08.jpg", alt: "A team receiving recognition on stage", focus: "50% 30%" },
+      { src: "/events/event-photos/back-to-future/btf-10.jpg", alt: "A team deep in discussion around their 1995-tech worksheet", focus: "50% 30%" },
+      { src: "/events/event-photos/back-to-future/btf-14.jpg", alt: "Wide view of the auditorium with teams working at round tables", focus: "50% 20%" },
+      { src: "/events/event-photos/back-to-future/btf-11.jpg", alt: "Team members huddled over their paper prototype", focus: "50% 15%" },
+      { src: "/events/event-photos/back-to-future/btf-06.jpg", alt: "Presenters on stage in front of the Back to the Future screen", focus: "50% 30%" },
+      { src: "/events/event-photos/back-to-future/btf-01.jpg", alt: "Teams gathering before the Back to Future challenge begins", focus: "50% 35%" },
+    ] as readonly EventPhoto[],
   },
   {
     number: 2,
@@ -400,11 +421,10 @@ export const siteNav = [
   { label: "Members", href: "#members" },
   { label: "Events", href: "#events" },
   { label: "Who It's For", href: "#audience" },
-  { label: "Community", href: "#community" },
   { label: "Breakdown", href: "#breakdown" },
   { label: "Resources", href: "#resources" },
   { label: "Projects", href: "#projects" },
 ];
 
-export const whatsappUrl = "#"; // TODO: real WhatsApp community invite link — see docs/PRD.md Section 11
+export const whatsappUrl = "https://chat.whatsapp.com/JfTjBNCtzUNLv412bHFNYU";
 export const registrationUrl = "#"; // TODO: real event registration flow — see docs/PRD.md Section 11

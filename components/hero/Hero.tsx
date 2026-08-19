@@ -160,7 +160,6 @@ export function Hero() {
           <span className={styles.eventChipDate}>{shortEventDate(nextEvent.date)}</span>
           <span className={styles.eventChipBody}>
             <span className={styles.eventChipLabel}>{nextEvent.title}</span>
-            <span className={styles.eventChipUrgency}>{nextEvent.urgency}</span>
           </span>
         </motion.a>
       </Reveal>

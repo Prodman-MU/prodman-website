@@ -452,6 +452,96 @@ export const resources: readonly Resource[] = [
     category: "article",
     date: "2024",
   },
+  {
+    id: "top-pm-books-2026",
+    title: "Top Product Management Books and Resources for 2026",
+    url: "https://www.mindtheproduct.com/top-books-and-resources-in-2026-for-product-managers/",
+    source: "Mind the Product",
+    description:
+      "A curated annual reading list from the world's largest PM community — covers Marty Cagan's trilogy, the AI Product Playbook, and the sharpest new releases for working product managers.",
+    category: "article",
+    date: "2026",
+  },
+  {
+    id: "product-is-changing-2026",
+    title: "How Product Is Changing in 2026",
+    url: "https://www.antmurphy.me/newsletter/how-product-is-changing-in-2026",
+    source: "Ant Murphy",
+    description:
+      "Data-backed breakdown of six shifts reshaping the PM role — from AI-native workflows to outcome-oriented roadmaps. Not hot takes, real signals from product leaders.",
+    category: "article",
+    date: "2025",
+  },
+  {
+    id: "pm-frameworks-collection",
+    title: "Product Management Frameworks: The Complete Collection",
+    url: "https://www.ideaplan.io/product-management-frameworks",
+    source: "IdeaPlan",
+    description:
+      "Every major PM framework explained — RICE, Kano, JTBD, Double Diamond, OKRs, and 20+ more with free calculators and comparison guides. A one-stop reference shelf.",
+    category: "framework",
+    date: "2025",
+  },
+  {
+    id: "jtbd-framework-aha",
+    title: "Jobs-To-Be-Done Framework: Understanding Your Customers",
+    url: "https://www.aha.io/roadmapping/guide/release-management/what-is-the-jobs-to-be-done-framework",
+    source: "Aha!",
+    description:
+      "Build what customers actually need with the JTBD framework. Includes a downloadable template and practical examples for turning customer interviews into actionable insights.",
+    category: "framework",
+    date: "2025",
+  },
+  {
+    id: "books-for-pms-2026",
+    title: "Best Books for Product Managers [2026]",
+    url: "https://www.bringthedonuts.com/essays/books-for-product-managers.html",
+    source: "Ken Norton — Bring the Donuts",
+    description:
+      "Ken Norton's definitive reading list — product leadership, innovation, shipping winning products, and the non-obvious books every PM should read at least once.",
+    category: "article",
+    date: "2026",
+  },
+  {
+    id: "productivity-tools-roundup",
+    title: "50+ Product Management Resources for Every Career Stage",
+    url: "https://www.tempo.io/guides/product-management-resources-roundup",
+    source: "Tempo.io",
+    description:
+      "Books, tools, podcasts, courses, and communities recommended by working PMs — from beginner essentials to advanced strategy and growth resources.",
+    category: "article",
+    date: "2026",
+  },
+  {
+    id: "pm-trends-2026",
+    title: "Product Management Trends: 11 Shifts Shaping 2026",
+    url: "https://productschool.com/blog/product-fundamentals/product-management-trends",
+    source: "Product School",
+    description:
+      "Signals from top product leaders on how the PM role is evolving — AI copilots, continuous discovery, outcome over output, and the rise of product ops.",
+    category: "article",
+    date: "2026",
+  },
+  {
+    id: "figma-jtbd-template",
+    title: "Jobs To Be Done — Free FigJam Template",
+    url: "https://www.figma.com/templates/jobs-to-be-done-examples/",
+    source: "Figma Community",
+    description:
+      "A ready-to-use FigJam template for mapping JTBD interviews into actionable jobs, pains, and gains. Great for workshop facilitation and team alignment.",
+    category: "template",
+    date: "2025",
+  },
+  {
+    id: "miro-jtbd-template",
+    title: "Jobs to Be Done Templates — Miro",
+    url: "https://miro.com/templates/jobs-to-be-done/",
+    source: "Miro",
+    description:
+      "Collaborative JTBD templates for analysing demand creation and the hiring process. Works well for cross-functional workshops and remote product discovery.",
+    category: "template",
+    date: "2025",
+  },
 ] as const;
 
 // ---- Projects ----

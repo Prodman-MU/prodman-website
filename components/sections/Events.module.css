@@ -690,3 +690,9 @@ html[data-theme="light"] .panelInner {
     transition: none;
   }
 }
+
+html[data-theme="light"] #events {
+  background:
+    linear-gradient(135deg, transparent 0 82%, rgba(10, 10, 10, 0.07) 82% 100%),
+    #dff8fa;
+}

@@ -88,7 +88,9 @@ export function ProductBreakdown() {
     [handleCategorySelect]
   );
 
-  // Keyboard navigation for desktop lifecycle stage nodes (Roving tabindex)
+  // Roving-tabindex keyboard handler shared by desktop orbital nodes and
+  // mobile step nodes. Resolves the target ref at event-handler time (not
+  // during render) so the react-hooks/refs lint rule is satisfied.
   const handleNodeKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
       const total = productBreakdown.length;
@@ -122,10 +124,9 @@ export function ProductBreakdown() {
         nodeRefs.current[nextIndex]?.focus();
       }
     },
-    [handleStageSelect]
+    [handleStageSelect],
   );
 
-  // Keyboard navigation for mobile lifecycle step nodes (Roving tabindex)
   const handleMobileNodeKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
       const total = productBreakdown.length;
@@ -164,7 +165,7 @@ export function ProductBreakdown() {
         mobileNodeRefs.current[nextIndex]?.focus();
       }
     },
-    [handleStageSelect]
+    [handleStageSelect],
   );
 
   // Stepper handlers (Prev / Next buttons)

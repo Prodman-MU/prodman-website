@@ -660,3 +660,9 @@
 :global(html[data-theme="light"]) .shortVersion {
   border-top: 2px solid var(--paper);
 }
+
+:global(html[data-theme="light"]) #breakdown {
+  background:
+    linear-gradient(90deg, transparent 0 78%, rgba(86, 220, 233, 0.24) 78% 100%),
+    var(--surface);
+}

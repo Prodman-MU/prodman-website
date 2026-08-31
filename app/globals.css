@@ -291,35 +291,24 @@ html[data-theme="light"] .tag {
   font-weight: 700;
 }
 
-html[data-theme="light"] #events {
-  background:
-    linear-gradient(135deg, transparent 0 82%, rgba(10, 10, 10, 0.07) 82% 100%),
-    #dff8fa;
+
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 99999;
+  padding: 1rem 1.5rem;
+  background: var(--acid);
+  color: var(--accent-ink);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-html[data-theme="light"] #mission {
-  background:
-    linear-gradient(90deg, rgba(10, 10, 10, 0.08) 1px, transparent 1px),
-    var(--acid);
-  background-size: 8.333% 100%, auto;
-}
-
-html[data-theme="light"] #mission .section__label {
-  background: var(--cyan);
-}
-
-html[data-theme="light"] #breakdown {
-  background:
-    linear-gradient(90deg, transparent 0 78%, rgba(86, 220, 233, 0.24) 78% 100%),
-    var(--surface);
-}
-
-html[data-theme="light"] #resources {
-  background: color-mix(in srgb, var(--purple) 26%, var(--ink));
-}
-
-html[data-theme="light"] #projects {
-  background: color-mix(in srgb, var(--coral) 20%, var(--ink));
+.skip-link:focus {
+  top: 0;
 }
 
 .visually-hidden {

@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <SiteNav />
       <Hero />
-      <main>
+      <main id="main-content">
         <WhoAreWe />
         <Members />
         <Events />

@@ -1,12 +1,8 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { whatsappUrl } from "@/lib/content";
+import { resources, whatsappUrl } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import styles from "./ComingSoon.module.css";
-
-const cardLiftSpring = { type: "spring", stiffness: 350, damping: 25, mass: 0.8 } as const;
+import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
+import styles from "./Resources.module.css";
 
 export function Resources() {
   return (
@@ -23,30 +19,46 @@ export function Resources() {
           </p>
         </Reveal>
 
-        <Reveal amount={0.2}>
-          <motion.div
-            className={styles.panel}
-            whileHover={{ y: -3, scale: 1.01 }}
-            transition={cardLiftSpring}
-            data-cursor-text="Soon"
-          >
-            <span className={`tag ${styles.badge}`}>Coming Soon</span>
-            <p>
-              We&rsquo;re curating the club&rsquo;s first set of resources. In the meantime, join the
-              WhatsApp community — that&rsquo;s where new finds get shared first.
+        <StaggerContainer staggerDelay={0.08} viewportAmount={0.15} className={styles.grid}>
+          {resources.map((resource) => (
+            <StaggerItem key={resource.id} variant="fadeUp" className={styles.cardWrap}>
+              <div className={styles.card} data-cursor-text="Read">
+                <div className={styles.cardHeader}>
+                  <span className={styles.categoryTag}>{resource.category}</span>
+                  {resource.date ? <span className={styles.date}>{resource.date}</span> : null}
+                </div>
+                <h3 className={styles.title}>{resource.title}</h3>
+                <p className={styles.source}>{resource.source}</p>
+                <p className={styles.description}>{resource.description}</p>
+                <a
+                  className={styles.link}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor-text="Open"
+                >
+                  Read article <span className={styles.linkArrow} aria-hidden="true">→</span>
+                </a>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
+        <Reveal delay={0.1} amount={0.2}>
+          <div className={styles.card} style={{ marginTop: "clamp(2rem, 4vw, 3.5rem)", textAlign: "center" }}>
+            <p style={{ color: "var(--muted)", margin: "0 0 1rem", fontSize: "0.9rem", lineHeight: 1.6 }}>
+              Have a resource worth sharing? Drop it in the community — that&apos;s where new finds get posted first.
             </p>
-            <motion.a
+            <a
               className="cta cta--ghost"
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              whileHover={{ y: -2, scale: 1.03 }}
-              whileTap={{ scale: 0.96 }}
               data-cursor-text="Join"
             >
-              Join the Community &rarr;
-            </motion.a>
-          </motion.div>
+              Join the Community →
+            </a>
+          </div>
         </Reveal>
       </div>
     </section>

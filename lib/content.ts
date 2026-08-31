@@ -427,4 +427,54 @@ export const siteNav = [
 ];
 
 export const whatsappUrl = "https://chat.whatsapp.com/JfTjBNCtzUNLv412bHFNYU";
-export const registrationUrl = "#"; // TODO: real event registration flow — see docs/PRD.md Section 11
+export const registrationUrl = "https://forms.gle/KYP1ZWvV58hLpekX9";
+
+// ---- Resources ----
+
+export interface Resource {
+  readonly id: string;
+  readonly title: string;
+  readonly url: string;
+  readonly source: string;
+  readonly description: string;
+  readonly category: "article" | "tool" | "framework" | "template";
+  readonly date?: string;
+}
+
+export const resources: readonly Resource[] = [
+  {
+    id: "20-years-pm-25-minutes",
+    title: "20 Years of Product Management in 25 Minutes",
+    url: "https://www.mindtheproduct.com/20-years-product-management-25-minutes-dave-wascha/",
+    source: "Mind the Product",
+    description:
+      "Dave Wascha distils two decades of product lessons into a fast, irreverent walkthrough — from the birth of product management to the skills that actually matter today.",
+    category: "article",
+    date: "2024",
+  },
+] as const;
+
+// ---- Projects ----
+
+export interface Project {
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly contributors: readonly string[];
+  readonly url?: string;
+  readonly tags: readonly string[];
+  readonly accentColor: string;
+}
+
+export const projects: readonly Project[] = [
+  {
+    id: "prodman-website",
+    title: "ProdMan Club Website",
+    description:
+      "An interactive brand identity and community platform — living-logo hero, editorial neo-brutalist design system, and a full nine-section site built with Next.js, TypeScript, and Framer Motion.",
+    contributors: ["Om Umrania", "Sai Harsha Sadhu"],
+    url: "https://github.com/Prodman-MU/prodman-website",
+    tags: ["Next.js", "TypeScript", "Framer Motion"],
+    accentColor: "var(--acid)",
+  },
+] as const;

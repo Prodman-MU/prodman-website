@@ -11,7 +11,7 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 - `lib/content.ts` is the typed content boundary sourced from `resources/*.txt`.
 - `components/hero/` owns the canonical Canvas 2D living-logo runtime.
 - `components/motion/` owns reusable reveal/stagger primitives and the hydration-safe reduced-motion store.
-- `components/theme/` owns the interactive color-theme control; `lib/theme.ts` owns client-side theme application, persistence, and the canvas notification event.
+- `components/theme/ThemeToggle.tsx` owns the interactive light/dark icon control; the `beforeInteractive` script in `app/layout.tsx` bootstraps the root `data-theme` attribute synchronously before first paint.
 - `components/site-nav/` owns scroll progress, current-section observation, and the responsive modal menu.
 - `components/sections/` owns section-local layouts, the visual-first Members portrait-deck state, and the interactive Product Breakdown client state.
 - `scripts/remove-team-backgrounds.mjs` and `scripts/process-team-photos.mjs` form the reproducible two-stage team-photo pipeline: AI segmentation to a temporary cache, then deterministic cleanup/framing to transparent WebP assets.

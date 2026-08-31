@@ -37,6 +37,8 @@
   ],
   "exclude": [
     "node_modules",
-    "resources/prodman-living-logo"
+    "resources/prodman-living-logo",
+    "prodman-launch-video",
+    "launch-video"
   ]
 }

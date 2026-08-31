@@ -10,6 +10,8 @@ A follow-on **navigation and runtime-quality pass** continues the earlier Gemini
 
 The site now also has a complete **editorial neo-brutalist light mode**. Every fresh page load starts in light mode regardless of system preference or previously stored browser data; visitors can still switch to dark mode for the current visit. Every major surface, including both particle canvases, is theme-aware. See "Light Mode + Neo-Brutalist System" below.
 
+A reproducible **41-second ProdMan launch film** now lives in `launch-video/`. It has native 1920×1080 and 1080×1920 Remotion compositions, uses high-resolution captures of the deployed site plus existing brand/event assets, and includes an original deterministic stereo score. The approved timing, copy, aspect-ratio direction, and asset provenance are documented in `docs/LAUNCH_VIDEO_STORYBOARD.md`; render and validation commands are in `launch-video/README.md`. Generated masters live under `launch-video/out/` and are intentionally ignored by Git.
+
 ## What Has Been Implemented
 
 - Hero (Section 0): the living-logo prototype ported into `components/hero/Hero.tsx` + `useLivingLogo.ts` — same particle field, sheen/scan, pointer response, reduced-motion fallback, and off-screen/background-tab suspension, now with an added "next event" chip linking to the Events section. The visible pause/play control was intentionally removed on 2026-08-10.

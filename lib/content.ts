@@ -567,4 +567,24 @@ export const projects: readonly Project[] = [
     tags: ["Next.js", "TypeScript", "Framer Motion"],
     accentColor: "var(--acid)",
   },
+  {
+    id: "mu-dropshipping-marketplace",
+    title: "Masters Union Dropshipping 2026",
+    description:
+      "A curated B2B marketplace connecting Masters' Union student entrepreneurs with verified suppliers and artisan manufacturers — merchant store moderation, vendor portals, and an admin control desk for sourcing high-margin products to dropship.",
+    contributors: ["Akshat Dhaundiyal"],
+    url: "https://dropshipping-marketplace.vercel.app/",
+    tags: ["Next.js", "Marketplace", "E-commerce"],
+    accentColor: "var(--cyan)",
+  },
+  {
+    id: "mu-councilverse",
+    title: "MU Councilverse",
+    description:
+      "An interactive directory of Masters' Union's student councils — Sports, Socio-Cultural, Belong, SEWA, FOCOS and more — where every member is a tappable face card that opens a bio and LinkedIn, with search across the full roster.",
+    contributors: ["Anusha P. B."],
+    url: "https://mu-student-council.base44.app/",
+    tags: ["Base44", "Directory", "Student Councils"],
+    accentColor: "var(--purple)",
+  },
 ] as const;

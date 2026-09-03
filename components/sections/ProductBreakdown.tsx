@@ -13,6 +13,172 @@ import { SplitHeading } from "@/components/motion/SplitHeading";
 import { useHydratedReducedMotion } from "@/components/motion/useHydratedReducedMotion";
 import styles from "./ProductBreakdown.module.css";
 
+type ProductIconName =
+  | "grid"
+  | "compass"
+  | "pencil"
+  | "code"
+  | "chart"
+  | "sparkles"
+  | "search"
+  | "route"
+  | "wireframe"
+  | "layers"
+  | "users"
+  | "rocket"
+  | "shield"
+  | "chevron-left"
+  | "chevron-right";
+
+const categoryIcons: Record<"all" | PMCategory, ProductIconName> = {
+  all: "grid",
+  strategy: "compass",
+  design: "pencil",
+  tech: "code",
+  growth: "chart",
+  ai_leadership: "sparkles",
+};
+
+const stageIcons: readonly ProductIconName[] = [
+  "search",
+  "route",
+  "wireframe",
+  "layers",
+  "users",
+  "chart",
+  "rocket",
+  "shield",
+];
+
+function ProductIcon({ name, className }: { name: ProductIconName; className?: string }) {
+  const paths = (() => {
+    switch (name) {
+      case "grid":
+        return (
+          <>
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </>
+        );
+      case "compass":
+        return (
+          <>
+            <circle cx="12" cy="12" r="9" />
+            <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z" />
+          </>
+        );
+      case "pencil":
+        return (
+          <>
+            <path d="m4 20 4.2-1 10.9-10.9a2.1 2.1 0 0 0-3-3L5.2 16 4 20Z" />
+            <path d="m14.8 6.4 2.8 2.8" />
+          </>
+        );
+      case "code":
+        return (
+          <>
+            <path d="m8 9-4 3 4 3" />
+            <path d="m16 9 4 3-4 3" />
+            <path d="m14 5-4 14" />
+          </>
+        );
+      case "chart":
+        return (
+          <>
+            <path d="M4 19V9" />
+            <path d="M10 19V5" />
+            <path d="M16 19v-7" />
+            <path d="M22 19H2" />
+            <path d="m3 7 6-4 6 5 6-5" />
+          </>
+        );
+      case "sparkles":
+        return (
+          <>
+            <path d="m12 3 1.1 3.4L16.5 8l-3.4 1.6L12 13l-1.1-3.4L7.5 8l3.4-1.6L12 3Z" />
+            <path d="m18.5 13 .7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z" />
+            <path d="m5.5 14 .6 1.7 1.7.8-1.7.7-.6 1.8-.7-1.8-1.8-.7 1.8-.8.7-1.7Z" />
+          </>
+        );
+      case "search":
+        return (
+          <>
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m15.5 15.5 4.5 4.5" />
+          </>
+        );
+      case "route":
+        return (
+          <>
+            <circle cx="5" cy="18" r="2" />
+            <circle cx="19" cy="6" r="2" />
+            <path d="M7 18h3a3 3 0 0 0 3-3V9a3 3 0 0 1 3-3h1" />
+          </>
+        );
+      case "wireframe":
+        return (
+          <>
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <path d="M3 9h18M9 9v11" />
+          </>
+        );
+      case "layers":
+        return (
+          <>
+            <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+            <path d="m3 12 9 5 9-5" />
+            <path d="m3 16 9 5 9-5" />
+          </>
+        );
+      case "users":
+        return (
+          <>
+            <circle cx="9" cy="8" r="3" />
+            <path d="M3.5 20v-2.2A4.8 4.8 0 0 1 8.3 13h1.4a4.8 4.8 0 0 1 4.8 4.8V20" />
+            <path d="M15 5.2a3 3 0 0 1 0 5.6M17 13a4.8 4.8 0 0 1 3.5 4.6V20" />
+          </>
+        );
+      case "rocket":
+        return (
+          <>
+            <path d="M14 4c3-2 5-1 6-1 0 1 1 3-1 6l-5 5-5-5 4-5Z" />
+            <path d="m10 9-4 1-3 3 6 1M15 14l-1 6-3 1-1-6" />
+            <circle cx="15.5" cy="7.5" r="1.5" />
+            <path d="m6 18-2 2" />
+          </>
+        );
+      case "shield":
+        return (
+          <>
+            <path d="M12 3 5 6v5c0 4.6 2.8 8.1 7 10 4.2-1.9 7-5.4 7-10V6l-7-3Z" />
+            <path d="m12 7 .8 2.2 2.2.8-2.2.8L12 13l-.8-2.2L9 10l2.2-.8L12 7Z" />
+          </>
+        );
+      case "chevron-left":
+        return <path d="m15 18-6-6 6-6" />;
+      case "chevron-right":
+        return <path d="m9 18 6-6-6-6" />;
+    }
+  })();
+
+  return (
+    <svg
+      className={className}
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {paths}
+    </svg>
+  );
+}
+
 export function ProductBreakdown() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<"all" | PMCategory>("all");
@@ -25,11 +191,28 @@ export function ProductBreakdown() {
 
   const activeItem: ProductBreakdownItem = productBreakdown[activeIndex] ?? productBreakdown[0];
 
+  const scrollMobileStageIntoView = useCallback(
+    (index: number) => {
+      window.requestAnimationFrame(() => {
+        const target = mobileNodeRefs.current[index];
+        if (!target || target.offsetParent === null) return;
+
+        target.scrollIntoView({
+          behavior: shouldReduceMotion ? "auto" : "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      });
+    },
+    [shouldReduceMotion],
+  );
+
   // Stage switch handler: updates active index and syncs category tab state automatically
   const handleStageSelect = useCallback((index: number) => {
     setActiveIndex(index);
     setActiveCategory(productBreakdown[index].category);
-  }, []);
+    scrollMobileStageIntoView(index);
+  }, [scrollMobileStageIntoView]);
 
   // Category switch handler: auto-selects first stage in category if current item is outside
   const handleCategorySelect = useCallback(
@@ -39,10 +222,11 @@ export function ProductBreakdown() {
         const matchingIndex = productBreakdown.findIndex((item) => item.category === catId);
         if (matchingIndex !== -1 && productBreakdown[activeIndex].category !== catId) {
           setActiveIndex(matchingIndex);
+          scrollMobileStageIntoView(matchingIndex);
         }
       }
     },
-    [activeIndex]
+    [activeIndex, scrollMobileStageIntoView]
   );
 
   // Keyboard navigation for category filter tabs (Roving tabindex)
@@ -251,6 +435,9 @@ export function ProductBreakdown() {
                       }
                     />
                   )}
+                  <span className={styles.categoryTabIcon}>
+                    <ProductIcon name={categoryIcons[category.id]} />
+                  </span>
                   <span className={styles.categoryTabText}>{category.label}</span>
                 </motion.button>
               );
@@ -262,7 +449,7 @@ export function ProductBreakdown() {
         <div className={styles.mainLayout}>
           {/* Left Column: Radial Orbital Dial & Mobile Controls */}
           <Reveal amount={0.2} className={styles.dialColumn}>
-            {/* Mobile Step Bar (< 768px viewports) */}
+            {/* Mobile Step Bar (< 900px viewports) */}
             <div
               role="tablist"
               aria-label="Product Management Lifecycle Stages Mobile"
@@ -292,16 +479,21 @@ export function ProductBreakdown() {
                     whileTap={{ scale: 0.95 }}
                     data-cursor-text="Select"
                   >
-                    <span className={styles.mobileStepNodeNum}>
-                      {String(index + 1).padStart(2, "0")}
+                    <span className={styles.mobileStepIcon}>
+                      <ProductIcon name={stageIcons[index]} />
                     </span>
-                    <span>{item.title}</span>
+                    <span className={styles.mobileStepCopy}>
+                      <span className={styles.mobileStepNodeNum}>
+                        Stage {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={styles.mobileStepTitle}>{item.title}</span>
+                    </span>
                   </motion.button>
                 );
               })}
             </div>
 
-            {/* Desktop SVG Radial Orbital Dial (>= 768px viewports) */}
+            {/* Desktop SVG Radial Orbital Dial (>= 900px viewports) */}
             <div className={styles.dialWrapper}>
               {/* Decorative Background SVG Ring & Pointer Beam */}
               <svg className={styles.dialSvgRing} viewBox="0 0 400 400" fill="none">
@@ -387,7 +579,7 @@ export function ProductBreakdown() {
                       transition={{ type: "spring", stiffness: 450, damping: 22 }}
                       data-cursor-text="Select"
                     >
-                      {String(index + 1).padStart(2, "0")}
+                      <ProductIcon name={stageIcons[index]} className={styles.orbitalNodeIcon} />
                     </motion.button>
                   );
                 })}
@@ -405,10 +597,14 @@ export function ProductBreakdown() {
                 whileTap={{ scale: 0.95 }}
                 data-cursor-text="Prev"
               >
-                &larr; Prev
+                <ProductIcon name="chevron-left" className={styles.stepperBtnIcon} />
+                <span>Prev</span>
               </motion.button>
-              <span className={styles.stepCounter}>
-                STAGE {String(activeIndex + 1).padStart(2, "0")} OF 08
+              <span
+                className={styles.stepCounter}
+                aria-label={`Stage ${activeIndex + 1} of ${productBreakdown.length}`}
+              >
+                {String(activeIndex + 1).padStart(2, "0")} / 08
               </span>
               <motion.button
                 type="button"
@@ -419,7 +615,8 @@ export function ProductBreakdown() {
                 whileTap={{ scale: 0.95 }}
                 data-cursor-text="Next"
               >
-                Next &rarr;
+                <span>Next</span>
+                <ProductIcon name="chevron-right" className={styles.stepperBtnIcon} />
               </motion.button>
             </div>
           </Reveal>
@@ -457,13 +654,17 @@ export function ProductBreakdown() {
                   {/* Top Header Badge & Stage Counter */}
                   <div className={styles.cardTopHeader}>
                     <span className={styles.badge}>
-                      <span
-                        className={styles.badgeDot}
-                        style={{ backgroundColor: activeItem.accentColor }}
+                      <ProductIcon
+                        name={categoryIcons[activeItem.category]}
+                        className={styles.badgeIcon}
                       />
                       {activeItem.categoryLabel}
                     </span>
                     <span className={styles.stageNumber}>
+                      <ProductIcon
+                        name={stageIcons[activeIndex]}
+                        className={styles.stageNumberIcon}
+                      />
                       STAGE {String(activeIndex + 1).padStart(2, "0")}
                     </span>
                   </div>

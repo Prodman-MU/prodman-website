@@ -135,3 +135,21 @@
 :global(html[data-theme="light"]) .muLogo {
   filter: invert(1);
 }
+
+.cookieLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.cookieLink:hover,
+.cookieLink:focus-visible {
+  opacity: 1;
+}

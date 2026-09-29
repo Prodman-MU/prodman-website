@@ -3,6 +3,8 @@ import { Fraunces, Inter } from "next/font/google";
 import Script from "next/script";
 import { Preloader } from "@/components/preloader/Preloader";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { ConsentBanner } from "@/components/consent/ConsentBanner";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import "./globals.css";
 
@@ -86,6 +88,8 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </MotionProvider>
+        <GoogleAnalytics />
+        <ConsentBanner />
       </body>
     </html>
   );

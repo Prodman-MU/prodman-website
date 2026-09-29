@@ -100,6 +100,14 @@ export function SiteFooter() {
           <Image src="/brand/masters-union-logo-white.png" alt="" width={23} height={12} className={styles.muLogo} />
           A Masters&rsquo; Union Club
         </span>
+        <button
+          type="button"
+          className={styles.cookieLink}
+          onClick={() => window.dispatchEvent(new Event("prodman:open-consent"))}
+          data-cursor-text="Cookies"
+        >
+          Cookie settings
+        </button>
       </Reveal>
     </footer>
   );

@@ -1,0 +1,110 @@
+.page {
+  min-height: 100svh;
+  background: var(--ink);
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.container { width: min(1180px, 90vw); margin-inline: auto; }
+.header { display: flex; align-items: center; gap: 2rem; padding-block: 1.1rem; border-bottom: 2px solid var(--paper); }
+.brand { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.06em; text-decoration: none; }
+.affiliation, .back, .sleeveLabel, .collectionHeader p, .cardTop, .composer, .albumMeta, .listen, .trackList summary, .noteSignoff { font-family: var(--font-mono); }
+.affiliation { color: var(--muted); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.headerActions { display: flex; align-items: center; gap: 1.25rem; margin-left: auto; }
+.back { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-size: 0.68rem; text-decoration: none; }
+.back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center; padding-block: clamp(3rem, 7vw, 6rem); }
+.intro { animation: enter 700ms var(--ease-expo-out) both; }
+.heading { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(3rem, 5.5vw, 5.2rem); line-height: 1.03; letter-spacing: -0.045em; }
+.heading em { font-weight: 400; }
+.lede { max-width: 45ch; margin-block: 1.5rem; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.collectionLink { display: inline-flex; align-items: center; gap: 1.4rem; min-height: 48px; padding: 0.7rem 1rem; border: 2px solid var(--paper); background: var(--acid); color: var(--accent-ink); box-shadow: 4px 4px 0 var(--shadow); font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease; }
+.collectionLink:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+.recordSleeve { position: relative; display: grid; justify-items: center; padding: 1.2rem 1.4rem; border: 2px solid var(--paper); background: var(--purple); color: var(--accent-ink); box-shadow: 8px 8px 0 var(--shadow); transform: rotate(4deg); animation: sleeveEnter 900ms var(--ease-expo-out) both; }
+.sleeveLabel { width: 100%; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.record { display: grid; place-items: center; width: 100%; aspect-ratio: 1; margin-block: 1rem; border-radius: 50%; background: repeating-radial-gradient(circle, #171717 0 2px, #292929 3px, #111 4px 6px); box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.25); transition: transform 1s var(--ease-expo-out); }
+.recordSleeve:hover .record { transform: rotate(30deg); }
+.recordLabel { position: relative; overflow: hidden; width: 47%; aspect-ratio: 1; border: 5px solid #111; border-radius: 50%; }
+.recordLabel img { width: 100%; height: 100%; object-fit: cover; }
+.spindle { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border: 3px solid #111; border-radius: 50%; background: var(--purple); transform: translate(-50%, -50%); }
+.sleeveNote { justify-self: start; font-family: var(--font-display); font-size: 1.5rem; font-style: italic; }
+.soundSticker { position: absolute; right: -0.8rem; bottom: 1.1rem; padding: 0.7rem 1.15rem; border: 2px solid #050505; background: var(--acid); color: #050505; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; line-height: 1.4; transform: rotate(-12deg); }
+.collection { scroll-margin-top: 1rem; }
+.collectionHeader { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.7rem 2rem; margin-bottom: 1.8rem; padding-block: 1rem; border-block: 2px solid var(--paper); }
+.collectionHeader h2 { margin: 0; font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; }
+.collectionHeader p { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0; color: var(--muted); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.75rem; }
+.card { min-width: 0; border: 2px solid var(--paper); background: var(--surface); box-shadow: 6px 6px 0 var(--shadow); animation: enter 650ms var(--ease-expo-out) var(--entry-delay) both; }
+.albumLink { display: block; text-decoration: none; }
+.cardTop { display: flex; align-items: center; gap: 0.65rem; padding: 0.7rem 0.85rem; border-bottom: 2px solid var(--paper); background: var(--album-accent); color: var(--accent-ink); font-size: 0.6rem; text-transform: uppercase; }
+.cardTop span:first-child { font-weight: 700; }
+.cardTop svg { width: 17px; height: 17px; margin-left: auto; }
+.artwork { position: relative; margin: 1rem 1rem 0; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 1; background: var(--surface-raised); }
+.artwork img { width: 100%; height: 100%; object-fit: contain; transition: transform 650ms var(--ease-expo-out); }
+.artworkBadge { position: absolute; right: 0.6rem; bottom: 0.6rem; padding: 0.25rem 0.45rem; border: 1px solid #050505; color: var(--accent-ink); background: var(--album-accent); font-family: var(--font-mono); font-size: 0.65rem; }
+.cardBody { padding: 1.25rem 1rem 1rem; }
+.composer { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.cardBody h3 { margin: 0 0 0.6rem; font-family: var(--font-display); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; }
+.edition { min-height: 3.2em; margin: 0; color: var(--muted); font-size: 0.72rem; line-height: 1.6; }
+.albumMeta { display: flex; gap: 0.65rem; margin-block: 1rem; color: var(--muted); font-size: 0.65rem; }
+.listen { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 0.75rem; border: 2px solid var(--paper); background: var(--control-bg); font-size: 0.65rem; font-weight: 700; transition: background-color 200ms ease, color 200ms ease; }
+.listen svg { width: 17px; height: 17px; transition: transform 250ms var(--ease-expo-out); }
+.albumLink:hover .listen, .albumLink:focus-visible .listen { background: var(--album-accent); color: var(--accent-ink); }
+.albumLink:hover .listen svg { transform: translate(2px, -2px); }
+.trackList { border-top: 1px solid var(--line); }
+.trackList summary { display: flex; align-items: center; gap: 0.5rem; min-height: 48px; padding: 0.9rem 1rem; cursor: pointer; list-style: none; font-size: 0.66rem; }
+.trackList summary::-webkit-details-marker { display: none; }
+.trackList summary > span:first-child { color: var(--muted); }
+.plus { margin-left: auto; font-size: 1.1rem; transition: transform 200ms ease; }
+.trackList[open] .plus { transform: rotate(45deg); }
+.trackList ol { max-height: 340px; overflow-y: auto; overscroll-behavior: contain; margin: 0; padding: 0 0.7rem 0.7rem; list-style: none; scrollbar-width: thin; }
+.trackList li + li { border-top: 1px solid var(--line); }
+.trackList li a { display: grid; grid-template-columns: 1.5rem 1fr auto; align-items: center; gap: 0.55rem; min-height: 44px; padding: 0.6rem 0.3rem; font-size: 0.74rem; line-height: 1.45; text-decoration: none; }
+.trackList li a:hover { background: var(--control-bg); text-decoration: underline; text-underline-offset: 3px; }
+.trackNumber, .trackDuration { color: var(--muted); font-family: var(--font-mono); font-size: 0.6rem; }
+.collectionNote { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 2rem; border: 2px dashed var(--line-strong); }
+.noteGlyph { display: block; margin-bottom: 1.5rem; color: var(--cyan-text); font-family: var(--font-display); font-size: 4rem; line-height: 1; transform: rotate(-12deg); }
+.collectionNote :global(.section__label) { font-size: 0.6rem; }
+.collectionNote h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: 2.5rem; line-height: 1.1; letter-spacing: -0.03em; }
+.collectionNote > p:not(:first-child) { color: var(--muted); font-size: 0.85rem; line-height: 1.75; }
+.noteSignoff { display: block; margin-top: 1rem; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 4rem; padding-block: 1.4rem 2.5rem; border-top: 2px solid var(--paper); font-size: 0.72rem; }
+.footer p { max-width: 50ch; margin: 0; color: var(--muted); line-height: 1.6; }
+.footer a { display: inline-flex; align-items: center; gap: 1rem; min-height: 44px; text-underline-offset: 4px; }
+.page a:focus-visible, .trackList summary:focus-visible { outline: 3px solid var(--cyan-text); outline-offset: 4px; }
+
+@keyframes enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sleeveEnter { from { opacity: 0; transform: translateY(18px) rotate(0deg); } to { opacity: 1; transform: translateY(0) rotate(4deg); } }
+
+@media (hover: hover) and (pointer: fine) {
+  .albumLink:hover .artwork img { transform: scale(1.04); }
+}
+
+@media (max-width: 1000px) {
+  .affiliation { display: none; }
+  .hero { gap: 2.5rem; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .heading { font-size: clamp(3rem, 6.5vw, 4.5rem); }
+}
+
+@media (max-width: 600px) {
+  .header { gap: 0.7rem; }
+  .headerActions { gap: 0.7rem; }
+  .back { font-size: 0.6rem; }
+  .hero { grid-template-columns: 1fr; gap: 2.75rem; padding-block: 2.75rem; }
+  .heading { font-size: clamp(2.7rem, 10vw, 3.8rem); }
+  .lede { font-size: 0.9rem; }
+  .recordSleeve { width: min(290px, 84%); margin-inline: auto; }
+  .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cardBody h3 { font-size: 2rem; }
+  .edition { min-height: 0; }
+  .collectionNote { padding: 1.6rem; }
+  .collectionHeader p { font-size: 0.58rem; gap: 0.5rem; }
+  .footer { margin-top: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro, .recordSleeve, .card { animation: none; }
+  .page *, .page *::before, .page *::after { transition: none; }
+  .recordSleeve:hover .record, .albumLink:hover .artwork img, .albumLink:hover .listen svg { transform: none; }
+}

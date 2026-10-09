@@ -46,6 +46,9 @@ export function Events() {
             Four high-energy experiences designed to take you through the complete product-building
             journey — discover, design, validate, and showcase.
           </p>
+          <p>
+            <Link href="/events/music" data-cursor-text="Music">Explore the event soundtracks ↗</Link>
+          </p>
         </Reveal>
 
         <StaggerContainer staggerDelay={0.08} viewportAmount={0.15} className={styles.timeline}>

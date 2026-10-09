@@ -23,5 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...teamPages,
     ...eventPages,
+    { url: `${BASE_URL}/events/music`, lastModified: now },
   ];
 }

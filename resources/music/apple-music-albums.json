@@ -1,0 +1,682 @@
+[
+  {
+    "id": "endgame",
+    "title": "Avengers: Endgame (Original Motion Picture Soundtrack)",
+    "artist": [
+      {
+        "@type": "MusicGroup",
+        "url": "https://music.apple.com/in/artist/alan-silvestri/611137",
+        "name": "Alan Silvestri"
+      }
+    ],
+    "description": "Listen to Avengers: Endgame (Original Motion Picture Soundtrack) by Alan Silvestri on Apple Music.  2019.  35 Songs. Duration: 1 hour 56 minutes.",
+    "url": "https://music.apple.com/in/album/avengers-endgame-original-motion-picture-soundtrack/1460618908",
+    "artwork": "/events/music/endgame.jpg",
+    "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f3/90/e6/f390e639-1ec5-ebe0-cfb9-232b844d10c8/19UMGIM37659.rgb.jpg/800x800bb.jpg",
+    "tracks": [
+      {
+        "title": "Totally Fine",
+        "duration": "PT4M29S",
+        "url": "https://music.apple.com/in/song/totally-fine/1460618909"
+      },
+      {
+        "title": "Arrival",
+        "duration": "PT1M49S",
+        "url": "https://music.apple.com/in/song/arrival/1460618912"
+      },
+      {
+        "title": "No Trust",
+        "duration": "PT3M9S",
+        "url": "https://music.apple.com/in/song/no-trust/1460618913"
+      },
+      {
+        "title": "Where Are They?",
+        "duration": "PT3M12S",
+        "url": "https://music.apple.com/in/song/where-are-they/1460618914"
+      },
+      {
+        "title": "Becoming Whole Again",
+        "duration": "PT3M48S",
+        "url": "https://music.apple.com/in/song/becoming-whole-again/1460618915"
+      },
+      {
+        "title": "I Figured It Out",
+        "duration": "PT4M30S",
+        "url": "https://music.apple.com/in/song/i-figured-it-out/1460618916"
+      },
+      {
+        "title": "Perfectly Not Confusing",
+        "duration": "PT4M46S",
+        "url": "https://music.apple.com/in/song/perfectly-not-confusing/1460618917"
+      },
+      {
+        "title": "You Shouldn't Be Here",
+        "duration": "PT3M33S",
+        "url": "https://music.apple.com/in/song/you-shouldnt-be-here/1460618919"
+      },
+      {
+        "title": "The How Works",
+        "duration": "PT3M50S",
+        "url": "https://music.apple.com/in/song/the-how-works/1460618920"
+      },
+      {
+        "title": "Snap Out of It",
+        "duration": "PT2M24S",
+        "url": "https://music.apple.com/in/song/snap-out-of-it/1460618921"
+      },
+      {
+        "title": "So Many Stairs",
+        "duration": "PT1M51S",
+        "url": "https://music.apple.com/in/song/so-many-stairs/1460618923"
+      },
+      {
+        "title": "One Shot",
+        "duration": "PT2M4S",
+        "url": "https://music.apple.com/in/song/one-shot/1460618924"
+      },
+      {
+        "title": "Watch Each Other's Six",
+        "duration": "PT3M56S",
+        "url": "https://music.apple.com/in/song/watch-each-others-six/1460618925"
+      },
+      {
+        "title": "I Can't Risk This",
+        "duration": "PT4M48S",
+        "url": "https://music.apple.com/in/song/i-cant-risk-this/1460618926"
+      },
+      {
+        "title": "He Gave It Away",
+        "duration": "PT3M42S",
+        "url": "https://music.apple.com/in/song/he-gave-it-away/1460618927"
+      },
+      {
+        "title": "The Tool of a Thief",
+        "duration": "PT2M58S",
+        "url": "https://music.apple.com/in/song/the-tool-of-a-thief/1460618928"
+      },
+      {
+        "title": "The Measure of a Hero",
+        "duration": "PT3M5S",
+        "url": "https://music.apple.com/in/song/the-measure-of-a-hero/1460618929"
+      },
+      {
+        "title": "Destiny Fulfilled",
+        "duration": "PT4M5S",
+        "url": "https://music.apple.com/in/song/destiny-fulfilled/1460618930"
+      },
+      {
+        "title": "In Plain Sight",
+        "duration": "PT3M14S",
+        "url": "https://music.apple.com/in/song/in-plain-sight/1460618931"
+      },
+      {
+        "title": "How Do I Look?",
+        "duration": "PT2M6S",
+        "url": "https://music.apple.com/in/song/how-do-i-look/1460618932"
+      },
+      {
+        "title": "Whatever It Takes",
+        "duration": "PT2M56S",
+        "url": "https://music.apple.com/in/song/whatever-it-takes/1460618933"
+      },
+      {
+        "title": "Not Good",
+        "duration": "PT1M53S",
+        "url": "https://music.apple.com/in/song/not-good/1460618934"
+      },
+      {
+        "title": "Gotta Get Out",
+        "duration": "PT2M38S",
+        "url": "https://music.apple.com/in/song/gotta-get-out/1460618935"
+      },
+      {
+        "title": "I Was Made for This",
+        "duration": "PT4M37S",
+        "url": "https://music.apple.com/in/song/i-was-made-for-this/1460619026"
+      },
+      {
+        "title": "Tres Amigos",
+        "duration": "PT3M37S",
+        "url": "https://music.apple.com/in/song/tres-amigos/1460619027"
+      },
+      {
+        "title": "Tunnel Scape",
+        "duration": "PT3M16S",
+        "url": "https://music.apple.com/in/song/tunnel-scape/1460619028"
+      },
+      {
+        "title": "Worth It",
+        "duration": "PT4M15S",
+        "url": "https://music.apple.com/in/song/worth-it/1460619029"
+      },
+      {
+        "title": "Portals",
+        "duration": "PT3M17S",
+        "url": "https://music.apple.com/in/song/portals/1460619030"
+      },
+      {
+        "title": "Get This Thing Started",
+        "duration": "PT4M54S",
+        "url": "https://music.apple.com/in/song/get-this-thing-started/1460619031"
+      },
+      {
+        "title": "The One",
+        "duration": "PT2M8S",
+        "url": "https://music.apple.com/in/song/the-one/1460619032"
+      },
+      {
+        "title": "You Did Good",
+        "duration": "PT1M57S",
+        "url": "https://music.apple.com/in/song/you-did-good/1460619037"
+      },
+      {
+        "title": "The Real Hero",
+        "duration": "PT5M54S",
+        "url": "https://music.apple.com/in/song/the-real-hero/1460619038"
+      },
+      {
+        "title": "Five Seconds",
+        "duration": "PT1M45S",
+        "url": "https://music.apple.com/in/song/five-seconds/1460619039"
+      },
+      {
+        "title": "Go Ahead",
+        "duration": "PT2M57S",
+        "url": "https://music.apple.com/in/song/go-ahead/1460619040"
+      },
+      {
+        "title": "Main on End",
+        "duration": "PT3M11S",
+        "url": "https://music.apple.com/in/song/main-on-end/1460619041"
+      }
+    ]
+  },
+  {
+    "id": "infinity-war",
+    "title": "Avengers: Infinity War (Original Motion Picture Soundtrack) [Deluxe Edition]",
+    "artist": [
+      {
+        "@type": "MusicGroup",
+        "url": "https://music.apple.com/in/artist/alan-silvestri/611137",
+        "name": "Alan Silvestri"
+      }
+    ],
+    "description": "Listen to Avengers: Infinity War (Original Motion Picture Soundtrack) [Deluxe Edition] by Alan Silvestri on Apple Music.  2018.  30 Songs. Duration: 1 hour 56 minutes.",
+    "url": "https://music.apple.com/in/album/avengers-infinity-war-original-motion-picture-soundtrack/1375728446",
+    "artwork": "/events/music/infinity-war.jpg",
+    "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c0/06/84/c0068466-5ef1-1cb1-4e5d-566bc7617fe8/00050087395100.rgb.jpg/800x800bb.jpg",
+    "tracks": [
+      {
+        "title": "The Avengers",
+        "duration": "PT25S",
+        "url": "https://music.apple.com/in/song/the-avengers/1375728457"
+      },
+      {
+        "title": "Travel Delays (Extended)",
+        "duration": "PT4M43S",
+        "url": "https://music.apple.com/in/song/travel-delays-extended/1375728458"
+      },
+      {
+        "title": "Undying Fidelity",
+        "duration": "PT5M5S",
+        "url": "https://music.apple.com/in/song/undying-fidelity/1375728459"
+      },
+      {
+        "title": "No More Surprises",
+        "duration": "PT4M4S",
+        "url": "https://music.apple.com/in/song/no-more-surprises/1375728460"
+      },
+      {
+        "title": "He Won't Come Out (Extended)",
+        "duration": "PT3M39S",
+        "url": "https://music.apple.com/in/song/he-wont-come-out-extended/1375729241"
+      },
+      {
+        "title": "Field Trip",
+        "duration": "PT3M36S",
+        "url": "https://music.apple.com/in/song/field-trip/1375729242"
+      },
+      {
+        "title": "Wake Him Up",
+        "duration": "PT4M4S",
+        "url": "https://music.apple.com/in/song/wake-him-up/1375729244"
+      },
+      {
+        "title": "We Both Made Promises (Extended)",
+        "duration": "PT4M27S",
+        "url": "https://music.apple.com/in/song/we-both-made-promises-extended/1375729245"
+      },
+      {
+        "title": "Help Arrives (Extended)",
+        "duration": "PT5M38S",
+        "url": "https://music.apple.com/in/song/help-arrives-extended/1375729263"
+      },
+      {
+        "title": "Hand Means Stop/You Go Right (Extended)",
+        "duration": "PT7M18S",
+        "url": "https://music.apple.com/in/song/hand-means-stop-you-go-right-extended/1375729264"
+      },
+      {
+        "title": "One Way Ticket",
+        "duration": "PT3M27S",
+        "url": "https://music.apple.com/in/song/one-way-ticket/1375729265"
+      },
+      {
+        "title": "Family Affairs (Extended)",
+        "duration": "PT5M37S",
+        "url": "https://music.apple.com/in/song/family-affairs-extended/1375729426"
+      },
+      {
+        "title": "What More Could I Lose? (Extended)",
+        "duration": "PT5M7S",
+        "url": "https://music.apple.com/in/song/what-more-could-i-lose-extended/1375729427"
+      },
+      {
+        "title": "A Small Price",
+        "duration": "PT3M17S",
+        "url": "https://music.apple.com/in/song/a-small-price/1375729428"
+      },
+      {
+        "title": "Even for You",
+        "duration": "PT2M15S",
+        "url": "https://music.apple.com/in/song/even-for-you/1375729429"
+      },
+      {
+        "title": "Morning After",
+        "duration": "PT2M8S",
+        "url": "https://music.apple.com/in/song/morning-after/1375729430"
+      },
+      {
+        "title": "Is He Always Like This?",
+        "duration": "PT3M23S",
+        "url": "https://music.apple.com/in/song/is-he-always-like-this/1375729431"
+      },
+      {
+        "title": "More Power",
+        "duration": "PT4M7S",
+        "url": "https://music.apple.com/in/song/more-power/1375729433"
+      },
+      {
+        "title": "Charge!",
+        "duration": "PT3M28S",
+        "url": "https://music.apple.com/in/song/charge/1375729434"
+      },
+      {
+        "title": "Forge",
+        "duration": "PT4M22S",
+        "url": "https://music.apple.com/in/song/forge/1375729437"
+      },
+      {
+        "title": "Catch",
+        "duration": "PT6M4S",
+        "url": "https://music.apple.com/in/song/catch/1375729438"
+      },
+      {
+        "title": "Haircut and Beard (Extended)",
+        "duration": "PT3M51S",
+        "url": "https://music.apple.com/in/song/haircut-and-beard-extended/1375729439"
+      },
+      {
+        "title": "A Lot to Figure Out (Extended)",
+        "duration": "PT3M8S",
+        "url": "https://music.apple.com/in/song/a-lot-to-figure-out-extended/1375729441"
+      },
+      {
+        "title": "The End Game (Extended)",
+        "duration": "PT2M34S",
+        "url": "https://music.apple.com/in/song/the-end-game-extended/1375729442"
+      },
+      {
+        "title": "Get That Arm/I Feel You (Extended)",
+        "duration": "PT4M45S",
+        "url": "https://music.apple.com/in/song/get-that-arm-i-feel-you-extended/1375729443"
+      },
+      {
+        "title": "What Did It Cost? (Extended)",
+        "duration": "PT3M35S",
+        "url": "https://music.apple.com/in/song/what-did-it-cost-extended/1375729444"
+      },
+      {
+        "title": "Porch",
+        "duration": "PT59S",
+        "url": "https://music.apple.com/in/song/porch/1375729445"
+      },
+      {
+        "title": "Infinity War",
+        "duration": "PT2M35S",
+        "url": "https://music.apple.com/in/song/infinity-war/1375729446"
+      },
+      {
+        "title": "Old Tech",
+        "duration": "PT1M6S",
+        "url": "https://music.apple.com/in/song/old-tech/1375729447"
+      },
+      {
+        "title": "End Credits",
+        "duration": "PT7M31S",
+        "url": "https://music.apple.com/in/song/end-credits/1375729448"
+      }
+    ]
+  },
+  {
+    "id": "cosmos",
+    "title": "Cosmos: A SpaceTime Odyssey (Music from the Original TV Series) Vol. 4",
+    "artist": [
+      {
+        "@type": "MusicGroup",
+        "url": "https://music.apple.com/in/artist/alan-silvestri/611137",
+        "name": "Alan Silvestri"
+      }
+    ],
+    "description": "Listen to Cosmos: A SpaceTime Odyssey (Music from the Original TV Series) Vol. 4 by Alan Silvestri on Apple Music.  2014.  13 Songs. Duration: 40 minutes.",
+    "url": "https://music.apple.com/in/album/cosmos-a-spacetime-odyssey-music-from-the-original/878200624",
+    "artwork": "/events/music/cosmos.jpg",
+    "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/9e/98/7b/9e987bfa-d2f5-87af-485a-eb18d58c48a0/5054227026485_1.jpg/800x800bb.jpg",
+    "tracks": [
+      {
+        "title": "The Pale Blue Bot",
+        "duration": "PT3M25S",
+        "url": "https://music.apple.com/in/song/the-pale-blue-bot/878200724"
+      },
+      {
+        "title": "Duck Soup?",
+        "duration": "PT3M55S",
+        "url": "https://music.apple.com/in/song/duck-soup/878200725"
+      },
+      {
+        "title": "Pat Patterson",
+        "duration": "PT3M7S",
+        "url": "https://music.apple.com/in/song/pat-patterson/878200726"
+      },
+      {
+        "title": "4.5 Billion Years Old",
+        "duration": "PT4M11S",
+        "url": "https://music.apple.com/in/song/4-5-billion-years-old/878200727"
+      },
+      {
+        "title": "Sifting the Stars",
+        "duration": "PT4M10S",
+        "url": "https://music.apple.com/in/song/sifting-the-stars/878200728"
+      },
+      {
+        "title": "Stellar Atmospheres",
+        "duration": "PT4M34S",
+        "url": "https://music.apple.com/in/song/stellar-atmospheres/878200729"
+      },
+      {
+        "title": "What About Us?",
+        "duration": "PT2M23S",
+        "url": "https://music.apple.com/in/song/what-about-us/878200731"
+      },
+      {
+        "title": "Adaptable Species",
+        "duration": "PT2M25S",
+        "url": "https://music.apple.com/in/song/adaptable-species/878200732"
+      },
+      {
+        "title": "Paris, 1878",
+        "duration": "PT2M38S",
+        "url": "https://music.apple.com/in/song/paris-1878/878200733"
+      },
+      {
+        "title": "Once There Was a World",
+        "duration": "PT3M56S",
+        "url": "https://music.apple.com/in/song/once-there-was-a-world/878200736"
+      },
+      {
+        "title": "Islands of Light",
+        "duration": "PT2M1S",
+        "url": "https://music.apple.com/in/song/islands-of-light/878200761"
+      },
+      {
+        "title": "Sacred Searching",
+        "duration": "PT1M23S",
+        "url": "https://music.apple.com/in/song/sacred-searching/878200762"
+      },
+      {
+        "title": "Cosmos: A Spacetime Odyssey - DVD End Credits",
+        "duration": "PT2M30S",
+        "url": "https://music.apple.com/in/song/cosmos-a-spacetime-odyssey-dvd-end-credits/878200763"
+      }
+    ]
+  },
+  {
+    "id": "the-avengers",
+    "title": "The Avengers (Original Motion Picture Soundtrack)",
+    "artist": [
+      {
+        "@type": "MusicGroup",
+        "url": "https://music.apple.com/in/artist/alan-silvestri/611137",
+        "name": "Alan Silvestri"
+      }
+    ],
+    "description": "Listen to The Avengers (Original Motion Picture Soundtrack) by Alan Silvestri on Apple Music.  2012.  18 Songs. Duration: 1 hour 4 minutes.",
+    "url": "https://music.apple.com/in/album/the-avengers-original-motion-picture-soundtrack/1440663549",
+    "artwork": "/events/music/the-avengers.jpg",
+    "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/67/26/1e/67261e17-cd3e-8448-77b5-3e38d3aa3766/00050087281557.rgb.jpg/800x800bb.jpg",
+    "tracks": [
+      {
+        "title": "Arrival",
+        "duration": "PT2M59S",
+        "url": "https://music.apple.com/in/song/arrival/1440663550"
+      },
+      {
+        "title": "Doors Open from Both Sides",
+        "duration": "PT2M48S",
+        "url": "https://music.apple.com/in/song/doors-open-from-both-sides/1440663671"
+      },
+      {
+        "title": "Tunnel Chase",
+        "duration": "PT2M36S",
+        "url": "https://music.apple.com/in/song/tunnel-chase/1440663674"
+      },
+      {
+        "title": "Stark Goes Green",
+        "duration": "PT2M41S",
+        "url": "https://music.apple.com/in/song/stark-goes-green/1440663679"
+      },
+      {
+        "title": "Helicarrier",
+        "duration": "PT2M9S",
+        "url": "https://music.apple.com/in/song/helicarrier/1440663680"
+      },
+      {
+        "title": "Subjugation",
+        "duration": "PT3M",
+        "url": "https://music.apple.com/in/song/subjugation/1440663681"
+      },
+      {
+        "title": "Don't Take My Stuff",
+        "duration": "PT4M42S",
+        "url": "https://music.apple.com/in/song/dont-take-my-stuff/1440663683"
+      },
+      {
+        "title": "Red Ledger",
+        "duration": "PT5M10S",
+        "url": "https://music.apple.com/in/song/red-ledger/1440663684"
+      },
+      {
+        "title": "Assault",
+        "duration": "PT4M25S",
+        "url": "https://music.apple.com/in/song/assault/1440663685"
+      },
+      {
+        "title": "They Called It",
+        "duration": "PT2M41S",
+        "url": "https://music.apple.com/in/song/they-called-it/1440663686"
+      },
+      {
+        "title": "Performance Issues",
+        "duration": "PT3M35S",
+        "url": "https://music.apple.com/in/song/performance-issues/1440663687"
+      },
+      {
+        "title": "Seeing, Not Believing",
+        "duration": "PT4M25S",
+        "url": "https://music.apple.com/in/song/seeing-not-believing/1440663688"
+      },
+      {
+        "title": "Assemble",
+        "duration": "PT4M31S",
+        "url": "https://music.apple.com/in/song/assemble/1440663690"
+      },
+      {
+        "title": "I Got a Ride",
+        "duration": "PT4M",
+        "url": "https://music.apple.com/in/song/i-got-a-ride/1440663691"
+      },
+      {
+        "title": "A Little Help",
+        "duration": "PT3M14S",
+        "url": "https://music.apple.com/in/song/a-little-help/1440663693"
+      },
+      {
+        "title": "One Way Trip",
+        "duration": "PT5M50S",
+        "url": "https://music.apple.com/in/song/one-way-trip/1440663694"
+      },
+      {
+        "title": "A Promise",
+        "duration": "PT3M34S",
+        "url": "https://music.apple.com/in/song/a-promise/1440663696"
+      },
+      {
+        "title": "The Avengers",
+        "duration": "PT2M3S",
+        "url": "https://music.apple.com/in/song/the-avengers/1440663698"
+      }
+    ]
+  },
+  {
+    "id": "thor-ragnarok",
+    "title": "Thor: Ragnarok (Original Motion Picture Soundtrack)",
+    "artist": [
+      {
+        "@type": "MusicGroup",
+        "url": "https://music.apple.com/in/artist/mark-mothersbaugh/1016592",
+        "name": "Mark Mothersbaugh"
+      }
+    ],
+    "description": "Listen to Thor: Ragnarok (Original Motion Picture Soundtrack) by Mark Mothersbaugh on Apple Music.  2017.  23 Songs. Duration: 1 hour 13 minutes.",
+    "url": "https://music.apple.com/in/album/thor-ragnarok-original-motion-picture-soundtrack/1440800925",
+    "artwork": "/events/music/thor-ragnarok.jpg",
+    "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c0/3d/5e/c03d5ea6-3983-cb3c-811e-5b580dd8175d/00050087377960.rgb.jpg/800x800bb.jpg",
+    "tracks": [
+      {
+        "title": "Ragnarok Suite",
+        "duration": "PT8M53S",
+        "url": "https://music.apple.com/in/song/ragnarok-suite/1440801224"
+      },
+      {
+        "title": "Running Short On Options",
+        "duration": "PT2M46S",
+        "url": "https://music.apple.com/in/song/running-short-on-options/1440801250"
+      },
+      {
+        "title": "Thor: Ragnarok",
+        "duration": "PT1M9S",
+        "url": "https://music.apple.com/in/song/thor-ragnarok/1440801475"
+      },
+      {
+        "title": "Weird Things Happen",
+        "duration": "PT1M46S",
+        "url": "https://music.apple.com/in/song/weird-things-happen/1440801484"
+      },
+      {
+        "title": "Twilight of the Gods",
+        "duration": "PT6M14S",
+        "url": "https://music.apple.com/in/song/twilight-of-the-gods/1440801554"
+      },
+      {
+        "title": "Hela vs. Asgard",
+        "duration": "PT4M30S",
+        "url": "https://music.apple.com/in/song/hela-vs-asgard/1440801560"
+      },
+      {
+        "title": "Where Am I?",
+        "duration": "PT1M39S",
+        "url": "https://music.apple.com/in/song/where-am-i/1440801572"
+      },
+      {
+        "title": "Grandmaster's Chambers",
+        "duration": "PT1M18S",
+        "url": "https://music.apple.com/in/song/grandmasters-chambers/1440801575"
+      },
+      {
+        "title": "The Vault",
+        "duration": "PT3M47S",
+        "url": "https://music.apple.com/in/song/the-vault/1440801852"
+      },
+      {
+        "title": "No One Escapes",
+        "duration": "PT3M1S",
+        "url": "https://music.apple.com/in/song/no-one-escapes/1440801860"
+      },
+      {
+        "title": "Arena Fight",
+        "duration": "PT3M32S",
+        "url": "https://music.apple.com/in/song/arena-fight/1440801866"
+      },
+      {
+        "title": "Where's the Sword?",
+        "duration": "PT4M33S",
+        "url": "https://music.apple.com/in/song/wheres-the-sword/1440801873"
+      },
+      {
+        "title": "Go",
+        "duration": "PT1M43S",
+        "url": "https://music.apple.com/in/song/go/1440801880"
+      },
+      {
+        "title": "What Heroes Do",
+        "duration": "PT1M37S",
+        "url": "https://music.apple.com/in/song/what-heroes-do/1440802158"
+      },
+      {
+        "title": "Flashback",
+        "duration": "PT2M59S",
+        "url": "https://music.apple.com/in/song/flashback/1440802167"
+      },
+      {
+        "title": "Parade",
+        "duration": "PT2M20S",
+        "url": "https://music.apple.com/in/song/parade/1440802173"
+      },
+      {
+        "title": "The Revolution Has Begun",
+        "duration": "PT1M47S",
+        "url": "https://music.apple.com/in/song/the-revolution-has-begun/1440802361"
+      },
+      {
+        "title": "Sakaar Chase",
+        "duration": "PT2M12S",
+        "url": "https://music.apple.com/in/song/sakaar-chase/1440802369"
+      },
+      {
+        "title": "Devil's Anus",
+        "duration": "PT4M52S",
+        "url": "https://music.apple.com/in/song/devils-anus/1440802376"
+      },
+      {
+        "title": "Asgard Is a People",
+        "duration": "PT4M20S",
+        "url": "https://music.apple.com/in/song/asgard-is-a-people/1440802384"
+      },
+      {
+        "title": "Where To?",
+        "duration": "PT2M22S",
+        "url": "https://music.apple.com/in/song/where-to/1440802541"
+      },
+      {
+        "title": "Planet Sakaar",
+        "duration": "PT2M14S",
+        "url": "https://music.apple.com/in/song/planet-sakaar/1440802546"
+      },
+      {
+        "title": "Grandmaster Jam Session",
+        "duration": "PT3M16S",
+        "url": "https://music.apple.com/in/song/grandmaster-jam-session/1440802551"
+      }
+    ]
+  }
+]

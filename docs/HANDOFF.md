@@ -180,3 +180,26 @@ session already doing the same work. Findings before stopping:
 ## Notes For Future Codex Sessions
 
 Preserve the animation's pause, visibility, responsive-density, and reduced-motion behavior — now enforced via `useLivingLogo.ts`'s effect cleanup rather than global DOM listeners. Read `docs/PRD.md` before changing content, section order, or visual direction; it supersedes assumptions in this file where the two disagree.
+
+## Event soundtrack collection — 2026-10-09
+
+`/events/music` now presents the five Apple Music albums supplied by the project
+owner. The page matches the existing warm-paper/dark theme, with a record-sleeve
+hero, accent-colored album cards, finite entrance and hover motion, and the
+shared theme toggle. Native keyboard-accessible disclosures contain all 119
+verified tracks. Albums and individual songs open Apple Music in a new tab.
+
+Source metadata and artwork provenance are recorded in `resources/music/`;
+`lib/music.ts` formats the snapshot. Original square covers are served from
+`public/events/music/` through Next/Image. Metadata does not auto-refresh, and
+no music player, preview audio, or external runtime integration was added.
+The homepage Events section links to the collection, and the sitemap includes it.
+
+Validation: `./scripts/check.sh` passed lint, typecheck, all 21 existing tests,
+and the production build. Browser inspection confirmed all five covers loaded,
+all supplied album destinations and 119 track links, Enter-key disclosure,
+light/dark switching, and no horizontal overflow at 1440px, 390px, and 320px.
+No browser console errors were observed. A detected LCP loading warning was
+addressed by eagerly loading the hero image and first album cover. Reduced-motion
+fallbacks were inspected in CSS; Safari/Firefox and physical-device testing were
+not performed. No commit, push, or deployment was requested in this pass.

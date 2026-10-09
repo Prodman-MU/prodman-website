@@ -62,6 +62,14 @@
 - [x] Keep Event 01 expanded by default so its details are visible without a click
 - [x] Update the PRD, decisions, architecture, and handoff contracts
 
+## Event soundtrack collection — 2026-10-09
+
+- [x] Build `/events/music` with the existing light/dark brand theme
+- [x] Pull official cover artwork and all 119 tracks from the five supplied Apple Music albums
+- [x] Link album cards and individual tracks to Apple Music, keeping the supplied editions
+- [x] Add finite entrance/hover motion, responsive cards, and native track-list disclosures
+- [x] Add a homepage Events link, sitemap entry, and source provenance notes
+
 ## Relevant Files
 
 - `app/page.tsx`, `lib/content.ts`, `components/`

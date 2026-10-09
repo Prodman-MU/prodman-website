@@ -9,6 +9,7 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 - `app/layout.tsx` owns fonts, metadata, the preloader/theme bootstraps, and global motion/cursor providers.
 - `app/page.tsx` is a Server Component that assembles the nine-section page.
 - `lib/content.ts` is the typed content boundary sourced from `resources/*.txt`.
+- Its `featuredEvent` export keeps the hero's event chip and default expanded timeline event synchronized. The editorial lead is The Next Interface; event order remains chronological.
 - `app/events/[slug]/page.tsx` statically generates announced events from `getFullEvents()`. The shared homepage accordion links to each detail page. `photos` represents completed-event photography; `posters` represents promotional artwork and does not suppress registration. `EventGallery` shares enlarge, arrow navigation, download, Escape, focus containment/restoration, and scroll locking between both; posters retain their full aspect ratio. `EventCountdown` uses an optional ISO `startsAt` and India calendar dates, with date-only events falling back to midnight IST.
 - `components/hero/` owns the canonical Canvas 2D living-logo runtime.
 - `components/motion/` owns reusable reveal/stagger primitives and the hydration-safe reduced-motion store.

@@ -264,6 +264,9 @@ export const events = [
   },
 ] as const;
 
+/** Shared editorial lead for the hero chip and initial event accordion. */
+export const featuredEvent = events[1];
+
 export function getFullEvents() {
   return events.filter(
     (event): event is Extract<(typeof events)[number], { slug: string }> => "slug" in event,

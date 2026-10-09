@@ -2,6 +2,8 @@
 
 ## 9 October 2026 — Product Catch-Up: The Next Interface
 
+- Follow-up owner request: feature The Next Interface in both the hero chip and default expanded accordion through a shared `featuredEvent` export. Back to Future now starts collapsed. This supersedes the original first-event expansion preserved in the initial implementation below.
+- Featured-event follow-up validation: the full `./scripts/check.sh` passed (prototype checks, lint, TypeScript, 21 tests, production build). Chromium verified the default state in server HTML and after hydration, hero date/title and section link, visible registration, manual accordion toggling, reload reset, and layouts at 1440px, 390px, and 320px. No browser errors.
 - Replaced the second event placeholder with the owner-supplied announcement and Unstop registration URL. The shared static route is `/events/next-interface`; the existing accordion interaction and default first-event expansion are preserved.
 - Added the supplied landscape banner and three posters under `public/events/next-interface/`, with provenance in `resources/Next-Interface.txt`. Promotional artwork is labelled "Event posters", remains uncropped, and uses the existing gallery interaction without hiding registration or claiming the event has concluded.
 - Countdown uses 9 October 2026, 4:30 PM IST. After the start it says "Today", then "Past event" after the India calendar day ends; no end time was supplied. This also fixes the old indefinite "Happening now" label on historical events.

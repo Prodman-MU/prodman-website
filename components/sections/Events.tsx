@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { events, newsletterTopics } from "@/lib/content";
+import { events, featuredEvent, newsletterTopics } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
@@ -28,7 +28,9 @@ function ArrowUpRightIcon({ className }: { className?: string }) {
 }
 
 export function Events() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(
+    events.findIndex((event) => event.number === featuredEvent.number),
+  );
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "submitted">("idle");
   const shouldReduceMotion = useHydratedReducedMotion();
 

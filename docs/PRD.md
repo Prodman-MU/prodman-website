@@ -267,6 +267,8 @@ The section is deliberately **visual-first rather than biography-first**. A fann
 
 ### 8.2 Event Information (complete)
 
+**Featured event update, 2026-10-09:** Om requested that **Product Catch-Up: The Next Interface** receive the homepage focus. `featuredEvent` in `lib/content.ts` now supplies both the hero chip and initial expanded accordion. Back to Future starts collapsed and remains available in the chronological timeline. This supersedes the August default-first-event requirement.
+
 **Owner update, 2026-10-09:** the 9 October external slot is now **Product Catch-Up: The Next Interface**, replacing the earlier "The Product Challenge" draft and "External Event 1" placeholder. The announcement and four promotional posters supplied by Om are captured in `resources/Next-Interface.txt`. The event starts at **4:30 PM IST** at **Masters’ Union, Gurugram**, with **Siddhant Aggarwal, Founder of Luxid Tech**, a smart-glasses product challenge, high tea, and **₹10,000 worth of goodies**. Registration uses the supplied Unstop link. Reuse the existing accordion and `/events/[slug]` page at `/events/next-interface`; label promotional artwork "Event posters" and retain registration alongside it. No end time or post-event outcomes are confirmed. Countdown labels use India time and distinguish upcoming, today, and past dates.
 
 `Event-Details.txt` is written as a design brief (it literally opens "Design a visually engaging 'Event Information' section..."), not just copy — content and layout direction are interleaved. Full extraction below.

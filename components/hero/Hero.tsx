@@ -2,11 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
-import { events, productBreakdown } from "@/lib/content";
+import { featuredEvent, productBreakdown } from "@/lib/content";
 import styles from "./Hero.module.css";
 import { useLivingLogo } from "./useLivingLogo";
 
-const nextEvent = events[0];
 const HERO_STATEMENT = "Building The Next-Gen Product Leaders.";
 
 function shortEventDate(fullDate: string) {
@@ -152,14 +151,14 @@ export function Hero() {
           href="#events"
           whileHover={{ y: -3, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          data-cursor-text={shortEventDate(nextEvent.date)}
+          data-cursor-text={shortEventDate(featuredEvent.date)}
         >
           <span className={styles.eventChipPulse} aria-hidden="true">
             <span className={styles.eventChipDot} />
           </span>
-          <span className={styles.eventChipDate}>{shortEventDate(nextEvent.date)}</span>
+          <span className={styles.eventChipDate}>{shortEventDate(featuredEvent.date)}</span>
           <span className={styles.eventChipBody}>
-            <span className={styles.eventChipLabel}>{nextEvent.title}</span>
+            <span className={styles.eventChipLabel}>{featuredEvent.title}</span>
           </span>
         </motion.a>
       </Reveal>

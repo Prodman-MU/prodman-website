@@ -74,10 +74,10 @@ const eventBanners: Record<number, BannerSpec> = {
     height: 1024,
   },
   2: {
-    src: "/events/next-interface/banner.jpg",
-    alt: "Product Catch-Up: The Next Interface with Siddhant Aggarwal, Founder of Luxid Tech. 9 October 2026, 4:30 PM, Masters’ Union, Gurugram. High tea and ₹10,000 in goodies. Register on Unstop.",
-    width: 1600,
-    height: 593,
+    src: "/events/event-photos/next-interface/03.jpeg",
+    alt: "Product Catch-Up: The Next Interface poster with smart glasses and Siddhant Aggarwal, Founder of Luxid Tech. 9 October 2026, 4:30 PM, Masters’ Union, Gurugram.",
+    width: 1254,
+    height: 1254,
   },
 };
 

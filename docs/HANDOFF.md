@@ -1,5 +1,14 @@
 # Project Handoff
 
+## 9 October 2026 — Product Catch-Up: The Next Interface
+
+- Replaced the second event placeholder with the owner-supplied announcement and Unstop registration URL. The shared static route is `/events/next-interface`; the existing accordion interaction and default first-event expansion are preserved.
+- Added the supplied landscape banner and three posters under `public/events/next-interface/`, with provenance in `resources/Next-Interface.txt`. Promotional artwork is labelled "Event posters", remains uncropped, and uses the existing gallery interaction without hiding registration or claiming the event has concluded.
+- Countdown uses 9 October 2026, 4:30 PM IST. After the start it says "Today", then "Past event" after the India calendar day ends; no end time was supplied. This also fixes the old indefinite "Happening now" label on historical events.
+- Shared gallery now contains keyboard focus and restores it on close. The detail banner requests an image size appropriate for its 880px container. The shared event page now provides the existing skip link's main-content target.
+- Validation: `./scripts/check.sh` passed prototype checks, lint, TypeScript, and all 21 existing Vitest tests; its build initially failed because the sandbox could not fetch Google Fonts. `npm run build` then passed with network access and generated both event routes. Chromium checks passed at 1440px, 390px, and 320px: image loading, registration destinations, accordion toggling, detail/back navigation, dark theme, poster navigation/download/focus/scroll restoration, reduced motion, India date boundaries with a Los Angeles browser time zone, and the existing Back to Future gallery. No browser errors; three CSS preload warnings appeared during homepage navigation. Safari/Firefox and a completed Unstop registration were not tested.
+- Release workflow: Om authorized committing this event update to `main` and pushing to GitHub on 9 October 2026. Deployment follows the existing GitHub integration. The pre-existing untracked event-photo folder and launch-video work are excluded from this change.
+
 ## Current State
 
 **v1 is built** as a Next.js (App Router) app covering all 9 sections from the whiteboard content plan, committed on branch `feat/nextjs-v1` (not yet merged to `main`, not yet deployed). `docs/PRD.md` is the shared source of truth for scope, content provenance, and open decisions — read it before making further content or design changes. The original static prototype (`index.html`, `demo.css`, `resources/prodman-living-logo/`) is kept as historical reference only; it is no longer the served entry point.

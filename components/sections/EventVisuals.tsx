@@ -56,7 +56,7 @@ export function EventSticker({ number }: { number: number }) {
 }
 
 /* Full event poster, used in place of the sticker for events that have a
-   dedicated promo banner (public/events/hero-banner/*.png). Shown on the
+   dedicated promo banner. Shown on the
    left of the panel; when present, the sticker on the right is dropped. */
 
 interface BannerSpec {
@@ -73,13 +73,19 @@ const eventBanners: Record<number, BannerSpec> = {
     width: 1536,
     height: 1024,
   },
+  2: {
+    src: "/events/next-interface/banner.jpg",
+    alt: "Product Catch-Up: The Next Interface with Siddhant Aggarwal, Founder of Luxid Tech. 9 October 2026, 4:30 PM, Masters’ Union, Gurugram. High tea and ₹10,000 in goodies. Register on Unstop.",
+    width: 1600,
+    height: 593,
+  },
 };
 
 export function hasEventBanner(number: number) {
   return Boolean(eventBanners[number]);
 }
 
-export function EventBanner({ number }: { number: number }) {
+export function EventBanner({ number, detail = false }: { number: number; detail?: boolean }) {
   const banner = eventBanners[number];
   if (!banner) return null;
 
@@ -90,7 +96,8 @@ export function EventBanner({ number }: { number: number }) {
       width={banner.width}
       height={banner.height}
       className={styles.bannerImg}
-      sizes="(max-width: 720px) 100vw, 320px"
+      sizes={detail ? "(max-width: 960px) 92vw, 880px" : "(max-width: 720px) 100vw, 320px"}
+      preload={detail}
     />
   );
 }

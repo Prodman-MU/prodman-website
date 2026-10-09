@@ -72,6 +72,28 @@
   outline-offset: 2px;
 }
 
+/* Promotional artwork needs its full composition, including dates and QR codes. */
+.posterGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  align-items: start;
+}
+
+.posterGrid .galleryItem {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.posterGrid .galleryImg {
+  height: auto;
+  object-fit: contain;
+}
+
+.posterGrid .galleryItem:hover .galleryImg,
+.posterGrid .galleryItem:focus-visible .galleryImg {
+  transform: none;
+}
+
 @media (max-width: 640px) {
   .galleryGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -82,6 +104,11 @@
   .galleryItem:nth-child(6),
   .galleryItem:nth-child(8) {
     grid-column: span 1;
+  }
+
+  .posterGrid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
   }
 }
 

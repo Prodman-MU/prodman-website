@@ -176,6 +176,8 @@ export interface EventPhoto {
    * its collage cell. Defaults to "50% 40%" when omitted. Full photo is
    * never cropped in the lightbox (object-fit: contain there). */
   readonly focus?: string;
+  readonly width?: number;
+  readonly height?: number;
 }
 
 export const events = [
@@ -216,11 +218,34 @@ export const events = [
   },
   {
     number: 2,
-    title: "External Event 1",
+    slug: "next-interface",
+    title: "Product Catch-Up: The Next Interface",
+    subtitle: "With Siddhant Aggarwal · Founder, Luxid Tech",
     date: "9 October 2026",
+    startsAt: "2026-10-09T16:30:00+05:30",
     type: "external" as const,
     typeLabel: "External Flagship Event",
-    tbd: true as const,
+    // Owner-supplied announcement and posters: resources/Next-Interface.txt.
+    tagline: "👓 What if the next screen is something you wear?",
+    description:
+      "Join us for an evening on smart glasses, AI wearables & the future of product with Siddhant Aggarwal, Founder of Luxid Tech. We’ll go beyond the conversation with a hands-on product challenge—you design what a smart-glasses experience could look like.",
+    tags: ["Smart Glasses", "AI Wearables", "Product Design"],
+    whatYoullDo: [
+      "Explore smart glasses, AI wearables & the future of product",
+      "Join the conversation with Siddhant Aggarwal, Founder of Luxid Tech",
+      "Design what a smart-glasses experience could look like in a hands-on product challenge",
+    ],
+    highlights: "₹10,000 worth of goodies",
+    time: "4:30 PM IST",
+    durationNote: "High tea",
+    venue: "Masters’ Union, Gurugram",
+    registerUrl: "https://unstop.com/workshops-webinars/product-catch-up-the-next-interface-masters-union-school-of-business-1762477",
+    cta: "Register on Unstop",
+    posters: [
+      { src: "/events/next-interface/event-poster.jpg", alt: "Product Catch-Up: The Next Interface — smart glasses and AI wearables with Siddhant Aggarwal, 9 October at 4:30 PM, Masters’ Union, Gurugram.", width: 1254, height: 1254 },
+      { src: "/events/next-interface/speaker-poster.jpg", alt: "Siddhant Aggarwal, Founder of Luxid Tech — speaker poster with high tea, ₹10,000 in goodies, and Unstop registration QR code.", width: 1254, height: 1254 },
+      { src: "/events/next-interface/portrait-poster.jpg", alt: "The Next Interface portrait poster — smart glasses, AI wearables, and a conversation with Siddhant Aggarwal. Scan to register on Unstop.", width: 1122, height: 1402 },
+    ] as readonly EventPhoto[],
   },
   {
     number: 3,

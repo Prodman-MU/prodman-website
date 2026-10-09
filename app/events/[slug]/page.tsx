@@ -43,7 +43,7 @@ export default async function EventPage({ params }: EventPageProps) {
   const pageStyle = { "--event-accent": accent, "--event-accent-text": accentText } as CSSProperties;
 
   return (
-    <main className={styles.page} style={pageStyle}>
+    <main id="main-content" className={styles.page} style={pageStyle}>
       <header className={styles.header}>
         <Link href="/" className={styles.brand} data-cursor-text="Home">
           Prod/Man
@@ -57,7 +57,7 @@ export default async function EventPage({ params }: EventPageProps) {
       <article className={styles.event}>
         {hasEventBanner(event.number) ? (
           <div className={styles.banner}>
-            <EventBanner number={event.number} />
+            <EventBanner number={event.number} detail />
           </div>
         ) : null}
 
@@ -119,6 +119,13 @@ export default async function EventPage({ params }: EventPageProps) {
           <section className={styles.gallerySection} aria-labelledby="gallery-heading">
             <h2 id="gallery-heading">From the event</h2>
             <EventGallery photos={event.photos} eventTitle={event.title} />
+          </section>
+        ) : null}
+
+        {"posters" in event && event.posters?.length ? (
+          <section className={styles.gallerySection} aria-labelledby="posters-heading">
+            <h2 id="posters-heading">Event posters</h2>
+            <EventGallery photos={event.posters} eventTitle={event.title} mediaType="poster" />
           </section>
         ) : null}
       </article>

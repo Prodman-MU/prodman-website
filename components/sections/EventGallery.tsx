@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { EventPhoto } from "@/lib/content";
 import styles from "./EventGallery.module.css";
@@ -52,8 +52,15 @@ function ExpandIcon() {
   );
 }
 
-export function EventGallery({ photos, eventTitle }: { photos: readonly EventPhoto[]; eventTitle: string }) {
+export function EventGallery({ photos, eventTitle, mediaType = "photo" }: {
+  photos: readonly EventPhoto[];
+  eventTitle: string;
+  mediaType?: "photo" | "poster";
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const isOpen = openIndex !== null;
   const count = photos.length;
 
   const close = useCallback(() => setOpenIndex(null), []);
@@ -65,45 +72,65 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
   }, [count]);
 
   useEffect(() => {
-    if (openIndex === null) return;
+    if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
-      if (event.key === "ArrowLeft") showPrev();
-      if (event.key === "ArrowRight") showNext();
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        if (event.key === "ArrowLeft") showPrev();
+        else showNext();
+      }
+      if (event.key === "Tab") {
+        const controls = dialogRef.current?.querySelectorAll<HTMLElement>("a[href], button");
+        if (!controls?.length) return;
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      if (previousFocus instanceof HTMLElement) previousFocus.focus({ preventScroll: true });
     };
-  }, [openIndex, close, showPrev, showNext]);
+  }, [isOpen, close, showPrev, showNext]);
 
   const active = openIndex === null ? null : photos[openIndex];
 
   return (
     <>
-      <div className={styles.galleryGrid}>
+      <div className={`${styles.galleryGrid} ${mediaType === "poster" ? styles.posterGrid : ""}`}>
         {photos.map((photo, index) => (
           <button
             key={photo.src}
             type="button"
             className={styles.galleryItem}
             onClick={() => setOpenIndex(index)}
-            aria-label={`Open photo ${index + 1} of ${count}: ${photo.alt}`}
+            aria-label={`Open ${mediaType} ${index + 1} of ${count}: ${photo.alt}`}
             data-cursor-text="View"
           >
             <Image
               src={photo.src}
               alt={photo.alt}
-              width={800}
-              height={600}
+              width={photo.width ?? 800}
+              height={photo.height ?? 600}
               className={styles.galleryImg}
-              sizes="(max-width: 720px) 50vw, 280px"
+              sizes={mediaType === "poster" ? "(max-width: 640px) 92vw, 290px" : "(max-width: 720px) 50vw, 280px"}
+              style={photo.focus ? { objectPosition: photo.focus } : undefined}
               unoptimized
             />
             <span className={styles.galleryOverlay} aria-hidden="true">
@@ -115,10 +142,11 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
 
       {active ? (
         <div
+          ref={dialogRef}
           className={styles.lightbox}
           role="dialog"
           aria-modal="true"
-          aria-label={`${eventTitle} photo viewer`}
+          aria-label={`${eventTitle} ${mediaType} viewer`}
           onClick={close}
         >
           <div className={styles.lightboxBackdrop} aria-hidden="true" />
@@ -132,16 +160,17 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
                 className={styles.lightboxButton}
                 href={active.src}
                 download
-                aria-label="Download this photo"
+                aria-label={`Download this ${mediaType}`}
                 data-cursor-text="Download"
               >
                 <DownloadIcon />
               </a>
               <button
+                ref={closeButtonRef}
                 type="button"
                 className={styles.lightboxButton}
                 onClick={close}
-                aria-label="Close photo viewer"
+                aria-label={`Close ${mediaType} viewer`}
                 data-cursor-text="Close"
               >
                 <CloseIcon />
@@ -156,7 +185,7 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
               event.stopPropagation();
               showPrev();
             }}
-            aria-label="Previous photo"
+            aria-label={`Previous ${mediaType}`}
             data-cursor-text="Prev"
           >
             <ChevronIcon direction="left" />
@@ -167,8 +196,8 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
               key={active.src}
               src={active.src}
               alt={active.alt}
-              width={1760}
-              height={1320}
+              width={active.width ?? 1760}
+              height={active.height ?? 1320}
               className={styles.lightboxImg}
               sizes="90vw"
               unoptimized
@@ -184,7 +213,7 @@ export function EventGallery({ photos, eventTitle }: { photos: readonly EventPho
               event.stopPropagation();
               showNext();
             }}
-            aria-label="Next photo"
+            aria-label={`Next ${mediaType}`}
             data-cursor-text="Next"
           >
             <ChevronIcon direction="right" />

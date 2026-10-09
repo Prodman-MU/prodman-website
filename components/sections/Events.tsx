@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { events, newsletterTopics, registrationUrl } from "@/lib/content";
+import { events, newsletterTopics } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { StaggerContainer, StaggerItem } from "@/components/motion/StaggerContainer";
@@ -63,7 +63,7 @@ export function Events() {
                     {"typeLabel" in event ? event.typeLabel : "Internal Event"}
                   </span>
                   <span className={styles.date}>{event.date}</span>
-                  <EventCountdown date={event.date} />
+                  <EventCountdown date={event.date} startsAt={"startsAt" in event ? event.startsAt : undefined} />
                   {"tbd" in event ? <span className={styles.tbdNote}>Details TBD</span> : null}
                 </span>
               </span>
@@ -139,7 +139,7 @@ export function Events() {
                                 {"photos" in event && event.photos?.length ? null : (
                                   <motion.a
                                     className="cta cta--ghost"
-                                    href={event.cta === "Register Now" ? (event.registerUrl ?? registrationUrl) : "#events"}
+                                    href={event.registerUrl}
                                     target={event.registerUrl ? "_blank" : undefined}
                                     rel={event.registerUrl ? "noreferrer" : undefined}
                                     whileHover={{ y: -2, scale: 1.03 }}

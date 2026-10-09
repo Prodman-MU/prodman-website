@@ -293,6 +293,8 @@ The section is deliberately **visual-first rather than biography-first**. A fann
 
 ### 8.3 Mission / Outcome (complete)
 
+**Who Are We layout update, 2026-10-09:** the owner confirmed three introduction cards visible side by side on desktop, automatic cycling and manual arrows, and a single-card swipe carousel on mobile. The implemented section uses normal page flow instead of the earlier scroll-pinned stack, preserves the existing `whoWeAre` copy and card treatment, and includes Pause/Play and reduced-motion support. See `docs/ARCHITECTURE.md` for the interaction contract.
+
 `Outcome-of-ProdMan-Club.txt` maps to the whiteboard's item 3 ("Outcome of the ProdMan Club [Mission Statement]: why do we exist"). Full copy exists as **four sequential sub-blocks** — content is complete, but unlike Sections 2 and 5, **this file carries no visual/interaction direction at all** (no layout, animation, or CTA notes), so that's an open design decision, not a content gap. Extracted in full below so nothing gets lost in the build:
 
 **1. Why Do We Exist?**

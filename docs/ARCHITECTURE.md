@@ -21,6 +21,8 @@ The production deliverable is a static-rendered Next.js App Router site with iso
 
 ## Runtime behavior
 
+The Who Are We introduction uses a native horizontal scroll-snap carousel instead of a scroll-pinned stack. Three cards remain visible side by side above 720px; smaller screens show one card at a time. Previous/next controls, Left/Right keys, and native touch scrolling cycle through the unchanged paragraphs. Hidden, inert copies support wrapping in both directions without duplicating screen-reader content. Automatic cycling advances one card every eight seconds, with a Pause/Play control; it suspends on hover, focus, scrolling, off-screen state, hidden tabs, and reduced-motion preference. Resizing preserves the selected card and all cards share the tallest content height.
+
 The particle field is rebuilt when its section resizes, caps device pixel ratio at 2, lowers the particle count on small screens, pauses while off-screen or in a background tab, and reacts locally to pointer movement. `prefers-reduced-motion` receives a static composition.
 
 Ambient and pointer displacement stays inside a responsive, logo-local motion envelope. The particle targets and ghost logo use the same 72vw desktop / 88vw mobile geometry so the two layers remain registered instead of spilling into separate outer bands.

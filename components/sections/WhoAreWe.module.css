@@ -87,23 +87,88 @@
   opacity: 0.28;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: clamp(1.75rem, 3vw, 2.5rem);
+.carousel {
   margin: 0 0 clamp(3rem, 6vw, 5rem);
 }
 
-.cardItem:nth-child(2) {
-  margin-top: 1.6rem;
+.cards {
+  --card-gap: clamp(1.25rem, 2.5vw, 2rem);
+  display: flex;
+  gap: var(--card-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: none;
+  padding: 20px 16px;
 }
 
-.cardItem:nth-child(3) {
-  margin-top: 0.4rem;
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+.cardItem {
+  flex: 0 0 calc((100% - 2 * var(--card-gap)) / 3);
+  min-width: 0;
+  display: flex;
+  scroll-snap-align: start;
 }
 
 .cardItem .card {
+  width: 100%;
   height: 100%;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 16px 0;
+}
+
+.position {
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--accent-ink);
+  border-radius: 2px;
+  background: var(--acid);
+  color: var(--accent-ink);
+  box-shadow: 3px 3px 0 var(--accent-ink);
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.playControl {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.control:hover {
+  background: var(--cyan);
+}
+
+.control:focus-visible,
+.cards:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 5px;
 }
 
 .card {
@@ -145,62 +210,6 @@
   font-size: 0.98rem;
   font-weight: 500;
   line-height: 1.6;
-}
-
-/* Pinned card-stack variant of .cards (rendered instead of the grid unless
-   the user prefers reduced motion — see WhoAreWe.tsx). .stage fills the
-   available viewport height below the nav and centers its content
-   (place-items: center) so the held card sits at the visual center of the
-   screen — not parked near the top with a dead void filling the rest of
-   the viewport (that was the previous bug: sizing .stage to its own
-   content made it short, and a short sticky box anchored at the top just
-   *is* near the top, not centered). Growing .stage's height back out to
-   the full viewport is cheap: it's added to the pin's total scroll
-   distance exactly once (see WhoAreWe.tsx), unlike the per-card step
-   distance, which is added three times — so this doesn't reintroduce the
-   "too much scroll" problem. All 3 cards stay mounted, stacked in the
-   same grid cell (grid-area: 1/1); .stage's height only changes with the
-   viewport (never with which card is active), which is what keeps the
-   sticky "hold" position from drifting mid-scroll. .stageOuter's total
-   height (which also has to account for the scroll distance spent on
-   each card's hold-then-advance step) is measured and set inline from
-   WhoAreWe.tsx, since CSS calc() can't do that in pure CSS. Per-step
-   scroll distance (clamp(200px, 30vh, 340px) equivalent) is computed
-   directly in JS rather than declared here as a custom property —
-   getComputedStyle() can't resolve a clamp()-valued custom property back
-   into a px number, see the comment in WhoAreWe.tsx's measurement
-   effect. */
-
-.stageOuter {
-  position: relative;
-  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.stage {
-  position: sticky;
-  top: var(--nav-height, 84px);
-  display: grid;
-  place-items: center;
-  min-height: calc(100svh - var(--nav-height, 84px));
-  padding-block: clamp(0.75rem, 2vh, 1.5rem);
-}
-
-.cardSlot {
-  grid-area: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(0.9rem, 3.5vw, 1.25rem);
-  will-change: transform, opacity;
-}
-
-@media (min-width: 721px) {
-  .cardSlot .card {
-    height: var(--who-card-height, 260px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 
 .closingWrap {
@@ -261,9 +270,8 @@
     box-shadow: 6px 6px 0 var(--accent-ink);
   }
 
-  .cardItem:nth-child(2),
-  .cardItem:nth-child(3) {
-    margin-top: 0;
+  .cardItem {
+    flex-basis: 100%;
   }
 
   .card {

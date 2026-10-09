@@ -66,3 +66,8 @@
 - Decision: Couple accent and accent-ink colors directly to the `Member` schema in `lib/content.ts` as the single source of truth. Preserve Sai Harsha's acid green `#c9ff3d`, and assign Om Umrania a vibrant electric rose `#ff5c8a`. Remove disconnected `cardTones` / `memberAccents` arrays in `Members.tsx` and `app/team/[slug]/page.tsx`, and ensure `--member-accent` and subpage elements adapt cleanly in both light and dark modes.
 - Consequences: All 8 carousel cards have distinct, contrasting colors with zero consecutive duplicates across the circular deck loop. Om Umrania's portrait cutout has high contrast against the vibrant rose backdrop, and the `/team/om-umrania` profile subpage accurately reflects the same accent across badges, headings, and ambient glows in both dark and light modes.
 
+## 2026-10-09 - Replace the scroll-pinned introduction with a horizontal carousel
+
+- Context: The owner requested all three Who Are We cards side by side on desktop, automatic cycling plus manual arrows, and one card at a time with swiping on mobile.
+- Decision: Use native overflow scrolling and CSS scroll snapping with three visible cards above 720px and one below. Keep the existing paragraphs, colors, borders, and shadows. Cycle one card every eight seconds, wrap in both directions, and provide arrows, keyboard navigation, and a Pause/Play control.
+- Consequences: The section returns to normal page flow without extra scroll holds or a full-height sticky stage. Autoplay suspends while reading/interacting, off-screen, in background tabs, and under reduced motion. Inert duplicate groups enable looping; only the original three paragraphs appear in the accessibility tree. No new dependency or backend is required.
